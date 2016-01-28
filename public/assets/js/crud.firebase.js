@@ -24,8 +24,7 @@
           if (error) {
             alert("Data could not be saved." + error);
           } else {
-            $('#outage').fadeOut();
-            $('#outagePreview').fadeIn();
+            window.location.replace("preview.outage.html?outageid=" + outageid);
           }
         });
    
