@@ -1,0 +1,9 @@
+{
+  "firebase": "resplendent-inferno-4226",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

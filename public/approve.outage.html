@@ -23,9 +23,9 @@
     </header>
 
     <ul>
-        <li><a href="new.outage.html" class="active">1. NEW Outage</a> <i class="fa fa-arrow-right"></i></li>
+        <li><a href="#">1. NEW Outage</a> <i class="fa fa-arrow-right"></i></li>
         <li><a href="#">2. Preview/Modify Outage</a> <i class="fa fa-arrow-right"></i></li>
-        <li><a href="#">3. Approval</a> <i class="fa fa-arrow-right"></i></li>
+        <li><a href="#" class="active">3. Approval</a> <i class="fa fa-arrow-right"></i></li>
         <li><a href="#">4. Send Outage Notification</a></li>
     </ul>
 
@@ -33,13 +33,16 @@
     <div class="main-content">
 
         <!-- You only need this form and the form-basic.css -->
+				<div class="form-basic" id="outagePreview">
+
+				</div>
 
 				<form class="form-basic" name="outage" id="outage" method="post" action="preview.outage.html">
-						<input id="outageid" type="hidden" name="outageid" />
-
+					<input id="outageid" type="hidden" name="outageid" />
+					<input id="state" type="hidden" name="state" />
 						<!-- Title -->
             <div class="form-title-row">
-                <h1>NEW Outage Notification</h1>
+                <h1>Outage Notification</h1>
             </div>
 						<!-- Outage Type -->
 						<div class="form-row">
@@ -191,10 +194,9 @@
 
 		<!-- Form Control and Data Connectivity -->
 		<script type="text/javascript" src="assets/js/jquery-2.2.0.min.js"></script>
-		<script type="text/javascript" src="assets/js/jquery.SPServices-2014.02.js"></script>
-		<script type="text/javascript" src="assets/js/jquery.SPServices-2014.02.min.js"></script>
-		<script src="assets/js/crud.spservices.js"></script>
-		<script src="assets/js/new.form.control.js"></script>
+		<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+		<script src="assets/js/crud.firebase.js"></script>
+		<script src="assets/js/approve.form.control.js"></script>
 
 </body>
 

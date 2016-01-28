@@ -38,51 +38,6 @@ $(window).load(function() {
   //Populate Form.Preview
   pop_formpreview(outageid);
 
-  //Edit Button
-  $('a[name=edit]').click(function(){
-
-    $('#outagePreview').fadeOut();
-
-    $('#outage').fadeIn();
-
-  });
-
-  //Approval Button
-  $('button[name=approval]').click(function(){
-
-    $('#confirm').fadeIn();
-    $('#confirm').focus();
-
-    window.location.replace("#confirm");
-
-  });
-
-  //Submit for Approval
-  $('a[name=yes]').click(function(){
-
-    change_status(outageid,"Pending");
-
-  });
-
-  //No
-  $('a[name=no]').click(function(){
-
-    $('#confirm').fadeOut();
-
-  });
-
-  //ABO/IBO Impact Control
-  if($('input[name=chkABO]').is(':checked'))
-  {
-      $('#ABOimpact').fadeIn();
-      $("#txtABO").prop('required',true);
-  }
-  else
-  {
-      $('#ABOimpact').fadeOut();
-      $("#txtABO").prop('required',false);
-  }
-
   //Add to Control
   $('input[name=chkABO]').change(function(){
 
@@ -99,53 +54,6 @@ $(window).load(function() {
 
   });
 
-  //Outage Type Control
-  if($('select[name=otype]').val()=="PLANNED OUTAGE")
-  {
-      $('#endDate').fadeIn();
-      $("#time-endd").prop('required',true);
-      $("#time-endt").prop('required',true);
-
-      if($("#time-startd").val()!=""){
-          pop_timeFrame();
-      }
-  }
-  else if($('select[name=otype]').val()=="MAINTENANCE")
-  {
-      $('#endDate').fadeIn();
-      $("#time-endd").prop('required',true);
-      $("#time-endt").prop('required',true);
-
-      if($("#time-startd").val()!=""){
-          pop_timeFrame();
-      }
-
-  }
-  else if($('select[name=otype]').val()=="UNPLANNED OUTAGE")
-  {
-      $('#endDate').fadeOut();
-      $("#time-endd").prop('required',false);
-      $("#time-endd").val("");
-      $("#time-endt").prop('required',false);
-      $("#time-endt").val("");
-
-      if($("#time-startd").val()!=""){
-          pop_timeFrame();
-      }
-  }
-  else if($('select[name=otype]').val()=="ABO-FACING USI")
-  {
-      $('#endDate').fadeOut();
-      $("#time-endd").prop('required',false);
-      $("#time-endd").val("");
-      $("#time-endt").prop('required',false);
-      $("#time-endt").val("");
-
-      if($("#time-startd").val()!=""){
-          pop_timeFrame();
-      }
-  }
-
   //Add to Control
   $('select[name=otype]').change(function(){
 
@@ -155,7 +63,7 @@ $(window).load(function() {
         $("#time-endd").prop('required',true);
         $("#time-endt").prop('required',true);
 
-        if($("#time-startd").val()!=""){
+        if($("#time-startd").val()!==""){
             pop_timeFrame();
         }
     }
@@ -165,7 +73,7 @@ $(window).load(function() {
         $("#time-endd").prop('required',true);
         $("#time-endt").prop('required',true);
 
-        if($("#time-startd").val()!=""){
+        if($("#time-startd").val()!==""){
             pop_timeFrame();
         }
 
@@ -178,7 +86,7 @@ $(window).load(function() {
         $("#time-endt").prop('required',false);
         $("#time-endt").val("");
 
-        if($("#time-startd").val()!=""){
+        if($("#time-startd").val()!==""){
             pop_timeFrame();
         }
     }
@@ -190,7 +98,7 @@ $(window).load(function() {
         $("#time-endt").prop('required',false);
         $("#time-endt").val("");
 
-        if($("#time-startd").val()!=""){
+        if($("#time-startd").val()!==""){
             pop_timeFrame();
         }
     }
@@ -237,7 +145,7 @@ function pop_timeFrame(){
 
   //End Date
   var endd = document.getElementById("time-endd").value;
-  if (endd!=""){
+  if (endd!==""){
     var eactualDay = endd.substr(endd.length-2,endd.length).replace(/\b0(?=\d)/g, '');
 
     endd = endd.substr(0,endd.length-2) + eactualDay;
@@ -268,7 +176,7 @@ function pop_timeFrame(){
     buildTime += " at ";
     buildTime += document.getElementById("time-startt").value;
 
-    if (endd!=""){
+    if (endd!==""){
       buildTime += " to ";
       buildTime += eweekday + ", " + edate + " " + emonth + " " + eyear;
       buildTime += " at ";
@@ -301,7 +209,7 @@ $('form[name=outage]').submit(function(event) {
     contact = $('input[name=contact]').val(), _
     ticket = $('input[name=ticket]').val();
 
-    if ($('input[name=chkABO]').is(':checked')==true){
+    if ($('input[name=chkABO]').is(':checked')===true){
       chkABO=1;
     }
     else {
