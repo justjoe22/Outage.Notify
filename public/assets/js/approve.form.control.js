@@ -80,7 +80,7 @@ $(window).load(function() {
       $("#time-endd").prop('required',true);
       $("#time-endt").prop('required',true);
 
-      if($("#time-startd").val()!=""){
+      if($("#time-startd").val()!==""){
           pop_timeFrame();
       }
   }
@@ -90,7 +90,7 @@ $(window).load(function() {
       $("#time-endd").prop('required',true);
       $("#time-endt").prop('required',true);
 
-      if($("#time-startd").val()!=""){
+      if($("#time-startd").val()!==""){
           pop_timeFrame();
       }
 
@@ -103,7 +103,7 @@ $(window).load(function() {
       $("#time-endt").prop('required',false);
       $("#time-endt").val("");
 
-      if($("#time-startd").val()!=""){
+      if($("#time-startd").val()!==""){
           pop_timeFrame();
       }
   }
@@ -115,7 +115,7 @@ $(window).load(function() {
       $("#time-endt").prop('required',false);
       $("#time-endt").val("");
 
-      if($("#time-startd").val()!=""){
+      if($("#time-startd").val()!==""){
           pop_timeFrame();
       }
   }
@@ -129,7 +129,7 @@ $(window).load(function() {
         $("#time-endd").prop('required',true);
         $("#time-endt").prop('required',true);
 
-        if($("#time-startd").val()!=""){
+        if($("#time-startd").val()!==""){
             pop_timeFrame();
         }
     }
@@ -139,7 +139,7 @@ $(window).load(function() {
         $("#time-endd").prop('required',true);
         $("#time-endt").prop('required',true);
 
-        if($("#time-startd").val()!=""){
+        if($("#time-startd").val()!==""){
             pop_timeFrame();
         }
 
@@ -152,7 +152,7 @@ $(window).load(function() {
         $("#time-endt").prop('required',false);
         $("#time-endt").val("");
 
-        if($("#time-startd").val()!=""){
+        if($("#time-startd").val()!==""){
             pop_timeFrame();
         }
     }
@@ -164,7 +164,7 @@ $(window).load(function() {
         $("#time-endt").prop('required',false);
         $("#time-endt").val("");
 
-        if($("#time-startd").val()!=""){
+        if($("#time-startd").val()!==""){
             pop_timeFrame();
         }
     }
@@ -211,7 +211,7 @@ function pop_timeFrame(){
 
   //End Date
   var endd = document.getElementById("time-endd").value;
-  if (endd!=""){
+  if (endd!==""){
     var eactualDay = endd.substr(endd.length-2,endd.length).replace(/\b0(?=\d)/g, '');
 
     endd = endd.substr(0,endd.length-2) + eactualDay;
@@ -242,7 +242,7 @@ function pop_timeFrame(){
     buildTime += " at ";
     buildTime += document.getElementById("time-startt").value;
 
-    if (endd!=""){
+    if (endd!==""){
       buildTime += " to ";
       buildTime += eweekday + ", " + edate + " " + emonth + " " + eyear;
       buildTime += " at ";
@@ -275,7 +275,7 @@ $('form[name=outage]').submit(function(event) {
     contact = $('input[name=contact]').val(), _
     ticket = $('input[name=ticket]').val();
 
-    if ($('input[name=chkABO]').is(':checked')==true){
+    if ($('input[name=chkABO]').is(':checked')===true){
       chkABO=1;
     }
     else {
