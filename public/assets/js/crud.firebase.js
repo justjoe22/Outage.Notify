@@ -34,27 +34,13 @@
   function DeleteListItem(outageid){
     var msg;
 
-    $().SPServices({
-      operation:"UpdateListItems",
-      async: false,
-      batchCmd: "Delete",
-      webURL: "/sites/help/outage/",
-      listName: "{F6F0A3E6-739F-4480-9126-692927FD1E6D}",
-      ID: outageid,
-      completefunc:function(xData, Status){
-        var out = $().SPServices.SPDebugXMLHttpResult({
-          node: xData.responseXML
-        });
-
-        // Message was sent
-        if (Status == 'success') {
-          msg = "Outage Deleted";
-        }
-        // There was an error
-        else {
-          alert('Delete Failed: ' + out);
-        }
-      }
+    // Get a reference to our posts
+    var ref = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
+    
+    // Get the data on a post that has been removed
+    ref.on("child_removed", function(snapshot) {
+      var deletedPost = snapshot.val();
+      msg="The blog post titled '" + deletedPost.title + "' has been deleted";
     });
 
     return msg
