@@ -2,7 +2,7 @@
   //Add List Item to Outage System
   function AddListItem(otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
     var postID;
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/');
+    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
     
        myDataRef.push({status: "Draft", otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket});
        
@@ -16,7 +16,7 @@
   //Update List Item to Outage System
   function UpdateListItem(outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
 
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/');
+    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
     
        var myItemRef = myDataRef.child(outageid);
        
@@ -63,7 +63,7 @@
   //Change Status of Outage System
   function change_status(outageid,statusid){
 
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/');
+    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
     
        var myItemRef = myDataRef.child(outageid);
        
@@ -82,7 +82,7 @@
 
     //Get Outage for Preview
     // Get a database reference to our posts
-    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
+    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/outages/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().on("value", function(snapshot) {
@@ -142,7 +142,7 @@
 
     //Get Outage for Preview
     // Get a database reference to our posts
-    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
+    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/outages/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().equalTo(outageid).on("value", function(snapshot) {
