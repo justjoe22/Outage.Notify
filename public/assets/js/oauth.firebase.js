@@ -1,4 +1,3 @@
-(function($) {
 
 function register(){
     var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
@@ -39,10 +38,7 @@ $('form[name=login]').submit(function(event) {
     /* Alerts the results */
     posting.done(function( data ) {
       // similar behavior as an HTTP redirect
-     // window.location.replace(url);
+      window.location.replace(url);
     });
     
 });
-
-//End of Script
-})(jQuery);
