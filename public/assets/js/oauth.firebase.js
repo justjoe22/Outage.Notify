@@ -16,7 +16,7 @@ function register(){
 }
 
 $('form[name=login]').submit(function(event) {
-    var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
     
     ref.authWithPassword({
       email    : $('input[name=email]').val(),
@@ -28,6 +28,20 @@ $('form[name=login]').submit(function(event) {
         console.log("Authenticated successfully with payload:", authData);
       }
     });
+    
+    /* get some values from elements on the page: */
+    var $form = $( this ),
+        url = "my.outages.html";
+
+    /* Send the data using post */
+    var posting = $.post( url, { email: $('input[name=email]').val() } );
+
+    /* Alerts the results */
+    posting.done(function( data ) {
+      // similar behavior as an HTTP redirect
+     // window.location.replace(url);
+    });
+    
 });
 
 //End of Script
