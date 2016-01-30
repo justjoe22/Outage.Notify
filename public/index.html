@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- http://tutorialzine.com/license/ -->
+
 <head>
 
 	<meta charset="utf-8">
@@ -10,32 +10,63 @@
 	<title>Outage Notification System</title>
 
 	<link rel="stylesheet" href="assets/main.css">
-	<link rel="stylesheet" href="assets/form-basic.css">
-	<link rel="stylesheet" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/form-login.css">
 
 </head>
 
 
 	<header>
 		<h1>Outage Notification System</h1>
-				<a href="new.outage.html"><i class="fa fa-plus-square"></i> New Outage</a>
-				<a href="#"><i class="fa fa-user"></i> My Outages</a>
-    </header>
+  </header>
 
     <ul>
-        <li><a href="#" class="active">My Outages</a></li>
+        <li><a href="form-login.html" class="active">Login</a> or </li>
+        <li><a href="form-register.html">Register</a></li>
     </ul>
 
 
-    <div id="outagelist">
+    <div class="main-content">
+
+        <!-- You only need this form and the form-login.css -->
+
+        <form class="form-login" method="post" action="#">
+
+            <div class="form-log-in-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Log in</h1>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Email</span>
+                            <input type="email" name="email">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Password</span>
+                            <input type="password" name="password">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="submit">Log in</button>
+                    </div>
+
+                </div>
+
+                <a href="#" class="form-forgotten-password">Forgotten password &middot;</a>
+                <a href="#" class="form-create-an-account">Create an account &rarr;</a>
+
+            </div>
+
+        </form>
 
     </div>
-
-		<!-- Form Control and Data Connectivity -->
-		<script type="text/javascript" src="assets/js/jquery-2.2.0.min.js"></script>
-		<script src="assets/js/firebase.js"></script>
-		<script src="assets/js/crud.firebase.js"></script>
-    <script src="assets/js/init.form.js"></script>
 
 </body>
 
