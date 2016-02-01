@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Define timestamp
-timestamp = date +"%T"
+times = date +"%T"
 
 git add --all
 
-git commit -m "Update GitHub $timestamp"
+git commit -m "Update GitHub $times"
 
 git push
 
