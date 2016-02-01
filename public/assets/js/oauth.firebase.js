@@ -1,19 +1,4 @@
-
-function register(){
-    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
-    ref.createUser({
-      email    : $('input[name=email]').val(),
-      password : $('input[name=password]').val()
-    }, function(error, userData) {
-      if (error) {
-        console.log("Error creating user:", error);
-      } else {
-        console.log("Successfully created user account with uid:", userData.uid);
-      }
-    });
-
-}
-
+//Login to Firebase
 $('form[name=login]').submit(function(event) {
     var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
     
@@ -42,3 +27,19 @@ $('form[name=login]').submit(function(event) {
     });
     
 });
+
+//Register to Firebase
+function register(){
+    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
+    ref.createUser({
+      email    : $('input[name=email]').val(),
+      password : $('input[name=password]').val()
+    }, function(error, userData) {
+      if (error) {
+        console.log("Error creating user:", error);
+      } else {
+        console.log("Successfully created user account with uid:", userData.uid);
+      }
+    });
+
+}
