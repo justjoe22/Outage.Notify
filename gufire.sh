@@ -1,11 +1,7 @@
 #!/bin/bash
 
-# Define a timestamp function
-timestamp() {
-  date +"%T"
-}
-
-$timestamp = timestamp
+# Define timestamp
+$timestamp = date +"%T"
 
 git add --all
 
