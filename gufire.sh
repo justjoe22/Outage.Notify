@@ -7,7 +7,7 @@ timestamp() {
 
 git add --all
 
-git commit -m "Update GitHub T:%timestamp"
+git commit -m "Update GitHub T: %timestamp"
 
 git push
 
