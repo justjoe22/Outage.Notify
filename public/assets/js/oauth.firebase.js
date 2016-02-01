@@ -62,7 +62,7 @@ ref.onAuth(authDataCallback);
   });
   
   //My outages
-  $( "#outagelist" ).load(function( event ) {
+  $( "#outagelist" ).init(function( event ) {
       
     //Get Outage for Preview
     // Get a database reference to our posts
