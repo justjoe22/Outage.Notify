@@ -1,8 +1,5 @@
 (function($) {
 
-//Default Settings OnLoad
-$(window).load(function() {
-
 var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");    
 var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
   if (error) {
@@ -12,6 +9,9 @@ var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
   if (user) {
     // User is already logged in.
     doLogin(user);
+    
+    window.location.replace("my.outages.html");
+    
   } else {
     // User is logged out.
     showLoginBox();
@@ -43,9 +43,6 @@ function showLoginBox(){
   
   
 }
-
-
-});
 
 //End of Script
 })(jQuery);
