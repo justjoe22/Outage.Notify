@@ -67,9 +67,10 @@ ref.onAuth(authDataCallback);
     //Get Outage for Preview
     // Get a database reference to our posts
     //var Myref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/outages/");
+    var Myref = ref.child("outages");
     
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByKey().on("value", function(snapshot) {
+    Myref.orderByKey().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
             var message = data.val();
         
