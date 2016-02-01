@@ -19,9 +19,7 @@ var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
   
   // Login
   $( "#login" ).submit(function( event ) {
-        
-    event.preventDefault();
-  
+    
     var email = $('input[name=email]').val();
     var password = $('input[name=password]').val();
     
@@ -31,9 +29,23 @@ var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
       } else {
         console.log("Authenticated successfully with payload:", authData);
         
-        window.location.replace("my.outages.html");
+            /* get some values from elements on the page: */
+            var $form = $( this ),
+                url = $form.attr( 'action' );
+        
+            /* Send the data using post */
+            var posting = $.post( url, { outageid: $('#outageid').val() } );
+        
+            /* Alerts the results */
+            posting.done(function( data ) {
+              // similar behavior as an HTTP redirect
+              window.location.replace("my.outages.html");
+            });
+            
       }
     });
+    
+    event.preventDefault();
     
   });
 
