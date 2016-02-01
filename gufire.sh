@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Define timestamp
-mytimes = date +"%T"
-
 git add --all
 
 echo "Git Update Title: "
