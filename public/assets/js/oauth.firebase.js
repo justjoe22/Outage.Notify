@@ -1,52 +1,51 @@
-//Login to Firebase
-$('form[name=login]').submit(function(event) {
-    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
-    
-    ref.authWithPassword({
-      email    : $('input[name=email]').val(),
-      password : $('input[name=password]').val()
-    }, function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
-      }
-    });
-    
-    /* get some values from elements on the page: */
-    var $form = $( this ),
-        url = "my.outages.html";
+(function($) {
 
-    /* Send the data using post */
-    var posting = $.post( url, { email: $('input[name=email]').val() } );
+//Default Settings OnLoad
+$(window).load(function() {
 
-    /* Alerts the results */
-    posting.done(function( data ) {
-      // similar behavior as an HTTP redirect
-      window.location.replace(url);
-    });
-    
+var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");    
+var authClient = new FirebaseAuthClient(ref, function(error, user) {
+  if (error) {
+    alert(error);
+    return;
+  }
+  if (user) {
+    // User is already logged in.
+    doLogin(user);
+  } else {
+    // User is logged out.
+    showLoginBox();
+  }
 });
 
-//Register Form Control
-$('form[name=register]').submit(function(event) {
-    
-   register();
-   
 });
 
-//Register to Firebase
-function register(){
-    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
-    ref.createUser({
-      email    : $('input[name=email]').val(),
-      password : $('input[name=password]').val()
-    }, function(error, userData) {
-      if (error) {
-        console.log("Error creating user:", error);
+function showLoginBox(){
+
+  // Register
+  $("#registerButton").on("click", function() {
+    var email = $('input[name=email]').val();
+    var password = $('input[name=password]').val();
+    authClient.createUser(email, password, function(error,  user) {
+      if (!error) {
+        doLogin(user);
       } else {
-        console.log("Successfully created user account with uid:", userData.uid);
+        alert(error);
       }
     });
-
+  });
+  
+  // Login 
+   $("#loginButton").on("click", function() {
+    authClient.login("password", {
+      email: $('input[name=email]').val(),
+      password: $('input[name=password]'),
+      rememberMe: $("#rememberCheckbox").val()
+    });
+  });
+  
+  
 }
+
+//End of Script
+})(jQuery);
