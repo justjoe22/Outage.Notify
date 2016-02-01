@@ -1,6 +1,17 @@
 (function($) {
 
-var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");    
+  // Create a callback which logs the current auth state
+function authDataCallback(authData) {
+  if (authData) {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  } else {
+    console.log("User is logged out");
+  }
+}
+
+var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
+
+ref.onAuth(authDataCallback);
 
   // Register
   $("#registerButton").on("click", function() {
@@ -48,6 +59,6 @@ var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
     event.preventDefault();
     
   });
-
+  
 //End of Script
 })(jQuery);
