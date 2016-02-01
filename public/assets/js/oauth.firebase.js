@@ -36,9 +36,11 @@ var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
     });
   });
   
-  // Login 
-   $("#loginButton").on("click", function() {
-
+  // Login
+  $( "#login" ).submit(function( event ) {
+        
+    event.preventDefault();
+  
     var email = $('input[name=email]').val();
     var password = $('input[name=password]').val();
     
@@ -48,6 +50,19 @@ var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
       } else {
         console.log("Authenticated successfully with payload:", authData);
       }
+    });
+    
+        /* get some values from elements on the page: */
+    var $form = $( this ),
+        url = 'my.outage.html';
+
+    /* Send the data using post */
+    var posting = $.post( url, { authData: authData } );
+
+    /* Alerts the results */
+    posting.done(function( data ) {
+      // similar behavior as an HTTP redirect
+      //window.location.replace(url);
     });
     
   });
