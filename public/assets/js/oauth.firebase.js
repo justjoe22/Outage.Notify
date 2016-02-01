@@ -4,7 +4,7 @@
 $(window).load(function() {
 
 var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");    
-var authClient = new FirebaseAuthClient(ref, function(error, user) {
+var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
   if (error) {
     alert(error);
     return;
@@ -16,8 +16,6 @@ var authClient = new FirebaseAuthClient(ref, function(error, user) {
     // User is logged out.
     showLoginBox();
   }
-});
-
 });
 
 function showLoginBox(){
@@ -46,6 +44,9 @@ function showLoginBox(){
   
   
 }
+
+
+});
 
 //End of Script
 })(jQuery);
