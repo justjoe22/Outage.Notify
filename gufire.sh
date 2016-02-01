@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Define timestamp
-times = date +"%T"
+mytimes = date +"%T"
 
 git add --all
 
-git commit -m "Update GitHub $times"
+git commit -m "Update GitHub $mytimes"
 
-git push
+git push https://justjoe22:2Jwp0027!2010@github.com/justjoe22/Outage.Notify.git --all
 
 firebase deploy
 
