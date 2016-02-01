@@ -28,6 +28,13 @@ $('form[name=login]').submit(function(event) {
     
 });
 
+//Register Form Control
+$('form[name=register]').submit(function(event) {
+    
+   register();
+   
+});
+
 //Register to Firebase
 function register(){
     var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
