@@ -31,7 +31,7 @@ var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
       } else {
         console.log("Authenticated successfully with payload:", authData);
         
-        window.location.replace(url);
+        window.location.replace("my.outages.html");
       }
     });
     
