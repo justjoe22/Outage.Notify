@@ -37,8 +37,7 @@ function showLoginBox(){
    $("#loginButton").on("click", function() {
     authClient.login("password", {
       email: $('input[name=email]').val(),
-      password: $('input[name=password]'),
-      rememberMe: $("#rememberCheckbox").val()
+      password: $('input[name=password]').val()
     });
   });
   
