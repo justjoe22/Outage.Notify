@@ -1,6 +1,7 @@
 var myuid;
 var uid_site;
-var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
+var main_url = "https://resplendent-inferno-4226.firebaseio.com/";
+var ref = new Firebase(main_url);
 
 (function($) {
 
@@ -9,8 +10,9 @@ function authDataCallback(authData) {
   if (authData) {
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
     myuid = authData.uid;
-    
-     var rUsers = ref.child("users/"+myuid);
+
+     var user_url = main_url + "users/" + myuid;
+     var rUsers = new Firebase(user_url);
      //var rUID = rUsers.child(myuid);
       rUsers.once("value", function(snapshot) {
         var data = snapshot.val();
