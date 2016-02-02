@@ -68,7 +68,7 @@ ref.onAuth(authDataCallback);
   //Find Site
   function findSite(){
     
-    var mysite;
+    var mysite = "Not Found";
     var myurl = "users/" + myuid + "/";
     var Myref = ref.child(myurl);
     
