@@ -1,7 +1,7 @@
 var myuid;
 var uid_site;
 var main_url = "https://resplendent-inferno-4226.firebaseio.com/";
-var ref = new Firebase( main_url.val() );
+var ref = new Firebase( main_url.normalize() );
 
 (function($) {
 
@@ -12,7 +12,7 @@ function authDataCallback(authData) {
     myuid = authData.uid;
 
      var user_url = main_url + "users/" + myuid;
-     var rUsers = new Firebase( user_url.val() );
+     var rUsers = new Firebase( user_url.normalize() );
      //var rUID = rUsers.child(myuid);
       rUsers.once("value", function(snapshot) {
         var data = snapshot.val();
