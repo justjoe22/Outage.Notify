@@ -19,6 +19,8 @@
       console.log("The read failed: " + errorObject.code);
     });
       
+      uid_site = "bussiness1";
+      
       //Populate Form.Init
       if (uid_site !== "") {
         pop_forminit(uid_site);
