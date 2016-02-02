@@ -8,7 +8,13 @@
      var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + myuid;
      var rUsers = new Firebase( user_url.normalize() );
      
-     uid_site = rUsers.child("site").key();
+    rUsers.on("value", function(snapshot) {
+      console.log(snapshot.val());
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+    
+     //uid_site = rUsers.child("site").key();
       
       //Populate Form.Init
       if (uid_site !== "") {
