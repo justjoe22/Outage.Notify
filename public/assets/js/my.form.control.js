@@ -16,7 +16,7 @@
       });
       
       //Populate Form.Init
-      if (uid_site !== null || a !== "") {
+      if (uid_site !== "") {
         pop_forminit(uid_site);
       }
     
