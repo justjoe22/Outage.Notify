@@ -66,13 +66,14 @@ ref.onAuth(authDataCallback);
   });
   
   //Find Site
-  function findSite(){
+  function findMySite(){
     
-    var mysite = "Not Found";
-    var myurl = "users/" + myuid + "/";
-    var Myref = ref.child(myurl);
+    var mysite = "";
     
-    Myref.on("value", function(snapshot) {
+    var rUsers = ref.child("users");
+    var rUID = rUsers.child(myuid);
+    
+    rUID.on("value", function(snapshot) {
       var userInfo = snapshot.val();
       
       mysite = userInfo.site;
@@ -92,8 +93,11 @@ ref.onAuth(authDataCallback);
     //Get Outage for Preview
     // Get a database reference to our posts
     //var Myref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/outages/");
-    var myurl = "sites/" + findSite() + "/outages/";
-    var Myref = ref.child(myurl);
+    var mySite = findMySite();
+    
+    var rSites = ref.child("sites");
+    var rMySite = rSites.child(mySite)
+    var Myref = rMySite.child("outages");
     
     // Attach an asynchronous callback to read the data at our posts reference
     Myref.orderByKey().on("value", function(snapshot) {
