@@ -68,14 +68,11 @@
 
     //Get Outage for Preview
     // Get a database reference to our posts
-    // var mySite = findMySite();
-    
-    var rSites = ref.child("sites");
-    var rMySite = rSites.child( form_site.normalize() );
-    var Myref = rMySite.child("outages");
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
+    var ref = new Firebase( outage_url.normalize() );
     
     // Attach an asynchronous callback to read the data at our posts reference
-    Myref.orderByKey().on("value", function(snapshot) {
+    ref.orderByKey().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
             var message = data.val();
         

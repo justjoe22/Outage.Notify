@@ -1,9 +1,10 @@
 var myuid;
+
+(function($) {
+
 var uid_site;
 var main_url = "https://resplendent-inferno-4226.firebaseio.com/";
 var ref = new Firebase( main_url.normalize() );
-
-(function($) {
 
   // Create a callback which logs the current auth state
 function authDataCallback(authData) {
