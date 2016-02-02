@@ -9,17 +9,13 @@
      var rUsers = new Firebase( user_url.normalize() );
      
     rUsers.on("value", function(snapshot) {
-      console.log(snapshot.val());
-      
-      var aData = snapshot.val();
-      
+      aData = snapshot.val();
       uid_site = aData.site;
-      
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
       
-      uid_site = "bussiness1";
+      //uid_site = "bussiness1";
       
       //Populate Form.Init
       if (uid_site !== "") {
