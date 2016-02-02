@@ -9,6 +9,9 @@
      var rUsers = new Firebase( user_url.normalize() );
      
     rUsers.once("value", function(snap) {
+      rMessage = snap.val();
+      uid_site = rMessage.site;
+     
       console.log(snap.val());
     });
       
