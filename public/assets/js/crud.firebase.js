@@ -1,4 +1,20 @@
-
+   //Find Site
+  function findMySite(){
+    
+    //var mysite = "";
+    
+    var rUsers = ref.child("users");
+    var rUID = rUsers.child(myuid);
+    
+    rUID.on("value", function(snapshot) {
+      var userInfo = snapshot.val();
+      
+      return userInfo.site;
+      
+    });
+    
+  }
+ 
   //Add List Item to Outage System
   function AddListItem(otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
     var postID;

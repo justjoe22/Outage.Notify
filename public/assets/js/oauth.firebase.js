@@ -63,25 +63,6 @@ ref.onAuth(authDataCallback);
     event.preventDefault();
     
   });
- 
 
 //End of Script
 })(jQuery);
-
-  //Find Site
-  function findMySite(){
-    
-    var mysite = "";
-    
-    var rUsers = ref.child("users");
-    var rUID = rUsers.child(myuid);
-    
-    rUID.on("value", function(snapshot) {
-      var userInfo = snapshot.val();
-      
-      mysite = userInfo.site;
-      
-    });
-    
-    return mysite;
-  }
