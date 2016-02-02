@@ -9,8 +9,10 @@
      var rUsers = new Firebase( user_url.normalize() );
      
     rUsers.on("value", function(snapshot) {
-      aData = snapshot.val();
-      uid_site = aData.site;
+        snapshot.forEach(function(data) {
+            var message = data.val();
+            uid_site = message.site;
+        });
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
