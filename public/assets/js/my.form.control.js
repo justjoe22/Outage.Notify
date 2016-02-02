@@ -15,6 +15,8 @@
             uid_site = data.site;
             
         });
+     }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
      });
       
       //Populate Form.Init
