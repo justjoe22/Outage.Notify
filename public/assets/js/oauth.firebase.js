@@ -9,6 +9,7 @@ var ref = new Firebase( main_url.normalize() );
 function authDataCallback(authData) {
   if (authData) {
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    
     myuid = authData.uid;
 
      var user_url = main_url + "users/" + myuid;
@@ -23,7 +24,9 @@ function authDataCallback(authData) {
     
   } else {
     console.log("User is logged out");
+    
     myuid = null;
+    uid_site = null;
   }
 }
 

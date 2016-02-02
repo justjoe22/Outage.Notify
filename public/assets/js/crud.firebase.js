@@ -1,20 +1,4 @@
-   //Find Site
-//   function findMySite(){
-    
-//     //var mysite = "";
-    
-//     var rUsers = ref.child("users");
-//     var rUID = rUsers.child(myuid);
-    
-//     rUID.on("value", function(snapshot) {
-//       var userInfo = snapshot.val();
-      
-//       return userInfo.site;
-      
-//     });
-    
-//   }
- 
+
   //Add List Item to Outage System
   function AddListItem(otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
     var postID;
@@ -80,14 +64,14 @@
   }
   
   //Initial MyOutages View Form.Setup
-  function pop_forminit(){
+  function pop_forminit(form_site){
 
     //Get Outage for Preview
     // Get a database reference to our posts
     // var mySite = findMySite();
     
     var rSites = ref.child("sites");
-    var rMySite = rSites.child(uid_site)
+    var rMySite = rSites.child(form_site);
     var Myref = rMySite.child("outages");
     
     // Attach an asynchronous callback to read the data at our posts reference
