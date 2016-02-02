@@ -1,12 +1,16 @@
 (function($) {
 
+var myuid;
+
   // Create a callback which logs the current auth state
 function authDataCallback(authData) {
   if (authData) {
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    myuid = authData.uid;
     
   } else {
     console.log("User is logged out");
+    myuid = null;
   }
 }
 
@@ -46,7 +50,7 @@ ref.onAuth(authDataCallback);
                 url = $form.attr( 'action' );
         
             /* Send the data using post */
-            var posting = $.post( url, { outageid: $('#outageid').val() } );
+            var posting = $.post( url, { email: email } );
         
             /* Alerts the results */
             posting.done(function( data ) {
@@ -61,13 +65,35 @@ ref.onAuth(authDataCallback);
     
   });
   
+  //Find Site
+  function findSite(){
+    
+    var mysite;
+    var myurl = "users/" + myuid + "/";
+    var Myref = ref.child(myurl);
+    
+    Myref.on("value", function(snapshot) {
+      var userInfo = snapshot.val();
+      
+      mysite = userInfo.site;
+      
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+      
+      mysite = "Not Found";
+    });
+    
+    return mysite;
+  }
+  
   //My outages
   $( "#outagelist" ).init(function( event ) {
       
     //Get Outage for Preview
     // Get a database reference to our posts
     //var Myref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/outages/");
-    var Myref = ref.child("outages/");
+    var myurl = "sites/" + findSite() + "/outages/";
+    var Myref = ref.child(myurl);
     
     // Attach an asynchronous callback to read the data at our posts reference
     Myref.orderByKey().on("value", function(snapshot) {
@@ -121,6 +147,7 @@ ref.onAuth(authDataCallback);
     });
       
   });
+  
   
 //End of Script
 })(jQuery);
