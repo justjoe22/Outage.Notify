@@ -11,9 +11,9 @@
     rUsers.on("value", function(snapshot) {
       console.log(snapshot.val());
       
-      data = snapshot.val();
+      var aData = snapshot.val();
       
-      uid_site = data.site;
+      uid_site = aData.site;
       
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
