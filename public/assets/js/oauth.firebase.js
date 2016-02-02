@@ -81,10 +81,6 @@ ref.onAuth(authDataCallback);
       
       mysite = userInfo.site;
       
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-      
-      mysite = "Not Found";
     });
     
     return mysite;
