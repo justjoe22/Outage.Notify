@@ -4,7 +4,7 @@
     $(window).load(function() {
     
      //Get User uid_site
-     var uid_site;
+     var uid_site = "";
      var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + myuid;
      var rUsers = new Firebase( user_url.normalize() );
      
