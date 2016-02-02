@@ -4,7 +4,9 @@ $(window).load(function() {
 
 
   //Populate Form.Init
-  pop_forminit(uid_site);
+  if (uid_site !== null) {
+    pop_forminit(uid_site);
+  }
   
       
  });

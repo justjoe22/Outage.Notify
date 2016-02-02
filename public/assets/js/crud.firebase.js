@@ -71,7 +71,7 @@
     // var mySite = findMySite();
     
     var rSites = ref.child("sites");
-    var rMySite = rSites.child(form_site);
+    var rMySite = rSites.child( form_site.normalize() );
     var Myref = rMySite.child("outages");
     
     // Attach an asynchronous callback to read the data at our posts reference
