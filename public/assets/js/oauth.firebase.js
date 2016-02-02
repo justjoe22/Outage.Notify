@@ -1,6 +1,6 @@
-(function($) {
-
 var myuid;
+
+(function($) {
 
   // Create a callback which logs the current auth state
 function authDataCallback(authData) {
@@ -64,7 +64,11 @@ ref.onAuth(authDataCallback);
     event.preventDefault();
     
   });
-  
+ 
+
+//End of Script
+})(jQuery);
+
   //Find Site
   function findMySite(){
     
@@ -86,6 +90,3 @@ ref.onAuth(authDataCallback);
     
     return mysite;
   }
-  
-//End of Script
-})(jQuery);
