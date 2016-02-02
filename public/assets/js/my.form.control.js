@@ -18,8 +18,6 @@
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
-    
-     //uid_site = rUsers.child("site").key();
       
       //Populate Form.Init
       if (uid_site !== "") {
