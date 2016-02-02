@@ -1,4 +1,5 @@
 var myuid;
+var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
 
 (function($) {
 
@@ -13,8 +14,6 @@ function authDataCallback(authData) {
     myuid = null;
   }
 }
-
-var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/");
 
 ref.onAuth(authDataCallback);
 
