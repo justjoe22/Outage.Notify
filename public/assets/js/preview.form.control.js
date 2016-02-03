@@ -1,4 +1,7 @@
 (function($) {
+    
+    var outageid = "";
+    
 //Default Settings OnLoad
 $(window).load(function() {
 
@@ -17,7 +20,7 @@ $(window).load(function() {
       }
   };
 
-  var outageid = getUrlParameter('outageid');
+  outageid = getUrlParameter('outageid');
   var state = getUrlParameter('st');
 
   $('#outageid').val(outageid);
@@ -134,6 +137,55 @@ $(window).load(function() {
     }
  }
  
+//Form OnSubmit
+$('form[name=outage]').submit(function(event) {
+  var otype = $('select[name=otype]').val(), _
+    pcontact = $('input[name=pcontact]').val(), _
+    service = $('select[name=service]').val(), _
+    timeframe = $('#timeFrame').html(), _
+    startd = $('input[name=time-startd]').val(), _
+    startt = $('input[name=time-startt]').val(), _
+    endd = $('input[name=time-endd]').val(), _
+    endt = $('input[name=time-endt]').val(), _
+    timezone = $('select[name=time-tzone]').val(), _
+    todo = $('input[name=todo]').val(), _
+    bimpact = $('textarea[name=bimpact]').val(), _
+    chkABO, _
+    txtABO = $('textarea[name=txtABO]').val(), _
+    wrmessage = $('select[name=wrmessage]').val(), _
+    contact = $('input[name=contact]').val(), _
+    ticket = $('input[name=ticket]').val();
+
+    if ($('input[name=chkABO]').is(':checked')===true){
+      chkABO=1;
+    }
+    else {
+      chkABO=0;
+    }
+
+    var outageid = $('#outageid').val();
+
+    UpdateListItem(outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket);
+
+    /* get some values from elements on the page: */
+    var $form = $( this ),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post */
+    var posting = $.post( url, { outageid: outageid } );
+
+    /* Alerts the results */
+    posting.done(function( data ) {
+      // similar behavior as an HTTP redirect
+      window.location.replace(url + "?outageid=" + outageid + "&st=save");
+    });
+
+});
+
+//End of Script
+})(jQuery);
+
+
 //Populate timeFrame
 function pop_timeFrame(){
   var buildTime = "";
@@ -207,50 +259,3 @@ function pop_timeFrame(){
   document.getElementById("timeFrame").innerHTML = buildTime;
 }
 
-//Form OnSubmit
-$('form[name=outage]').submit(function(event) {
-  var otype = $('select[name=otype]').val(), _
-    pcontact = $('input[name=pcontact]').val(), _
-    service = $('select[name=service]').val(), _
-    timeframe = $('#timeFrame').html(), _
-    startd = $('input[name=time-startd]').val(), _
-    startt = $('input[name=time-startt]').val(), _
-    endd = $('input[name=time-endd]').val(), _
-    endt = $('input[name=time-endt]').val(), _
-    timezone = $('select[name=time-tzone]').val(), _
-    todo = $('input[name=todo]').val(), _
-    bimpact = $('textarea[name=bimpact]').val(), _
-    chkABO, _
-    txtABO = $('textarea[name=txtABO]').val(), _
-    wrmessage = $('select[name=wrmessage]').val(), _
-    contact = $('input[name=contact]').val(), _
-    ticket = $('input[name=ticket]').val();
-
-    if ($('input[name=chkABO]').is(':checked')===true){
-      chkABO=1;
-    }
-    else {
-      chkABO=0;
-    }
-
-    var outageid = $('#outageid').val();
-
-    UpdateListItem(outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket);
-
-    /* get some values from elements on the page: */
-    var $form = $( this ),
-        url = $form.attr( 'action' );
-
-    /* Send the data using post */
-    var posting = $.post( url, { outageid: outageid } );
-
-    /* Alerts the results */
-    posting.done(function( data ) {
-      // similar behavior as an HTTP redirect
-      window.location.replace(url + "?outageid=" + outageid + "&st=save");
-    });
-
-});
-
-//End of Script
-})(jQuery);
