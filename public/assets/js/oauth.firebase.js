@@ -1,8 +1,8 @@
 var myuid;
+var uid_site;
 
 (function($) {
 
-var uid_site = "";
 var main_url = "https://resplendent-inferno-4226.firebaseio.com/";
 var ref = new Firebase( main_url.normalize() );
 
@@ -12,6 +12,17 @@ function authDataCallback(authData) {
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
     
     myuid = authData.uid;
+    
+     //Get User uid_site
+     var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + myuid;
+     var rUsers = new Firebase( user_url.normalize() );
+     
+    rUsers.once("value", function(snap) {
+      rMessage = snap.val();
+      uid_site = rMessage.site;
+     
+      console.log(snap.val());
+    });
 
   } else {
     console.log("User is logged out");
