@@ -125,11 +125,11 @@
   }
 
   //Populate Form.Preview
-  function pop_formpreview(outageid){
+  function pop_formpreview(outageid, form_site){
 
     //Get Outage for Preview
     // Get a database reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + uid_site + "/outages/";
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
     var ref = new Firebase( outage_url.normalize() );
     
     // Attach an asynchronous callback to read the data at our posts reference

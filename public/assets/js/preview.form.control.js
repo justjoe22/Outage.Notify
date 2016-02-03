@@ -36,7 +36,7 @@ $(window).load(function() {
   $('#confirm').fadeOut();
 
   //Populate Form.Preview
-  pop_formpreview(outageid);
+  waitForElement();
 
   //Add to Control
   $('input[name=chkABO]').change(function(){
@@ -117,6 +117,23 @@ $(window).load(function() {
 
 });
 
+ function waitForElement(){
+    if(typeof uid_site !== "undefined"){
+      //Populate Form.Init
+      if (uid_site !== "") {
+        pop_formpreview(outageid, uid_site);
+      }
+      else {
+          waitForElement();
+      }
+    }
+    else{
+        setTimeout(function(){
+            waitForElement();
+        },250);
+    }
+ }
+ 
 //Populate timeFrame
 function pop_timeFrame(){
   var buildTime = "";
