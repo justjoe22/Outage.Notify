@@ -165,7 +165,7 @@ $('form[name=outage]').submit(function(event) {
 
     var outageid = $('#outageid').val();
 
-    update_outage(outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket);
+    update_outage(uid_site,outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket);
 
     /* get some values from elements on the page: */
     var $form = $( this ),
