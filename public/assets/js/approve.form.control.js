@@ -1,4 +1,7 @@
 (function($) {
+
+var outageid = "";
+
 //Default Settings OnLoad
 $(window).load(function() {
 
@@ -17,7 +20,7 @@ $(window).load(function() {
       }
   };
 
-  var outageid = getUrlParameter('outageid');
+  outageid = getUrlParameter('outageid');
   
   $('#outageid').val(outageid);
   
