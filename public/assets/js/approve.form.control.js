@@ -22,9 +22,26 @@ $(window).load(function() {
   $('#outageid').val(outageid);
   
   //Populate Form.Preview
-  pop_formpreview(outageid, uid_site);
-
+  waitForElement();
+  
 });
 
+ function waitForElement(){
+    if(typeof uid_site !== "undefined"){
+      //Populate Form.Init
+      if (uid_site !== "") {
+        pop_formpreview(outageid, uid_site);
+      }
+      else {
+          waitForElement();
+      }
+    }
+    else{
+        setTimeout(function(){
+            waitForElement();
+        },250);
+    }
+ }
+ 
 //End of Script
 })(jQuery);
