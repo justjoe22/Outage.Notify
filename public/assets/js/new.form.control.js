@@ -191,13 +191,10 @@ $('form[name=outage]').submit(function(event) {
     
     //Loop when undefined
     while(uid_site === "undefined"){
-      //Loop when blank
-      while(uid_site === ""){
         //Add when Site is filled
         if(uid_site!==""){
             saveNote = add_outage(uid_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket);
         }
-      }
       
     }
 
