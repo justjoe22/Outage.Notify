@@ -15,11 +15,12 @@
   }
 
   //Update List Item to Outage System
-  function UpdateListItem(outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
+  function update_outage(form_site,outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
 
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
+    var ref = new Firebase( outage_url.normalize() );
     
-       var myItemRef = myDataRef.child(outageid);
+       var myItemRef = ref.child(outageid);
        
        myItemRef.update({otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket}, function(error) {
           if (error) {

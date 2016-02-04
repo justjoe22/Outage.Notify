@@ -212,9 +212,6 @@ $('form[name=outage]').submit(function(event) {
 
 });
 
-function waitForElement(){
-    
- }
  
 //End of Script
 })(jQuery);
