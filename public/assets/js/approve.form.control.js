@@ -22,7 +22,7 @@ $(window).load(function() {
   $('#outageid').val(outageid);
   
   //Populate Form.Preview
-  pop_formpreview(outageid);
+  pop_formpreview(outageid, uid_site);
 
 });
 

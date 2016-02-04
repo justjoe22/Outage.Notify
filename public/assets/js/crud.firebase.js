@@ -49,11 +49,12 @@
   }
 
   //Change Status of Outage System
-  function change_status(outageid,statusid){
+  function change_status(form_site,outageid,statusid){
 
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
+    var ref = new Firebase( outage_url.normalize() );
     
-       var myItemRef = myDataRef.child(outageid);
+       var myItemRef = ref.child(outageid);
        
        myItemRef.update({status: statusid}, function(error) {
           if (error) {
@@ -248,7 +249,7 @@
           //Submit for Approval
           $('a[name=yes]').click(function(){
         
-            change_status(outageid,"Pending");
+            change_status(uid_site,outageid,"Pending");
         
           });
         
