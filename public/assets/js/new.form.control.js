@@ -187,7 +187,15 @@ $('form[name=outage]').submit(function(event) {
       chkABO=0;
     }
 
-  var saveNote = AddListItem(otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket);
+    var saveNote;
+    
+    while(uid_site !== "undefined"){
+      //Populate Form.Init
+      if (uid_site !== "") {
+        saveNote = add_outage(uid_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket);
+      }
+      
+    }
 
   //Pass list item ID.
   $('#outageid').val(saveNote)
@@ -207,5 +215,9 @@ $('form[name=outage]').submit(function(event) {
 
 });
 
+function waitForElement(){
+    
+ }
+ 
 //End of Script
 })(jQuery);

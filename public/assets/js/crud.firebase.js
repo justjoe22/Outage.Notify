@@ -1,12 +1,13 @@
 
   //Add List Item to Outage System
-  function AddListItem(otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
+  function add_outage(form_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
     var postID;
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
+    var ref = new Firebase( outage_url.normalize() );
     
-       myDataRef.push({status: "Draft", otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket});
+       ref.push({status: "Draft", otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket});
        
-       myDataRef.on('child_added', function(snapshot) {
+       ref.on('child_added', function(snapshot) {
         postID = snapshot.key();
       });
 
