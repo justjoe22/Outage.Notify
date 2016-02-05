@@ -204,122 +204,124 @@
             vHTML += "<i class='fa fa-times'></i> No</a>";
             vHTML += "</div>";
             document.getElementById("confirm").innerHTML = vHTML;
-          }
-
-          //Populate Form
-          $('select[name=otype]').val(message.otype);
-          $('input[name=pcontact]').val(message.pcontact);
-          $('select[name=service]').val(message.service);
-          document.getElementById("timeFrame").innerHTML = message.timeframe;
-          $('input[name=time-startd]').val(message.startd);
-          $('input[name=time-startt]').val(message.startt);
-          $('input[name=time-endd]').val(message.endd);
-          $('input[name=time-endt]').val(message.endt);
-          $('select[name=time-tzone]').val(message.timezone);
-          $('input[name=todo]').val(message.todo);
-          $('textarea[name=bimpact]').val(message.bimpact);
-          if(message.chkabo==1){
-              $('input[name=chkABO]').prop('checked',true);
-          }
-          else {
-              $('input[name=chkABO]').prop('checked',false);
-          }
-          $('textarea[name=txtABO]').val(message.txtabo);
-          $('select[name=wrmessage]').val(message.wrmessage);
-          $('input[name=contact]').val(message.contact);
-          $('input[name=ticket]').val(message.ticket);
           
-          //Edit Button
-          $('a[name=edit]').click(function(){
-        
-            $('#outagePreview').fadeOut();
-        
-            $('#outage').fadeIn();
-        
-          });
-        
-          //Approval Button
-          $('button[name=approval]').click(function(){
-        
-            $('#confirm').fadeIn();
-            $('#confirm').focus();
-        
-            window.location.replace("#confirm");
-        
-          });
-        
-          //Submit for Approval
-          $('a[name=yes]').click(function(){
-        
-            change_status(uid_site,outageid,"Pending");
-        
-          });
-        
-          //No
-          $('a[name=no]').click(function(){
-        
-            $('#confirm').fadeOut();
-        
-          });
+            //Populate Form
+              $('select[name=otype]').val(message.otype);
+              $('input[name=pcontact]').val(message.pcontact);
+              $('select[name=service]').val(message.service);
+              document.getElementById("timeFrame").innerHTML = message.timeframe;
+              $('input[name=time-startd]').val(message.startd);
+              $('input[name=time-startt]').val(message.startt);
+              $('input[name=time-endd]').val(message.endd);
+              $('input[name=time-endt]').val(message.endt);
+              $('select[name=time-tzone]').val(message.timezone);
+              $('input[name=todo]').val(message.todo);
+              $('textarea[name=bimpact]').val(message.bimpact);
+              if(message.chkabo==1){
+                  $('input[name=chkABO]').prop('checked',true);
+              }
+              else {
+                  $('input[name=chkABO]').prop('checked',false);
+              }
+              $('textarea[name=txtABO]').val(message.txtabo);
+              $('select[name=wrmessage]').val(message.wrmessage);
+              $('input[name=contact]').val(message.contact);
+              $('input[name=ticket]').val(message.ticket);
+              
+              //Edit Button
+              $('a[name=edit]').click(function(){
+            
+                $('#outagePreview').fadeOut();
+            
+                $('#outage').fadeIn();
+            
+              });
+            
+              //Approval Button
+              $('button[name=approval]').click(function(){
+            
+                $('#confirm').fadeIn();
+                $('#confirm').focus();
+            
+                window.location.replace("#confirm");
+            
+              });
+            
+              //Submit for Approval
+              $('a[name=yes]').click(function(){
+            
+                change_status(uid_site,outageid,"Pending");
+            
+              });
+            
+              //No
+              $('a[name=no]').click(function(){
+            
+                $('#confirm').fadeOut();
+            
+              });
+              
+              //ABO/IBO Impact Control
+              if($('input[name=chkABO]').is(':checked'))
+              {
+                  $('#ABOimpact').fadeIn();
+                  $("#txtABO").prop('required',true);
+              }
+              else
+              {
+                  $('#ABOimpact').fadeOut();
+                  $("#txtABO").prop('required',false);
+              }
+              
+              //Outage Type Control
+              if($('select[name=otype]').val()=="PLANNED OUTAGE")
+              {
+                  $('#endDate').fadeIn();
+                  $("#time-endd").prop('required',true);
+                  $("#time-endt").prop('required',true);
+            
+                  if($("#time-startd").val()!==""){
+                      pop_timeFrame();
+                  }
+              }
+              else if($('select[name=otype]').val()=="MAINTENANCE")
+              {
+                  $('#endDate').fadeIn();
+                  $("#time-endd").prop('required',true);
+                  $("#time-endt").prop('required',true);
+            
+                  if($("#time-startd").val()!==""){
+                      pop_timeFrame();
+                  }
+            
+              }
+              else if($('select[name=otype]').val()=="UNPLANNED OUTAGE")
+              {
+                  $('#endDate').fadeOut();
+                  $("#time-endd").prop('required',false);
+                  $("#time-endd").val("");
+                  $("#time-endt").prop('required',false);
+                  $("#time-endt").val("");
+            
+                  if($("#time-startd").val()!==""){
+                      pop_timeFrame();
+                  }
+              }
+              else if($('select[name=otype]').val()=="ABO-FACING USI")
+              {
+                  $('#endDate').fadeOut();
+                  $("#time-endd").prop('required',false);
+                  $("#time-endd").val("");
+                  $("#time-endt").prop('required',false);
+                  $("#time-endt").val("");
+            
+                  if($("#time-startd").val()!==""){
+                      pop_timeFrame();
+                  }
+              }
           
-          //ABO/IBO Impact Control
-          if($('input[name=chkABO]').is(':checked'))
-          {
-              $('#ABOimpact').fadeIn();
-              $("#txtABO").prop('required',true);
-          }
-          else
-          {
-              $('#ABOimpact').fadeOut();
-              $("#txtABO").prop('required',false);
-          }
-          
-          //Outage Type Control
-          if($('select[name=otype]').val()=="PLANNED OUTAGE")
-          {
-              $('#endDate').fadeIn();
-              $("#time-endd").prop('required',true);
-              $("#time-endt").prop('required',true);
-        
-              if($("#time-startd").val()!==""){
-                  pop_timeFrame();
-              }
-          }
-          else if($('select[name=otype]').val()=="MAINTENANCE")
-          {
-              $('#endDate').fadeIn();
-              $("#time-endd").prop('required',true);
-              $("#time-endt").prop('required',true);
-        
-              if($("#time-startd").val()!==""){
-                  pop_timeFrame();
-              }
-        
-          }
-          else if($('select[name=otype]').val()=="UNPLANNED OUTAGE")
-          {
-              $('#endDate').fadeOut();
-              $("#time-endd").prop('required',false);
-              $("#time-endd").val("");
-              $("#time-endt").prop('required',false);
-              $("#time-endt").val("");
-        
-              if($("#time-startd").val()!==""){
-                  pop_timeFrame();
-              }
-          }
-          else if($('select[name=otype]').val()=="ABO-FACING USI")
-          {
-              $('#endDate').fadeOut();
-              $("#time-endd").prop('required',false);
-              $("#time-endd").val("");
-              $("#time-endt").prop('required',false);
-              $("#time-endt").val("");
-        
-              if($("#time-startd").val()!==""){
-                  pop_timeFrame();
-              }
-          }
+          //End of Draft Mode
+         }
       }); 
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
