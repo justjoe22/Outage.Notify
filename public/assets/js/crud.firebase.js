@@ -307,7 +307,7 @@
                       pop_timeFrame();
                   }
               }
-              else if($('select[name=otype]').val()=="ABO-FACING USI")
+              else if($('select[name=otype]').val()=="USI")
               {
                   $('#endDate').fadeOut();
                   $("#time-endd").prop('required',false);

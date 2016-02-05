@@ -93,7 +93,7 @@ $(window).load(function() {
             pop_timeFrame();
         }
     }
-    else if($(this).val()=="ABO-FACING USI")
+    else if($(this).val()=="USI")
     {
         $('#endDate').fadeOut();
         $("#time-endd").prop('required',false);
