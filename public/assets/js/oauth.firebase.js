@@ -9,7 +9,7 @@ var ref = new Firebase( main_url.normalize() );
   // Create a callback which logs the current auth state
 function authDataCallback(authData) {
   if (authData) {
-    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    //console.log("User " + authData.uid + " is logged in with " + authData.provider);
     
     myuid = authData.uid;
     
@@ -21,11 +21,11 @@ function authDataCallback(authData) {
       rMessage = snap.val();
       uid_site = rMessage.site;
      
-      console.log(snap.val());
+      //console.log(snap.val());
     });
 
   } else {
-    console.log("User is logged out");
+    //console.log("User is logged out");
     
     myuid = null;
     uid_site = null;
