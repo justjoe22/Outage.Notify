@@ -195,14 +195,16 @@
 
           document.getElementById("outagePreview").innerHTML = vHTML;
 
-          //Confirm
-          vHTML = "<div class='form-title-row'><h2>Are you sure?</h2><br>";
-          vHTML += "<a href='#' name='yes'>";
-          vHTML += "<i class='fa fa-check'></i> Yes</a>";
-          vHTML += "<a href='#' name='no'>";
-          vHTML += "<i class='fa fa-times'></i> No</a>";
-          vHTML += "</div>";
-          document.getElementById("confirm").innerHTML = vHTML;
+          if ($('#confirm').not(':empty')){
+            //Confirm
+            vHTML = "<div class='form-title-row'><h2>Are you sure?</h2><br>";
+            vHTML += "<a href='#' name='yes'>";
+            vHTML += "<i class='fa fa-check'></i> Yes</a>";
+            vHTML += "<a href='#' name='no'>";
+            vHTML += "<i class='fa fa-times'></i> No</a>";
+            vHTML += "</div>";
+            document.getElementById("confirm").innerHTML = vHTML;
+          }
 
           //Populate Form
           $('select[name=otype]').val(message.otype);
