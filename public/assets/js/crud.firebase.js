@@ -195,7 +195,7 @@
 
           document.getElementById("outagePreview").innerHTML = vHTML;
 
-          if ($('#confirm').not(':empty')){
+          if(message.status=="Draft"){
             //Confirm
             vHTML = "<div class='form-title-row'><h2>Are you sure?</h2><br>";
             vHTML += "<a href='#' name='yes'>";
