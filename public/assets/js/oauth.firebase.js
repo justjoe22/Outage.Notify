@@ -29,6 +29,8 @@ function authDataCallback(authData) {
     
     myuid = null;
     uid_site = null;
+    
+    window.location.replace("./");
   }
 }
 
@@ -78,6 +80,13 @@ ref.onAuth(authDataCallback);
     });
     
     event.preventDefault();
+    
+  });
+  
+   // Logout
+  $( "#logout" ).on("click", function() {
+    
+    ref.unauth();
     
   });
 
