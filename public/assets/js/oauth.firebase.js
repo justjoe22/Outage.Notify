@@ -30,6 +30,11 @@ function authDataCallback(authData) {
     myuid = null;
     uid_site = null;
     
+    if(ref.getAuth()===null){
+        if(window.location.pathname!=="/"){
+            window.location.replace("./");
+        }
+    }
   }
 }
 
