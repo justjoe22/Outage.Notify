@@ -23,6 +23,10 @@ function authDataCallback(authData) {
      
       //console.log(snap.val());
     });
+    
+    if(window.location.pathname==="/"){
+            window.location.replace("./my.outages");
+    }
 
   } else {
     //console.log("User is logged out");
