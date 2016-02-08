@@ -93,15 +93,15 @@
           vHTML += "<div class='submenu'>";
           if(message.status=="Draft"){
             //Edit Button
-            vHTML += "<a href='preview.outage.html?outageid=" + data.key() + "&st=edit' name='edit'>";
+            vHTML += "<a href='../preview.outage.html?outageid=" + data.key() + "&st=edit' name='edit'>";
             vHTML += "<i class='fa fa-pencil-square'></i> Edit</a>";
             //Preview Button
-            vHTML += "<a href='preview.outage.html?outageid=" + data.key() + "' name='prev'>";
+            vHTML += "<a href='../preview.outage.html?outageid=" + data.key() + "' name='prev'>";
             vHTML += "<i class='fa fa-television'></i> Preview</a>";
           }
           else if(message.status=="Pending"){
             //Preview Button
-            vHTML += "<a href='approve.outage.html?outageid=" + data.key() + "' name='prev'>";
+            vHTML += "<a href='../approve.outage.html?outageid=" + data.key() + "' name='prev'>";
             vHTML += "<i class='fa fa-television'></i> Preview</a>";
           }
           vHTML += "</div>";

@@ -77,7 +77,7 @@ ref.onAuth(authDataCallback);
             /* Alerts the results */
             posting.done(function( data ) {
               // similar behavior as an HTTP redirect
-              window.location.replace("my.outages.html");
+              window.location.replace("./my.outages");
             });
             
       }
