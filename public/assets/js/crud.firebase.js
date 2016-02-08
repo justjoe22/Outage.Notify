@@ -328,3 +328,33 @@
     });
 
   }
+
+  //Populate Approvers
+  function pop_approvers(form_site){
+    
+    // Get a database reference to our posts
+    var approver_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/approvers/";
+    var ref = new Firebase( approver_url.normalize() );
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+            var message = data.val();
+            
+        //Populate DIV with HTML
+        var vHTML = "<div class='submenu'>";
+          
+          vHTML += "form-radio-buttons >" + data.key();
+          
+          vHTML += "</div>";
+
+          //vHTML += message.otype + ": ";
+          $("#approvers").append(vHTML);
+
+          
+      }); 
+    }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+    });
+    
+  }

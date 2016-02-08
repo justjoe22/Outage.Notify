@@ -34,6 +34,7 @@ $(window).load(function() {
       //Populate Form.Init
       if (uid_site !== "") {
         pop_formpreview(outageid, uid_site);
+        pop_approvers(uid_site);
       }
       else {
           waitForElement();
