@@ -343,8 +343,8 @@
             
         //Populate DIV with HTML
         var vHTML = "<div class='submenu'>";
-          vHTML += "<input type='radio' class='form-radio-buttons' name='approver' value='" + data.key() + "' />"
-          vHTML += uid_name + "<br />";
+          vHTML += "<input type='radio' class='form-radio-buttons' name='approver' value='" + data.key() + "' /> "
+          vHTML += get_approver_name(data.key()) + "<br />";
           vHTML += "</div>";
 
           //vHTML += message.otype + ": ";
@@ -354,6 +354,21 @@
       }); 
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
+    });
+    
+  }
+  
+  function get_approver_name(user_uid){
+    
+    //Get User uid_site
+     var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + user_uid;
+     var rUsers = new Firebase( user_url.normalize() );
+     
+    rUsers.once("value", function(snap) {
+      rMessage = snap.val();
+      
+      return rMessage.full_name;
+      
     });
     
   }
