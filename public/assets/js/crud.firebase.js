@@ -344,17 +344,7 @@
             //Populate DIV with HTML
         var vHTML = "<div class='submenu'>";
             
-            //Get User Name
-            var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + data.key();
-            var rUsers = new Firebase( user_url.normalize() );
-            var uid_name = "-";
-            
-            rUsers.on("value", function(snap) {
-              var rMessage = snap.val();
-              uid_name = rMessage.full_name;
-            });
-            
-            waitFor_Approver();
+          //waitFor_Approver();
         
           vHTML += "form-radio-buttons >" + uid_name;
           vHTML += "</div>";
@@ -370,14 +360,3 @@
     
   }
   
-   function waitFor_Approver(){
-    if(typeof uid_name !== "-"){
-      //Populate Form.Init
-      return true;
-    }
-    else{
-        setTimeout(function(){
-            waitFor_Approver();
-        },250);
-    }
- }

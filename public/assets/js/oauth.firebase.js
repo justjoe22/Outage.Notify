@@ -1,5 +1,6 @@
 var myuid;
 var uid_site;
+var uid_name;
 
 (function($) {
 
@@ -20,6 +21,7 @@ function authDataCallback(authData) {
     rUsers.once("value", function(snap) {
       rMessage = snap.val();
       uid_site = rMessage.site;
+      uid_name = rMessage.full_name;
      
       //console.log(snap.val());
     });
