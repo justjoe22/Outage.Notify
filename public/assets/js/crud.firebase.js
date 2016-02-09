@@ -340,11 +340,15 @@
     ref.orderByKey().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var message = data.val();
-            
+        
+        //Define Approver Name
+        var uName = ref.root.child('users').child(data.key()).child('full_name').val();
+          
+        
         //Populate DIV with HTML
         var vHTML = "<div class='submenu'>";
           vHTML += "<input type='radio' class='form-radio-buttons' name='approver' value='" + data.key() + "' /> "
-          vHTML += get_approver_name(data.key()) + "<br />";
+          vHTML +=  uName + "<br />";
           vHTML += "</div>";
 
           //vHTML += message.otype + ": ";
@@ -357,21 +361,5 @@
     });
     
   }
-  
-  function get_approver_name(user_uid){
-    
-    //Get User uid_site
-     var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + user_uid;
-     var rUsers = new Firebase( user_url.normalize() );
-     var user_name;
-    
-    rUsers.startAt(user_uid).on("value", function(snap) {
-      rMessage = snap.val();
-      
-      user_name = rMessage.full_name;
-      
-    });
-    
-    return user_name;
-  }
+ 
   
