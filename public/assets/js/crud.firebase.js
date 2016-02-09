@@ -341,11 +341,21 @@
       snapshot.forEach(function(data) {
             var message = data.val();
             
-        //Populate DIV with HTML
+            //Populate DIV with HTML
         var vHTML = "<div class='submenu'>";
-          
-          vHTML += "form-radio-buttons >" + data.key();
-          
+            
+            //Get User Name
+            var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + data.key();
+            var rUsers = new Firebase( user_url.normalize() );
+             
+            rUsers.once("value", function(snap) {
+              var rMessage = snap.val();
+              var uid_name = rMessage.full_name;
+              
+              vHTML += "form-radio-buttons >" + uid_name;
+             
+            });
+        
           vHTML += "</div>";
 
           //vHTML += message.otype + ": ";
