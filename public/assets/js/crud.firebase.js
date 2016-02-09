@@ -347,15 +347,14 @@
             //Get User Name
             var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + data.key();
             var rUsers = new Firebase( user_url.normalize() );
-             
+            var uid_name = "-";
+            
             rUsers.on("value", function(snap) {
               var rMessage = snap.val();
-              var uid_name = rMessage.full_name;
-              
-              vHTML += "form-radio-buttons >" + uid_name;
-             
+              uid_name = rMessage.full_name;
             });
         
+          vHTML += "form-radio-buttons >" + uid_name;
           vHTML += "</div>";
 
           //vHTML += message.otype + ": ";
