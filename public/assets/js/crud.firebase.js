@@ -348,7 +348,7 @@
             var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + data.key();
             var rUsers = new Firebase( user_url.normalize() );
              
-            rUsers.once("value", function(snap) {
+            rUsers.on("value", function(snap) {
               var rMessage = snap.val();
               var uid_name = rMessage.full_name;
               
