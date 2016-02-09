@@ -339,14 +339,12 @@
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
-            var message = data.val();
+        var message = data.val();
             
-            //Populate DIV with HTML
+        //Populate DIV with HTML
         var vHTML = "<div class='submenu'>";
-            
-          //waitFor_Approver();
-        
-          vHTML += "form-radio-buttons >" + uid_name;
+          vHTML += "<input type='radio' class='form-radio-buttons' name='approver' value='" + data.key() + "' />"
+          vHTML += uid_name + "<br />";
           vHTML += "</div>";
 
           //vHTML += message.otype + ": ";
