@@ -372,7 +372,7 @@
       
     });
     
-    while (user_name==="undefined"){
+    while (user_name=="undefined"){
         //Wait
         if (user_name!=="undefined"){
             return user_name;        
