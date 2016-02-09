@@ -363,13 +363,22 @@
     //Get User uid_site
      var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + user_uid;
      var rUsers = new Firebase( user_url.normalize() );
-     
+     var user_name;
+    
     rUsers.once("value", function(snap) {
       rMessage = snap.val();
       
-      return rMessage.full_name;
+      user_name = rMessage.full_name;
       
     });
     
+    while (user_name==="undefined"){
+        //Wait
+        if (user_name!=="undefined"){
+            return user_name;        
+        }
+    }
+    
+    return user_name;
   }
   
