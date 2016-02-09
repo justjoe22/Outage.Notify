@@ -365,19 +365,12 @@
      var rUsers = new Firebase( user_url.normalize() );
      var user_name;
     
-    rUsers.once("value", function(snap) {
+    rUsers.startAt(user_uid).on("value", function(snap) {
       rMessage = snap.val();
       
       user_name = rMessage.full_name;
       
     });
-    
-    while (user_name=="undefined"){
-        //Wait
-        if (user_name!=="undefined"){
-            return user_name;        
-        }
-    }
     
     return user_name;
   }
