@@ -342,7 +342,7 @@
         var message = data.val();
         
         //Define Approver Name
-        var uName = ref.root.child('users').child(data.key());
+        var uName = ref.root().child('users').child(data.key());
         var appr_name = "";
          
         uName.asynchronous=false;
