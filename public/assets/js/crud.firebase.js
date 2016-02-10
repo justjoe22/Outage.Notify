@@ -342,13 +342,20 @@
         var message = data.val();
         
         //Define Approver Name
-        var uName = ref.root.child('users').child(data.key()).child('full_name').val();
-          
+        var uName = ref.root.child('users').child(data.key());
+        var appr_name = "";
+         
+        uName.asynchronous=false;
+        uName.on("value", function (snap) {
+            var arrName = snap.val();
+            
+            appr_name = arrName.full_name;
+        });
         
         //Populate DIV with HTML
         var vHTML = "<div class='submenu'>";
           vHTML += "<input type='radio' class='form-radio-buttons' name='approver' value='" + data.key() + "' /> "
-          vHTML +=  uName + "<br />";
+          vHTML +=  appr_name + "<br />";
           vHTML += "</div>";
 
           //vHTML += message.otype + ": ";
