@@ -32,22 +32,6 @@
    
   }
 
-  //Delete List Item to Outage System
-  function DeleteListItem(outageid){
-    var msg;
-
-    // Get a reference to our posts
-    var ref = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
-    
-    // Get the data on a post that has been removed
-    ref.on("child_removed", function(snapshot) {
-      var deletedPost = snapshot.val();
-      msg="The blog post titled '" + deletedPost.title + "' has been deleted";
-    });
-
-    return msg
-  }
-
   //Change Status of Outage System
   function change_status(form_site,outageid,statusid){
 
@@ -66,6 +50,22 @@
 
   }
   
+//   //Delete List Item to Outage System
+//   function DeleteListItem(outageid){
+//     var msg;
+
+//     // Get a reference to our posts
+//     var ref = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
+    
+//     // Get the data on a post that has been removed
+//     ref.on("child_removed", function(snapshot) {
+//       var deletedPost = snapshot.val();
+//       msg="The blog post titled '" + deletedPost.title + "' has been deleted";
+//     });
+
+//     return msg
+//   }
+
   //Initial MyOutages View Form.Setup
   function pop_forminit(form_site){
 
