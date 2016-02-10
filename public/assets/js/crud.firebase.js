@@ -350,11 +350,10 @@
           vHTML += "<input type='radio' name='approver' value='" + myKey + "' /> "
           vHTML += "</label></div>";
 
-          //vHTML += message.otype + ": ";
           $("#app_radio").append(vHTML);
         
-        //Define Approver Name
-        var uName = ref.root().child('users').child(data.key());
+        //Define Approver Name from Users db
+        var uName = ref.root().child('users').child(myKey);
         
         uName.on("value", function (snap) {
             var arrName = snap.val();
