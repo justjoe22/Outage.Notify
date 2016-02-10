@@ -336,19 +336,22 @@
     var approver_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/approvers/";
     var ref = new Firebase( approver_url.normalize() );
     
+    var vHTML = "<div class='form-radio-buttons' id='app_radio'></div>";
+    $("#approvers-list").html(vHTML);
+    
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var message = data.val();
         var myKey = data.key();
         
-        //Populate DIV with HTML
-        var vHTML = "<div class='submenu' id='app-" + myKey + "'>";
-          vHTML += "<input type='radio' class='form-radio-buttons' name='approver' value='" + myKey + "' /> "
-          vHTML += "</div>";
+          //Populate DIV with HTML
+          vHTML = "<div><label id='app-" + myKey + "'>";
+          vHTML += "<input type='radio' name='approver' value='" + myKey + "' /> "
+          vHTML += "</label></div>";
 
           //vHTML += message.otype + ": ";
-          $("#approvers").append(vHTML);
+          $("#app_radio").append(vHTML);
         
         //Define Approver Name
         var uName = ref.root().child('users').child(data.key());
@@ -356,7 +359,9 @@
         uName.on("value", function (snap) {
             var arrName = snap.val();
             
-            var nHTML =  arrName.full_name + "<br />";
+            var nHTML = "<span>";
+                nHTML += arrName.full_name;
+                nHTML += "</span>";
             $("#app-"+myKey).append(nHTML);
         });
         
