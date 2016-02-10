@@ -340,28 +340,26 @@
     ref.orderByKey().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var message = data.val();
-        
-        //Define Approver Name
-        var uName = ref.root().child('users').child(data.key());
-        var appr_name = "";
-         
-        uName.asynchronous=false;
-        uName.on("value", function (snap) {
-            var arrName = snap.val();
-            
-            appr_name = arrName.full_name;
-        });
+        var myKey = data.key();
         
         //Populate DIV with HTML
-        var vHTML = "<div class='submenu'>";
-          vHTML += "<input type='radio' class='form-radio-buttons' name='approver' value='" + data.key() + "' /> "
-          vHTML +=  appr_name + "<br />";
+        var vHTML = "<div class='submenu' id='app-" + myKey + "'>";
+          vHTML += "<input type='radio' class='form-radio-buttons' name='approver' value='" + myKey + "' /> "
           vHTML += "</div>";
 
           //vHTML += message.otype + ": ";
           $("#approvers").append(vHTML);
-
-          
+        
+        //Define Approver Name
+        var uName = ref.root().child('users').child(data.key());
+        
+        uName.on("value", function (snap) {
+            var arrName = snap.val();
+            
+            var nHTML =  arrName.full_name + "<br />";
+            $("#app-"+myKey).append(nHTML);
+        });
+        
       }); 
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
