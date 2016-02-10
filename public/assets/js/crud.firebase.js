@@ -360,6 +360,7 @@
             
             var nHTML = "<span>";
                 nHTML += arrName.full_name;
+                nHTML += " (" + arrName.email + ")";
                 nHTML += "</span>";
             $("#app-"+myKey).append(nHTML);
         });
