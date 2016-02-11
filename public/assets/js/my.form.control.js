@@ -38,7 +38,7 @@ $(document).ready(function() {
     var pad_depth = (nav_menu.outerWidth() / 20);
 
     //if we have menus
-    if (menus.length != 0) {
+    if (menus.length !== 0) {
       $.each(menus, function() {
         var depth_count = $(this).parents('.menu').length + 1;
         var child_elements = $(this).find('li > a');
