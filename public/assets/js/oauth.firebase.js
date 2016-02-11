@@ -104,3 +104,20 @@ ref.onAuth(authDataCallback);
 
 //End of Script
 })(jQuery);
+
+function collapse($elements) {
+  $elements.removeClass("filter");
+  $elements.find("#menu").css({"-webkit-transform": "rotate(90deg)", "transition": "transform 0.5s ease-out"});
+  $elements.css({"height": "50px", "transition": "height 0.5s ease-out"});
+}
+
+$(".menu-icon").click(function(){
+  if ($(this).hasClass("filter")){
+    collapse($(this));
+  } else {
+    $(this).find("#menu").css({"-webkit-transform": "rotate(180deg)", "transition": "transform 0.5s ease-out"});
+    $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+    $(this).addClass("filter");
+    collapse($(".menu-icon").not($(this)));
+  }
+});
