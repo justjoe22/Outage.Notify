@@ -123,4 +123,15 @@ $("#ddmenu").click(function(){
     $(this).addClass("filter");
     collapse($("#ddmenu").not($(this)));
   }
+  
+});
+
+$('html').click(function() {
+
+    collapse($("#ddmenu").not($(this)));
+    
+});
+
+$('#ddmenu').click(function(event){
+    event.stopPropagation();
 });
