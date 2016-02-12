@@ -28,6 +28,7 @@
     right: 0.35em;
     background: #efefef;
     border-radius: 3px;
+    box-shadow: 2px 2px 5px #888888;
 }
 
 #ddmenu .menu a {
