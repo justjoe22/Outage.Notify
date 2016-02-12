@@ -92,17 +92,18 @@
           //Outage Menu
           vHTML += "<div class='submenu'>";
           if(message.status=="Draft"){
-            //Edit Button
-            vHTML += "<a href='../preview.outage.html?outageid=" + data.key() + "&st=edit' name='edit'>";
-            vHTML += "<i class='fa fa-pencil-square'></i> Edit</a>";
             //Preview Button
-            vHTML += "<a href='../preview.outage.html?outageid=" + data.key() + "' name='prev'>";
-            vHTML += "<i class='fa fa-television'></i> Preview</a>";
+            vHTML += "<a href='../preview.outage.html?outageid=" + data.key() + "' title='Preview Outage' name='prev'>";
+            vHTML += "<i class='fa fa-television'></i></a>";
+            
+            //Edit Button
+            vHTML += "<a href='../preview.outage.html?outageid=" + data.key() + "&st=edit' title='Edit Outage' name='edit'>";
+            vHTML += "<i class='fa fa-pencil-square'></i></a>";
           }
           else if(message.status=="Pending"){
             //Preview Button
-            vHTML += "<a href='../approve.outage.html?outageid=" + data.key() + "' name='prev'>";
-            vHTML += "<i class='fa fa-television'></i> Preview</a>";
+            vHTML += "<a href='../approve.outage.html?outageid=" + data.key() + "' title='Preview Outage' name='prev'>";
+            vHTML += "<i class='fa fa-television'></i></a>";
           }
           vHTML += "</div>";
 

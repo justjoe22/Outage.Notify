@@ -22,13 +22,14 @@ html{
 
 .form-basic .form-title-row{
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.form-basic .submenu{
-    position: relative;
+.form-basic .submenu:before{
+    position: absolute;
     right: 0;
     top: 0;
+    z-index: 100;
 }
 
 /* The form title */
@@ -167,16 +168,15 @@ html{
 }
 
 .form-basic .submenu a{
-    color:#fff;
-    float: right;
+    color:#191919;
     text-decoration: none;
     display: inline-block;
-    padding: 13px 25px;
-    border-radius: 3px;
-    margin: 4px 4px;
-    font: bold 14px/7px 'Open Sans', sans-serif;
+    padding: 2px 2px;
+    margin: 1px 1px;
+    border-radius: 0px;
+    font: bold 22px/10px 'Open Sans', sans-serif;
     text-transform: uppercase;
-    background-color:#ed1248;
+    background-color: transparent;
 }
 
 .form-basic .form-title-row a{
@@ -209,7 +209,7 @@ html{
     }
 
     .form-basic .form-title-row{
-        margin-bottom: 50px;
+        margin-bottom: 10px;
     }
 
     .form-basic .form-row > label span{
