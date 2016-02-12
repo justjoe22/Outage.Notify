@@ -5,7 +5,7 @@ html{
 .form-basic{
     max-width: 640px;
     margin: 0 auto;
-    padding: 55px;
+    padding: 25px;
     box-sizing: border-box;
 
     background-color:  #ffffff;
@@ -17,12 +17,12 @@ html{
 
 .form-basic .form-row{
     text-align: left;
-    margin-bottom: 22px;
+    margin-bottom: 12px;
 }
 
 .form-basic .form-title-row{
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .form-basic .submenu{
