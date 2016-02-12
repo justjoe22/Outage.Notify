@@ -15,7 +15,7 @@ function authDataCallback(authData) {
     myuid = authData.uid;
     
      //Get User uid_site
-     var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + myuid;
+     var user_url = main_url + "users/" + myuid;
      var rUsers = new Firebase( user_url.normalize() );
      
     rUsers.once("value", function(snap) {
@@ -105,17 +105,20 @@ ref.onAuth(authDataCallback);
 //End of Script
 })(jQuery);
 
+//Menu Controls
 function collapse($elements) {
   $elements.removeClass("filter");
-  $elements.find("#menu").css({"-webkit-transform": "rotate(90deg)", "transition": "transform 0.5s ease-out"});
-  $elements.css({"height": "50px", "transition": "height 0.5s ease-out"});
+  $elements.find(".menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
+  $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
 }
+
+$("#ddmenu").find(".menu").css({"display": "none"});
 
 $("#ddmenu").click(function(){
   if ($(this).hasClass("filter")){
     collapse($(this));
   } else {
-    $(this).find("#menu").css({"-webkit-transform": "rotate(180deg)", "transition": "transform 0.5s ease-out"});
+    $(this).find(".menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
     $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
     $(this).addClass("filter");
     collapse($("#ddmenu").not($(this)));
