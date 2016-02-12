@@ -144,7 +144,7 @@
         //Populate DIV with HTML
         var vHTML = "<div class='submenu'>";
           if(message.status=="Draft"){
-            vHTML += "<a href='#' name='edit'><i class='fa fa-pencil-square'></i> Edit</a>";
+            vHTML += "<a href='#' name='edit' title='Edit Outage'><i class='fa fa-pencil-square'></i></a>";
           }
           vHTML += "</div>";
 
