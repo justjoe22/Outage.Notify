@@ -54,3 +54,55 @@
     color: #FFF;
     background-color: #ed1248;
 }
+
+/* Admin Menu */
+
+#sys_adm {
+    position: fixed;
+    right: 1.45em;
+    top: 0.35em;
+    width: 3.0em;
+    height: 2.4em;
+    z-index: 998;
+}
+
+#sys_adm .adm-menu-icon:before {
+  content: "<i class='fa fa-cogs'></i>";
+  color: white;
+  position: absolute;
+  right: 0.35em;
+  top: 0.35em;
+  width: 2.0em;
+  height: 2.4em;
+  font: bold 14px/7px 'Open Sans', sans-serif;
+}
+
+#sys_adm:hover .adm-menu-icon:before {
+    color:#191919;
+}
+ 
+#sys_adm .adm-menu {
+    position: absolute;
+    min-width: 140px;
+    top: 35px;
+    right: 1.45em;
+    background: #efefef;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+#sys_adm .adm-menu a {
+    color: #191919;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 140px;
+    padding: 10px 10px;
+    font: bold 14px/7px 'Open Sans', sans-serif;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+#sys_adm .adm-menu a:hover {
+    color: #FFF;
+    background-color: #ed1248;
+}

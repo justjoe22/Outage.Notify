@@ -23,6 +23,7 @@ $(window).load(function() {
   outageid = getUrlParameter('outageid');
   var state = getUrlParameter('st');
 
+
   $('#outageid').val(outageid);
   $('#state').val(state);
 

@@ -1,6 +1,10 @@
+//Global Variables
 var myuid;
 var uid_site;
 var uid_name;
+var uid_email;
+var uid_adm;
+var uid_sys_adm;
 
 (function($) {
 
@@ -22,6 +26,23 @@ function authDataCallback(authData) {
       rMessage = snap.val();
       uid_site = rMessage.site;
       uid_name = rMessage.full_name;
+      uid_email = rMessage.email;
+      uid_adm = rMessage.site_admin;
+      uid_sys_adm = rMessage.sys_admin;
+      
+        //Set Sys Admin menu
+        if(uid_sys_adm===true) {
+            var $nav = $('<nav />').appendTo('body');
+        
+            $nav.attr('id', 'sys_adm');
+            
+            var admMenu = "<div class='adm-menu-icon'></div>";
+            admMenu += "<div class='adm-menu'>";
+            admMenu += "<a href='#'><i class='fa fa-plus-square'></i> Admin Menu</a>";
+            admMenu += "</div>"
+            
+            $("#sys_adm").html(admMenu);
+        }
      
       //console.log(snap.val());
     });
@@ -35,6 +56,9 @@ function authDataCallback(authData) {
     
     myuid = null;
     uid_site = null;
+    uid_email = null;
+    uid_adm = null;
+    uid_sys_adm = null;
     
     if(ref.getAuth()===null){
         if(window.location.pathname!=="/"){
@@ -102,10 +126,11 @@ ref.onAuth(authDataCallback);
     
   });
 
+
 //End of Script
 })(jQuery);
 
-//Menu Controls
+//Main Menu Controls
 function collapse($elements) {
   $elements.removeClass("filter");
   $elements.find(".menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
@@ -135,3 +160,4 @@ $('html').click(function() {
 $('#ddmenu').click(function(event){
     event.stopPropagation();
 });
+
