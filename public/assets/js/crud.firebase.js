@@ -82,13 +82,6 @@
         //Start of Form Class
         var vHTML = "<div class='main-content'><div class='form-basic'>";
 
-          //Summary
-          vHTML += "<div class='form-title-row'><h3>";
-          vHTML += message.otype + ": ";
-          vHTML += message.service + ", ";
-          vHTML += message.timeframe;
-          vHTML += "</h3></div>";
-
           //Outage Menu
           vHTML += "<div class='submenu'>";
           if(message.status=="Draft"){
@@ -106,7 +99,15 @@
             vHTML += "<i class='fa fa-television'></i></a>";
           }
           vHTML += "</div>";
-
+          
+          //Summary
+          vHTML += "<div class='form-title-row'><h3>";
+          vHTML += message.otype + ": ";
+          vHTML += message.service + ", ";
+          vHTML += message.timeframe;
+          vHTML += "</h3></div>";
+          
+          //Summary Details
           vHTML += "<div class='form-row'>";
           vHTML += "<h2>Status:</h2>";
           vHTML += "<p>" + message.status + "</p><br />";
