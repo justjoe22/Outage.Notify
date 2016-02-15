@@ -67,7 +67,7 @@
 }
 
 #sys_adm .adm-menu-icon:before {
-  content: '<i class="fa fa-cogs"></i>'';
+  content: '<i class="fa fa-cogs"></i>';
   color: white;
   position: absolute;
   right: 0.35em;
