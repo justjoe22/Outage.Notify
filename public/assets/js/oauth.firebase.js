@@ -42,6 +42,31 @@ function authDataCallback(authData) {
             admMenu += "</div>"
             
             $("#sys_adm").html(admMenu);
+            
+            //Admin Menu Controls
+            $("#sys_adm").find(".adm-menu").css({"display": "none"});
+            
+            $("#sys_adm").click(function(){
+              if ($(this).hasClass("filter")){
+                admcollapse($(this));
+              } else {
+                $(this).find(".adm-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+                $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+                $(this).addClass("filter");
+                admcollapse($("#sys_adm").not($(this)));
+              }
+              
+            });
+            
+            $('html').click(function() {
+            
+                admcollapse($("#sys_adm").not($(this)));
+                
+            });
+            
+            $('#sys_adm').click(function(event){
+                event.stopPropagation();
+            });
         }
      
       //console.log(snap.val());
@@ -161,3 +186,9 @@ $('#ddmenu').click(function(event){
     event.stopPropagation();
 });
 
+//Admin Functions
+function admcollapse($elements) {
+  $elements.removeClass("filter");
+  $elements.find(".adm-menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
+  $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
+}

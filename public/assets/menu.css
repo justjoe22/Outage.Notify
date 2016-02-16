@@ -61,20 +61,20 @@
     position: fixed;
     right: 1.45em;
     top: 0.35em;
-    width: 3.0em;
+    width: 2.0em;
     height: 2.4em;
     z-index: 998;
 }
 
 #sys_adm .adm-menu-icon:before {
-  content: '<i class="fa fa-cogs"></i>';
+  font-family: FontAwesome;
+  content: "\f085";
   color: white;
   position: absolute;
-  right: 0.35em;
+  right: 1.45em;
   top: 0.35em;
   width: 2.0em;
   height: 2.4em;
-  font: bold 14px/7px 'Open Sans', sans-serif;
 }
 
 #sys_adm:hover .adm-menu-icon:before {
