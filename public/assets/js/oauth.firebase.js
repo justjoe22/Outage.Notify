@@ -69,6 +69,45 @@ function authDataCallback(authData) {
             });
         }
      
+        //Set Site Admin menu
+        if(uid_adm===true) {
+            var $snav = $('<nav />').appendTo('body');
+        
+            $snav.attr('id', 'site_adm');
+            
+            var sMenu = "<div class='site-menu-icon'></div>";
+            sMenu += "<div class='site-menu'>";
+            sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Site Admin Menu</a>";
+            sMenu += "</div>"
+            
+            $("#site_adm").html(sMenu);
+            
+            //Admin Menu Controls
+            $("#site_adm").find(".site-menu").css({"display": "none"});
+            
+            $("#site_adm").click(function(){
+              if ($(this).hasClass("filter")){
+                sitecollapse($(this));
+              } else {
+                $(this).find(".site-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+                $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+                $(this).addClass("filter");
+                sitecollapse($("#site_adm").not($(this)));
+              }
+              
+            });
+            
+            $('html').click(function() {
+            
+                sitecollapse($("#site_adm").not($(this)));
+                
+            });
+            
+            $('#site_adm').click(function(event){
+                event.stopPropagation();
+            });
+        }
+     
       //console.log(snap.val());
     });
     
@@ -190,5 +229,11 @@ $('#ddmenu').click(function(event){
 function admcollapse($elements) {
   $elements.removeClass("filter");
   $elements.find(".adm-menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
+  $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
+}
+
+function sitecollapse($elements) {
+  $elements.removeClass("filter");
+  $elements.find(".site-menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
   $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
 }
