@@ -77,7 +77,9 @@ function authDataCallback(authData) {
             
             var sMenu = "<div class='site-menu-icon'></div>";
             sMenu += "<div class='site-menu'>";
-            sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Site Admin Menu</a>";
+            sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Site Options</a><br />";
+            sMenu += "<a href='#'><i class='fa fa-plus-square'></i> User Management</a><br />";
+            sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Outage Options</a><br />";
             sMenu += "</div>"
             
             $("#site_adm").html(sMenu);
