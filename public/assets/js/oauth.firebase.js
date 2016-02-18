@@ -54,6 +54,8 @@ function authDataCallback(authData) {
                 $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
                 $(this).addClass("filter");
                 admcollapse($("#sys_adm").not($(this)));
+                collapse($("#ddmenu").not($(this)));
+                sitecollapse($("#site_adm").not($(this)));
               }
               
             });
@@ -70,7 +72,7 @@ function authDataCallback(authData) {
         }
      
         //Set Site Admin menu
-        if(uid_adm===true) {
+        if(uid_adm===true || uid_sys_adm===true) {
             var $snav = $('<nav />').appendTo('body');
         
             $snav.attr('id', 'site_adm');
@@ -95,6 +97,8 @@ function authDataCallback(authData) {
                 $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
                 $(this).addClass("filter");
                 sitecollapse($("#site_adm").not($(this)));
+                collapse($("#ddmenu").not($(this)));
+                admcollapse($("#sys_adm").not($(this)));
               }
               
             });
@@ -213,6 +217,8 @@ $("#ddmenu").click(function(){
     $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
     $(this).addClass("filter");
     collapse($("#ddmenu").not($(this)));
+    sitecollapse($("#site_adm").not($(this)));
+    admcollapse($("#sys_adm").not($(this)));
   }
   
 });
@@ -229,13 +235,17 @@ $('#ddmenu').click(function(event){
 
 //Admin Functions
 function admcollapse($elements) {
-  $elements.removeClass("filter");
-  $elements.find(".adm-menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
-  $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
+  if(uid_sys_adm===true){
+    $elements.removeClass("filter");
+    $elements.find(".adm-menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
+    $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
+  }
 }
 
 function sitecollapse($elements) {
-  $elements.removeClass("filter");
-  $elements.find(".site-menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
-  $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
+  if(uid_adm===true || uid_sys_adm===true){
+    $elements.removeClass("filter");
+    $elements.find(".site-menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
+    $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
+  }
 }
