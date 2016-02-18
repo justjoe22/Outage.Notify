@@ -6,6 +6,7 @@ var uid_email;
 var uid_adm;
 var uid_sys_adm;
 
+
 (function($) {
 
 var main_url = "https://resplendent-inferno-4226.firebaseio.com/";

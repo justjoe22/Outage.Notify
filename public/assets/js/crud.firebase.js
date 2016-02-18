@@ -374,4 +374,41 @@
     
   }
  
+  //Populate Approvers
+  function pop_one_approver(form_site,uid_key){
+    
+    // Get a database reference to our posts
+    var approver_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/approvers/";
+    var ref = new Firebase( approver_url.normalize() );
+    var nMessage = [];
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+        var message = data.val();
+        var myKey = data.key();
+        
+        if(myKey==uid_key){
+            //Define Approver Name from Users db
+            var uName = ref.root().child('users').child(myKey);
+        
+            uName.on("value", function (snap) {
+                var arrName = snap.val();
+            
+                nMessage.push(arrName.full_name, arrName.email);
+                
+                
+            
+            });
+            
+            return nMessage;
+        }
+
+      }); 
+    }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+    });
+    
+    
+  }
   
