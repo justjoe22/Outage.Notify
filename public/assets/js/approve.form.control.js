@@ -38,7 +38,7 @@ $(window).load(function() {
       if (uid_site !== "") {
         pop_formpreview(outageid, uid_site);
         
-        var approver_result = pop_one_approver(uid_site,myuid);
+        var approver_result = arrApprover
         
             if(approver_result.length>0){
                 //Hide Approver List
