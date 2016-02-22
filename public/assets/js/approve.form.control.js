@@ -30,19 +30,6 @@ $(window).load(function() {
   //Populate Form.Preview
   waitForElement();
   
-  if (uid_approver===true) {
-    //Hide Approver List
-    $("#approvers").fadeOut();
-    $("#approve").fadeIn();
-  }    
-  else {
-    pop_approvers(uid_site);
-    
-    //Show Approver List
-    $("#approvers").fadeIn();
-    $("#approve").fadeOut();
-  }
-  
 });
 
  function waitForElement(){
@@ -50,6 +37,19 @@ $(window).load(function() {
       //Populate Form.Init
       if (uid_site !== "") {
         pop_formpreview(outageid, uid_site);
+        
+        if (uid_approver===true) {
+            //Hide Approver List
+            $("#approvers").fadeOut();
+            $("#approve").fadeIn();
+        }    
+        else {
+            pop_approvers(uid_site);
+            
+            //Show Approver List
+            $("#approvers").fadeIn();
+            $("#approve").fadeOut();
+        }
         
       }
       else {
