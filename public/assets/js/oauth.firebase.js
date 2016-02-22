@@ -5,7 +5,7 @@ var uid_name;
 var uid_email;
 var uid_adm;
 var uid_sys_adm;
-var arrApprover;
+var uid_approver;
 
 
 (function($) {
@@ -31,7 +31,7 @@ function authDataCallback(authData) {
       uid_email = rMessage.email;
       uid_adm = rMessage.site_admin;
       uid_sys_adm = rMessage.sys_admin;
-      arrApprover = pop_one_approver(uid_site,myuid);
+      uid_approver = rMessage.approver;
       
         //Set Sys Admin menu
         if(uid_sys_adm===true) {
@@ -132,6 +132,7 @@ function authDataCallback(authData) {
     uid_email = null;
     uid_adm = null;
     uid_sys_adm = null;
+    uid_approver = null;
     
     if(ref.getAuth()===null){
         if(window.location.pathname!=="/"){
