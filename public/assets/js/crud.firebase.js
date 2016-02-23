@@ -410,11 +410,9 @@
             
                 nMessage.push(arrName.full_name, arrName.email);
                 
-                
             
             });
             
-            return nMessage;
         }
 
       }); 
@@ -422,6 +420,7 @@
           console.log("The read failed: " + errorObject.code);
     });
     
+    return nMessage;
     
   }
   
