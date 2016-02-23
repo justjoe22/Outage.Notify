@@ -1,4 +1,4 @@
-//Global Variables
+//Global User Variables
 var myuid;
 var uid_site;
 var uid_name;
@@ -10,14 +10,15 @@ var uid_approver;
 
 (function($) {
 
+//Main URL for Database / Authentication
 var main_url = "https://resplendent-inferno-4226.firebaseio.com/";
 var ref = new Firebase( main_url.normalize() );
 
   // Create a callback which logs the current auth state
 function authDataCallback(authData) {
   if (authData) {
-    //console.log("User " + authData.uid + " is logged in with " + authData.provider);
     
+    //Set UID variable
     myuid = authData.uid;
     
      //Get User uid_site
@@ -26,6 +27,8 @@ function authDataCallback(authData) {
      
     rUsers.once("value", function(snap) {
       rMessage = snap.val();
+      
+      //Set Global Variables from User Profile
       uid_site = rMessage.site;
       uid_name = rMessage.full_name;
       uid_email = rMessage.email;
@@ -52,6 +55,9 @@ function authDataCallback(authData) {
             $("#sys_adm").click(function(){
               if ($(this).hasClass("filter")){
                 admcollapse($(this));
+                $("#sys_adm").unbind('mouseenter mouseleave')
+                $("#site_adm").unbind('mouseenter mouseleave')
+                $("#ddmenu").unbind('mouseenter mouseleave')
               } else {
                 $(this).find(".adm-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
                 $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
@@ -59,13 +65,53 @@ function authDataCallback(authData) {
                 admcollapse($("#sys_adm").not($(this)));
                 collapse($("#ddmenu").not($(this)));
                 sitecollapse($("#site_adm").not($(this)));
-              }
+                $("#sys_adm").unbind('mouseenter mouseleave')
+                $("#site_adm").unbind('mouseenter mouseleave')
+                $("#ddmenu").unbind('mouseenter mouseleave')
               
+                  $("#ddmenu").hover(function(){
+                      if ($(this).hasClass("filter")){
+                        //collapse($(this));
+                      } else {
+                        $(this).find(".menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+                        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+                        $(this).addClass("filter");
+                        //collapse($("#ddmenu").not($(this)));
+                        sitecollapse($("#site_adm").not($(this)));
+                        admcollapse($("#sys_adm").not($(this)));
+                      } 
+                  })
+                  $("#site_adm").hover(function(){
+                      if ($(this).hasClass("filter")){
+                        //sitecollapse($(this));
+                      } else {
+                        $(this).find(".site-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+                        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+                        $(this).addClass("filter");
+                        //sitecollapse($("#site_adm").not($(this)));
+                        collapse($("#ddmenu").not($(this)));
+                        admcollapse($("#sys_adm").not($(this)));
+                      }
+                  })
+                  $("#sys_adm").hover(function(){
+                      if ($(this).hasClass("filter")){
+                        //admcollapse($(this));
+                      } else {
+                        $(this).find(".adm-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+                        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+                        $(this).addClass("filter");
+                        //admcollapse($("#sys_adm").not($(this)));
+                        collapse($("#ddmenu").not($(this)));
+                        sitecollapse($("#site_adm").not($(this)));
+                      }
+                  })
+              }
             });
             
             $('html').click(function() {
             
                 admcollapse($("#sys_adm").not($(this)));
+                $("#sys_adm").unbind('mouseenter mouseleave')
                 
             });
             
@@ -95,6 +141,9 @@ function authDataCallback(authData) {
             $("#site_adm").click(function(){
               if ($(this).hasClass("filter")){
                 sitecollapse($(this));
+                $("#sys_adm").unbind('mouseenter mouseleave')
+                $("#site_adm").unbind('mouseenter mouseleave')
+                $("#ddmenu").unbind('mouseenter mouseleave')
               } else {
                 $(this).find(".site-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
                 $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
@@ -102,13 +151,53 @@ function authDataCallback(authData) {
                 sitecollapse($("#site_adm").not($(this)));
                 collapse($("#ddmenu").not($(this)));
                 admcollapse($("#sys_adm").not($(this)));
+                $("#sys_adm").unbind('mouseenter mouseleave')
+                $("#site_adm").unbind('mouseenter mouseleave')
+                $("#ddmenu").unbind('mouseenter mouseleave')
+                  
+                  $("#ddmenu").hover(function(){
+                      if ($(this).hasClass("filter")){
+                        //collapse($(this));
+                      } else {
+                        $(this).find(".menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+                        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+                        $(this).addClass("filter");
+                        //collapse($("#ddmenu").not($(this)));
+                        sitecollapse($("#site_adm").not($(this)));
+                        admcollapse($("#sys_adm").not($(this)));
+                      } 
+                  })
+                  $("#sys_adm").hover(function(){
+                      if ($(this).hasClass("filter")){
+                        //admcollapse($(this));
+                      } else {
+                        $(this).find(".adm-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+                        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+                        $(this).addClass("filter");
+                        //admcollapse($("#sys_adm").not($(this)));
+                        collapse($("#ddmenu").not($(this)));
+                        sitecollapse($("#site_adm").not($(this)));
+                      }
+                  })
+                  $("#site_adm").hover(function(){
+                      if ($(this).hasClass("filter")){
+                        //sitecollapse($(this));
+                      } else {
+                        $(this).find(".site-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+                        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+                        $(this).addClass("filter");
+                        //sitecollapse($("#site_adm").not($(this)));
+                        collapse($("#ddmenu").not($(this)));
+                        admcollapse($("#sys_adm").not($(this)));
+                      }
+                    })
               }
-              
             });
             
             $('html').click(function() {
             
                 sitecollapse($("#site_adm").not($(this)));
+                $("#site_adm").unbind('mouseenter mouseleave')
                 
             });
             
@@ -116,8 +205,7 @@ function authDataCallback(authData) {
                 event.stopPropagation();
             });
         }
-     
-      //console.log(snap.val());
+    
     });
     
     if(window.location.pathname==="/"){
@@ -125,8 +213,8 @@ function authDataCallback(authData) {
     }
 
   } else {
-    //console.log("User is logged out");
     
+    //Set Global Variables from User Profile to NULL
     myuid = null;
     uid_site = null;
     uid_email = null;
@@ -216,6 +304,9 @@ $("#ddmenu").find(".menu").css({"display": "none"});
 $("#ddmenu").click(function(){
   if ($(this).hasClass("filter")){
     collapse($(this));
+    $("#sys_adm").unbind('mouseenter mouseleave')
+    $("#site_adm").unbind('mouseenter mouseleave')
+    $("#ddmenu").unbind('mouseenter mouseleave')
   } else {
     $(this).find(".menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
     $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
@@ -223,6 +314,48 @@ $("#ddmenu").click(function(){
     collapse($("#ddmenu").not($(this)));
     sitecollapse($("#site_adm").not($(this)));
     admcollapse($("#sys_adm").not($(this)));
+    $("#sys_adm").unbind('mouseenter mouseleave')
+    $("#site_adm").unbind('mouseenter mouseleave')
+    $("#ddmenu").unbind('mouseenter mouseleave')
+  
+    $("#sys_adm").hover(function(){
+      if ($(this).hasClass("filter")){
+        //admcollapse($(this));
+      } else {
+        $(this).find(".adm-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+        $(this).addClass("filter");
+        //admcollapse($("#sys_adm").not($(this)));
+        collapse($("#ddmenu").not($(this)));
+        sitecollapse($("#site_adm").not($(this)));
+      }
+    })
+    
+    $("#site_adm").hover(function(){
+      if ($(this).hasClass("filter")){
+        //sitecollapse($(this));
+      } else {
+        $(this).find(".site-menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+        $(this).addClass("filter");
+        //sitecollapse($("#site_adm").not($(this)));
+        collapse($("#ddmenu").not($(this)));
+        admcollapse($("#sys_adm").not($(this)));
+      }
+    })
+    
+    $("#ddmenu").hover(function(){
+      if ($(this).hasClass("filter")){
+        //collapse($(this));
+      } else {
+        $(this).find(".menu").css({"display": "block", "transition": "transform 0.9s ease-out"});
+        $(this).css({"height": "200px", "transition": "height 0.5s ease-out"});
+        $(this).addClass("filter");
+        //collapse($("#ddmenu").not($(this)));
+        sitecollapse($("#site_adm").not($(this)));
+        admcollapse($("#sys_adm").not($(this)));
+      } 
+    })
   }
   
 });
@@ -230,6 +363,7 @@ $("#ddmenu").click(function(){
 $('html').click(function() {
 
     collapse($("#ddmenu").not($(this)));
+    $("#ddmenu").unbind('mouseenter mouseleave')
     
 });
 

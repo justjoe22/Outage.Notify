@@ -324,6 +324,19 @@
           
           //End of Draft Mode
          }
+         
+         if(message.status=="Pending"){
+          //Approval
+            vHTML = "<div class='form-title-row'><h2>Do You Approve this Outage?</h2><br>";
+            vHTML += "<a href='#' name='yes'>";
+            vHTML += "<i class='fa fa-check'></i> Yes I Approve</a>";
+            vHTML += "<a href='#' name='no'>";
+            vHTML += "<i class='fa fa-times'></i> No please revise</a>";
+            vHTML += "</div>";
+            document.getElementById("approve").innerHTML = vHTML;
+            
+          //End of Pending
+         }
       }); 
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
