@@ -53,6 +53,15 @@
             else if(statusid=="Approved"){
                 window.location.replace("approve.outage.html?outageid=" + outageid);
             }
+            else if(statusid=="Sent"){
+                //window.location.replace("approve.outage.html?outageid=" + outageid);
+            }
+            else if(statusid=="Complete"){
+                //window.location.replace("approve.outage.html?outageid=" + outageid);
+            }
+            else if(statusid=="Locked"){
+                //window.location.replace("approve.outage.html?outageid=" + outageid);
+            }
           }
         });
 
