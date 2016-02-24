@@ -44,7 +44,15 @@
           if (error) {
             alert("Data could not be saved." + error);
           } else {
-            window.location.replace("approve.outage.html?outageid=" + outageid);
+            if(statusid=="Pending"){
+                window.location.replace("approve.outage.html?outageid=" + outageid);
+            }
+            else if(statusid=="Draft"){
+                window.location.replace("preview.outage.html?outageid=" + outageid);
+            }
+            else if(statusid=="Approved"){
+                window.location.replace("approve.outage.html?outageid=" + outageid);
+            }
           }
         });
 
@@ -334,6 +342,20 @@
             vHTML += "<i class='fa fa-times'></i> No please revise</a>";
             vHTML += "</div>";
             document.getElementById("approve").innerHTML = vHTML;
+            
+            //Approve or Deny
+              $('a[name=yes]').click(function(){
+            
+                change_status(uid_site,outageid,"Approved");
+            
+              });
+            
+              //No
+              $('a[name=no]').click(function(){
+            
+                change_status(uid_site,outageid,"Draft");
+            
+              });
             
           //End of Pending
          }
