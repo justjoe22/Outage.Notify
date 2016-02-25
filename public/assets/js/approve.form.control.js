@@ -79,7 +79,14 @@ $('form[name=approvers]').submit(function(event) {
         
         var apvrArray = pop_one_approver(uid_site,approver);
         
-        alert("Your approver is "+apvrArray[0]+". Please email them at "+apvrArray[1]+".");
+        var body = "";
+        
+        body += "Your approver is "+apvrArray[0]+". Please email them at "+apvrArray[1]+".<br><a href='#'>Yes</a>";
+        
+        var myUrl = "https://resplendent-inferno-4226.firebaseapp.com/approve.outage.html?outageid=" + outageid;
+        
+        notifyMe("Outage Notification System",body,myUrl,approver);
+        
         // var data = {
         //     name: apvrArray[0],
         //     email: apvrArray[1],
