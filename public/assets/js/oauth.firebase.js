@@ -6,6 +6,7 @@ var uid_email;
 var uid_adm;
 var uid_sys_adm;
 var uid_approver;
+//var outageid;
 
 
 (function($) {
@@ -35,7 +36,7 @@ function authDataCallback(authData) {
       uid_adm = rMessage.site_admin;
       uid_sys_adm = rMessage.sys_admin;
       uid_approver = rMessage.approver;
-      
+
         //Set Sys Admin menu
         if(uid_sys_adm===true) {
             var $nav = $('<nav />').appendTo('body');
@@ -415,4 +416,20 @@ function notifyMe(title,body,url,apvr_uid) {
     
   }
 
+}
+
+function approver_alert(outageid){
+          
+      //Approver Alerts
+      if(uid_approver===true){
+        if(outageid!=="" || outageid!==undefined){
+            var body = "";
+        
+            body += "You have a new outage to approve!";
+        
+            var myUrl = "https://resplendent-inferno-4226.firebaseapp.com/approve.outage.html?outageid=" + outageid;
+        
+            notifyMe("Outage Notification System",body,myUrl,myuid);
+        }
+      }
 }

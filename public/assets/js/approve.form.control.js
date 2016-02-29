@@ -80,35 +80,8 @@ $('form[name=approvers]').submit(function(event) {
         //Save Approver
         assign_approver(uid_site,outageid,approver);
         
-        var apvrArray = pop_one_approver(uid_site,approver);
+        approver_alert(outageid);
         
-        var body = "";
-        
-        body += "Your approver is "+apvrArray[0]+". Please email them at "+apvrArray[1]+".<br><a href='#'>Yes</a>";
-        
-        var myUrl = "https://resplendent-inferno-4226.firebaseapp.com/approve.outage.html?outageid=" + outageid;
-        
-        notifyMe("Outage Notification System",body,myUrl,approver);
-        
-        // var data = {
-        //     name: apvrArray[0],
-        //     email: apvrArray[1],
-        //     message: "message"
-        // };
-        
-        // $.ajax({
-        //     type: "POST",
-        //     url: "mailclient.php",
-        //     data: data,
-        //     success: function(result){
-        //         console.log("Success"+result);
-        //     },
-        //     error: function(result){
-        //         console.log("Failed"+result);
-        //     }
-        // });
-        
-
     }
     
 
