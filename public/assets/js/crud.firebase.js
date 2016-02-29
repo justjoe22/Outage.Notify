@@ -31,6 +31,24 @@
         });
    
   }
+  
+  //Assign Approver
+  function assign_approver(form_site,outageid,approver_uid){
+
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
+    var ref = new Firebase( outage_url.normalize() );
+    
+       var myItemRef = ref.child(outageid);
+       
+       myItemRef.update({approver: approver_uid}, function(error) {
+          if (error) {
+            alert("Data could not be saved." + error);
+          } else {
+            //window.location.replace("approve.outage.html?outageid=" + outageid);
+          }
+        });
+   
+  }
 
   //Change Status of Outage System
   function change_status(form_site,outageid,statusid){

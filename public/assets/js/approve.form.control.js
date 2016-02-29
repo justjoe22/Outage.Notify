@@ -77,6 +77,9 @@ $('form[name=approvers]').submit(function(event) {
     //Send to approver
     if(approver!==""){
         
+        //Save Approver
+        assign_approver(uid_site,outageid,approver);
+        
         var apvrArray = pop_one_approver(uid_site,approver);
         
         var body = "";
