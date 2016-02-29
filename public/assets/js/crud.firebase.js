@@ -114,7 +114,10 @@
       snapshot.forEach(function(data) {
             var message = data.val();
         
-        if(uid_key!==message.approver&&message.status!=="Pending"){
+        if(uid_key===message.approver&&message.status==="Pending"){
+            //Do Nothing
+        }
+        else {
          //Start of Form Class
          var vHTML = "<div class='main-content'><div class='form-basic'>";
 
