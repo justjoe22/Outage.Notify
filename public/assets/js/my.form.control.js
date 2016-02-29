@@ -14,7 +14,14 @@
     if(typeof uid_site !== "undefined"){
       //Populate Form.Init
       if (uid_site !== "") {
-        pop_forminit(uid_site);
+        
+        //Set Approver View
+        if(uid_approver===true){
+          outages_by_approver(uid_site,myuid);
+        }
+        
+        pop_forminit(uid_site,myuid);
+        
       }
       else {
           waitForElement();

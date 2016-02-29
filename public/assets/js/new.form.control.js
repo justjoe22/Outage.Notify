@@ -191,7 +191,7 @@ $('form[name=outage]').submit(function(event) {
     
     //Add when Site is filled
     if(uid_site!==""){
-        saveNote = add_outage(uid_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket);
+        saveNote = add_outage(uid_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket,myuid);
     }
     
   //Pass list item ID.

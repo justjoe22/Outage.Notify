@@ -1,11 +1,11 @@
 
   //Add List Item to Outage System
-  function add_outage(form_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
+  function add_outage(form_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket,created){
     var postID;
     var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
     var ref = new Firebase( outage_url.normalize() );
     
-       ref.push({status: "Draft", otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket});
+       ref.push({status: "Draft", otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket, created: created});
        
        ref.on('child_added', function(snapshot) {
         postID = snapshot.key();
@@ -102,7 +102,7 @@
 //   }
 
   //Initial MyOutages View Form.Setup
-  function pop_forminit(form_site){
+  function pop_forminit(form_site,uid_key){
 
     //Get Outage for Preview
     // Get a database reference to our posts
@@ -110,12 +110,13 @@
     var ref = new Firebase( outage_url.normalize() );
     
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByKey().on("value", function(snapshot) {
+    ref.orderByChild("created").equalTo(uid_key).on("value", function(snapshot) {
       snapshot.forEach(function(data) {
             var message = data.val();
         
-        //Start of Form Class
-        var vHTML = "<div class='main-content'><div class='form-basic'>";
+        if(uid_key!==message.approver&&message.status!=="Pending"){
+         //Start of Form Class
+         var vHTML = "<div class='main-content'><div class='form-basic'>";
 
           //Outage Menu
           vHTML += "<div class='submenu'>";
@@ -156,7 +157,8 @@
           vHTML += "</div></div>";
 
           $("#outagelist").append(vHTML);
-    
+        }
+        
       });    
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
@@ -373,6 +375,8 @@
             //Approve or Deny
               $('a[name=yes]').click(function(){
             
+                assign_approver(uid_site,outageid,myuid);
+                
                 change_status(uid_site,outageid,"Approved");
             
               });
@@ -470,6 +474,63 @@
     });
     
     return nMessage;
+    
+  }
+  
+  //Get Outages by Approver
+  function outages_by_approver(form_site,uid_key){
+    
+    // Get a database reference to our posts
+    var approver_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
+    var ref = new Firebase( approver_url.normalize() );
+    var nMessage = [];
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByChild("approver").equalTo(uid_key).on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+        var message = data.val();
+        //var myKey = data.key();
+        
+        //Start of Form Class
+        if(message.status=="Pending"){
+            var vHTML = "<div class='main-content'><div class='form-basic approval'>";
+
+          //Outage Menu
+          vHTML += "<div class='submenu'>";
+          
+            //Preview Button
+            vHTML += "<a href='../approve.outage.html?outageid=" + data.key() + "' title='Preview Outage' name='prev'>";
+            vHTML += "<i class='fa fa-television'></i></a>";
+          
+          vHTML += "</div>";
+          
+          //Summary
+          vHTML += "<div class='form-title-row'><h3>";
+          vHTML += message.otype + ": ";
+          vHTML += message.service + ", ";
+          vHTML += message.timeframe;
+          vHTML += "</h3></div>";
+          
+          //Summary Details
+          vHTML += "<div class='form-row'>";
+          vHTML += "<h2>Status:</h2>";
+          vHTML += "<p>" + message.status + "</p><br />";
+          vHTML += "<h2>Ticket #:</h2>";
+          vHTML += "<p>" + message.ticket + "</p><br />";
+          vHTML += "<h2>Contact:</h2>";
+          vHTML += "<p>" + message.pcontact + "</p>";
+          vHTML += "</div>";
+
+          //End of Form Class
+          vHTML += "</div></div>";
+
+          $("#outagelist").append(vHTML);
+        }
+
+      }); 
+    }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+    });
     
   }
   
