@@ -83,7 +83,7 @@ $('form[name=approvers]').submit(function(event) {
         //Email approver
          $.ajax({
               type: "POST",
-              url: "https://justjoe22.koding.io/Outage.Notify/public/mailclient.php",
+              url: "http://justjoe22.koding.io/Outage.Notify/public/mailclient.php",
               cache: false,
               contentType: "application/json; charset=utf-8",
               data: "{ 'name':'Joe Prewitt'," +
