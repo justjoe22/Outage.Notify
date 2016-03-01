@@ -80,11 +80,33 @@ $('form[name=approvers]').submit(function(event) {
         //Save Approver
         assign_approver(uid_site,outageid,approver);
         
-        approver_alert(outageid);
+        //Email approver
+         $.ajax({
+              type: "POST",
+              url: "https://justjoe22.koding.io/Outage.Notify/public/mailclient.php",
+              cache: false,
+              contentType: "application/json; charset=utf-8",
+              data: "{ 'name':'Joe Prewitt'," +
+                  "'email': 'justjoe22@gmail.com'," +
+                  "'message': 'Do you approve?'" +
+                  "}",
+              dataType: "json",
+              complete: function (transport) {
+                  if (transport.status == 200) {
+                      console.log("Success");
+                  }
+                  else {
+                      alert("Please try again later");
+                  }
+              }
+         });
         
     }
     
 
 });
+
+
+
 //End of Script
 })(jQuery);
