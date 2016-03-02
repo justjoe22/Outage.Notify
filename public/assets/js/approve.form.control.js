@@ -30,8 +30,6 @@ $(window).load(function() {
   //Populate Form.Preview
   waitForElement();
   
-  
-  
 });
 
  function waitForElement(){
@@ -83,7 +81,7 @@ $('form[name=approvers]').submit(function(event) {
         //Email approver
          $.ajax({
               type: "POST",
-              url: "http://justjoe22.koding.io/Outage.Notify/public/mailclient.php",
+              url: "../mailclient.php",
               cache: false,
               contentType: "application/json; charset=utf-8",
               data: "{ 'name':'Joe Prewitt'," +
@@ -102,11 +100,8 @@ $('form[name=approvers]').submit(function(event) {
          });
         
     }
-    
 
 });
-
-
 
 //End of Script
 })(jQuery);
