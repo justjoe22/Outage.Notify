@@ -78,27 +78,26 @@ $('form[name=approvers]').submit(function(event) {
         //Save Approver
         assign_approver(uid_site,outageid,approver);
         
-        //Email approver
-         $.ajax({
-              type: "POST",
-              url: "../mailclient.php",
-              cache: false,
-              contentType: "application/json; charset=utf-8",
-              data: "{ 'name':'Joe Prewitt'," +
-                  "'email': 'justjoe22@gmail.com'," +
-                  "'message': 'Do you approve?'" +
-                  "}",
-              dataType: "json",
-              complete: function (transport) {
-                  if (transport.status == 200) {
-                      console.log("Success");
-                  }
-                  else {
-                      alert("Please try again later");
-                  }
-              }
-         });
+        //Get approver
+        var appvArry = pop_one_approver(uid_site,approver);
         
+        //Email approver
+        var sendGmail = function(opts){
+            var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
+                      '&to=' + opts.to +
+                      '&su=' + opts.subject +
+                      '&body=' + opts.message.replace(/\n/g,'%0A') +
+                      '&ui=1';
+            location.href = str;
+        }
+        
+        sendGmail({
+            to: appvArry[1],
+            subject: 'NEW Approval Required',
+            message: 'Hello '+ appvArry[0] +' \n'+
+                     'Please approve. \n'+
+                     'Or Not.'
+        });
     }
 
 });
