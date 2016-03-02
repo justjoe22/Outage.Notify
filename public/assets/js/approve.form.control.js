@@ -88,7 +88,11 @@ $('form[name=approvers]').submit(function(event) {
                       '&su=' + opts.subject +
                       '&body=' + opts.message.replace(/\n/g,'%0A') +
                       '&ui=1';
-            location.href = str;
+            
+            window.open(
+               str,
+              '_blank' // <- This is what makes it open in a new window.
+            );
         }
         
         sendGmail({
