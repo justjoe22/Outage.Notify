@@ -99,7 +99,7 @@ $('form[name=approvers]').submit(function(event) {
             to: appvArry[1],
             subject: 'NEW Approval Required',
             message: 'Hello '+ appvArry[0] +' \n'+
-                     'Please approve. \n'+
+                     'Please approve. \n \n'+
                      'Or Not.'
         });
     }
