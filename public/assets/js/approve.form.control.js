@@ -86,7 +86,7 @@ $('form[name=approvers]').submit(function(event) {
         //Email approver
         $.post('mailclient.php',{"from": appvArry[1] , "message":message},function(response) 
         {     
-            response = $.parseJSON(response);           
+            //response = $.parseJSON(response);           
             console.log(response);
         });
         
