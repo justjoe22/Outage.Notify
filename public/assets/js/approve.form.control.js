@@ -81,27 +81,35 @@ $('form[name=approvers]').submit(function(event) {
         //Get approver
         var appvArry = pop_one_approver(uid_site,approver);
         
-        //Email approver
-        var sendGmail = function(opts){
-            var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
-                      '&to=' + opts.to +
-                      '&su=' + opts.subject +
-                      '&body=' + opts.message.replace(/\n/g,'%0A') +
-                      '&ui=1';
-            
-            window.open(
-               str,
-              '_blank' // <- This is what makes it open in a new window.
-            );
-        }
+        var message = 'Hello '+ appvArry[0] +' \nPlease approve. \n \n Or Not.';
         
-        sendGmail({
-            to: appvArry[1],
-            subject: 'NEW Approval Required',
-            message: 'Hello '+ appvArry[0] +' \n'+
-                     'Please approve. \n \n'+
-                     'Or Not.'
+        //Email approver
+        $.post('mailclient.php',{"from": appvArry[1] , "message":message},function(response) 
+        {     
+            response = $.parseJSON(response);           
+            console.log(response);
         });
+        
+        // var sendGmail = function(opts){
+        //     var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
+        //               '&to=' + opts.to +
+        //               '&su=' + opts.subject +
+        //               '&body=' + opts.message.replace(/\n/g,'%0A') +
+        //               '&ui=1';
+            
+        //     window.open(
+        //       str,
+        //       '_blank' // <- This is what makes it open in a new window.
+        //     );
+        // }
+        
+        // sendGmail({
+        //     to: appvArry[1],
+        //     subject: 'NEW Approval Required',
+        //     message: 'Hello '+ appvArry[0] +' \n'+
+        //              'Please approve. \n \n'+
+        //              'Or Not.'
+        // });
     }
 
 });
