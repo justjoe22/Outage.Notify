@@ -46,7 +46,7 @@ function authDataCallback(authData) {
             var admMenu = "<div class='adm-menu-icon'></div>";
             admMenu += "<div class='adm-menu'>";
             admMenu += "<a href='#'><i class='fa fa-plus-square'></i> System Admin Menu</a>";
-            admMenu += "</div>"
+            admMenu += "</div>";
             
             $("#sys_adm").html(admMenu);
             
