@@ -225,7 +225,7 @@ function authDataCallback(authData) {
     
     if(ref.getAuth()===null){
         if(window.location.pathname!=="/"){
-            window.location.replace("../");
+           // window.location.replace("../");
         }
     }
   }

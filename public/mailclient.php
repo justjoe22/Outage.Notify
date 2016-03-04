@@ -4,14 +4,14 @@
          header('content-type: application/json; charset=utf-8');
          header("access-control-allow-origin: *");
  
+         $to = $_POST['to'];
          $name = $_POST['name'];
-         $email = $_POST['email'];
+         $from = $_POST['from'];
          $message = $_POST['message'];
+         
+         $subject = "Your approval is required";
  
-         $to = "justjoe22@gmail.com";
-         $subject = "Order Request";
- 
-         $result = mail("justjoe22@gmail.com", "Comment from" .$email, $message);
+         $result = mail($to, $from, $message);
          
          if(!$result) {   
              echo json_encode('failed');  

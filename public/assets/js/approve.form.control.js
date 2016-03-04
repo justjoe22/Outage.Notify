@@ -81,10 +81,10 @@ $('form[name=approvers]').submit(function(event) {
         //Get approver
         var appvArry = pop_one_approver(uid_site,approver);
         
-        var message = 'Hello '+ appvArry[0] +' \nPlease approve. \n \n Or Not.';
+        var message = 'Hello '+ appvArry[0] +' \nPlease approve the outage. <a href="">Preview</a> \n \n Or Not. \n Regards, \n'+uid_name;
         
         //Email approver
-        $.post('mailclient.php',{"from": appvArry[1] , "message":message},function(response) 
+        $.post('mailclient.php',{"to": appvArry[1] , "message":message , "from": uid_email , "name": uid_name},function(response) 
         {     
             //response = $.parseJSON(response);           
             console.log(response);
