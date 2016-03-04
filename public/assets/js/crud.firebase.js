@@ -69,7 +69,7 @@
                 window.location.replace("preview.outage.html?outageid=" + outageid);
             }
             else if(statusid=="Approved"){
-                window.location.replace("approve.outage.html?outageid=" + outageid);
+                window.location.replace("outage.html?outageid=" + outageid);
             }
             else if(statusid=="Sent"){
                 //window.location.replace("approve.outage.html?outageid=" + outageid);
@@ -132,6 +132,11 @@
             //Preview Button
             vHTML += "<a href='../approve.outage.html?outageid=" + data.key() + "' title='Preview Outage' name='prev'>";
             vHTML += "<i class='fa fa-television'></i></a>";
+          }
+          else if(message.status=="Approved"){
+            //Preview Button
+            vHTML += "<a href='../outage.html?outageid=" + data.key() + "' title='View & Send Outage' name='prev'>";
+            vHTML += "<i class='fa fa-envelope-o'></i></a>";
           }
           vHTML += "</div>";
           
