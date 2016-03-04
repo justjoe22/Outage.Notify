@@ -210,7 +210,10 @@ function authDataCallback(authData) {
     });
     
     if(window.location.pathname==="/"){
-            window.location.replace("./my.outages");
+        window.location.replace("./my.outages");
+    }
+    else if(window.location.pathname==="/Outage.Notify/public/"){
+        window.location.replace("./my.outages");
     }
 
   } else {
@@ -224,8 +227,10 @@ function authDataCallback(authData) {
     uid_approver = null;
     
     if(ref.getAuth()===null){
-        if(window.location.pathname!=="/"){
-           // window.location.replace("../");
+        if(window.location.pathname!=="/" && window.location.pathname!=="/Outage.Notify/public/"){
+            
+                window.location.replace("../");     
+
         }
     }
   }
