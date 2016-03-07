@@ -10,8 +10,14 @@
          $message = $_POST['message'];
          
          $subject = "Your approval is required";
+         
+         $headers= "From: Outage Notify <noreply@outage.net>\r\n";
+         $headers.= "Reply-To: $name <$from>\r\n";
+         $headers.= "X-Mailer: PHP/" . phpversion()."\r\n";
+         $headers.= "MIME-Version: 1.0" . "\r\n";
+         $headers.= "Content-type: text/html; charset=iso-8859-1";
  
-         $result = mail($to, $from, $message);
+         $result = mail($to, $subject, $message, $headers);
          
          if(!$result) {   
              echo json_encode('failed');  
