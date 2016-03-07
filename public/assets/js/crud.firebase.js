@@ -393,6 +393,11 @@
             
           //End of Pending
          }
+         
+         if(message.status=="Approved"){
+             
+             //options
+         }
       }); 
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
@@ -536,4 +541,66 @@
     });
     
   }
-  
+
+  //Populate Outage Email
+  function pop_outage_email(outageid, form_site, subject){
+    var vHTML = "";
+    
+    //Get Outage for Preview
+    // Get a database reference to our posts
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
+    var ref = new Firebase( outage_url.normalize() );
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().equalTo(outageid).on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+            var message = data.val();
+            
+        //Populate DIV with HTML
+        if(subject=="Yes" || subject=="Exclusive"){
+          vHTML += message.otype + ": ";
+          vHTML += message.service + ", ";
+          vHTML += message.timeframe;
+          
+          if(subject!=="Exclusive"){
+            vHTML = "<h1>" + vHTML + "</h1>";
+          }
+          
+        }
+        
+        if(subject!=="Exclusive"){
+        
+          vHTML += "<h2>What service is affected?</h2>";
+          vHTML += "<p>" + message.service + "</p>";
+
+          vHTML += "<h2>What is the time frame?</h2>";
+          vHTML += "<p>" + message.timeframe + "</p>";
+          
+          vHTML += "<h2>What do I need to do?</h2>";
+          vHTML += "<p>" + message.todo + "</p>";
+          
+          vHTML += "<h2>What is the business impact?</h2>";
+          vHTML += "<p>" + message.bimpact + "</p>";
+          
+          vHTML += "<h2>Who is receiving this message?</h2>";
+          vHTML += "<p>" + message.wrmessage + "</p>";
+          
+          if(message.chkabo==1){
+            vHTML += "<h2>IBO/ABO Impact?</h2>";
+            vHTML += "<p>" + message.txtabo + "</p>";
+          }
+
+          vHTML += "<h2>Who do I need to contact if I have questions?</h2>";
+          vHTML += "<p>" + message.contact + "</p>";
+          
+          vHTML += "<h2>Ticket #</h2>";
+          vHTML += "<p>" + message.ticket + "</p>";
+        }
+        
+      }); 
+    }, function (errorObject) {
+          vHTML = "The read failed: " + errorObject.code;
+    });
+    
+    return vHTML;    
+  }  

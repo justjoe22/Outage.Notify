@@ -9,7 +9,7 @@
          $from = $_POST['from'];
          $message = $_POST['message'];
          
-         $subject = "Your approval is required";
+         $subject = $_POST['subject'];
          
          $headers= "From: Outage Notify <noreply@outage.net>\r\n";
          $headers.= "Reply-To: $name <$from>\r\n";

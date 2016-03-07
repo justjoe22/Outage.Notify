@@ -83,13 +83,16 @@ $('form[name=approvers]').submit(function(event) {
         
         var message = 'Hello '+ appvArry[0] +' <br>Please approve the outage.<br>';
         message += '<a href="'+window.location+'">Preview and Approve</a><br>';
-        message += ' Or Not. <br><br> Regards, <br>'+uid_name;
+        message += '<br><hr>';
+        message +=  pop_outage_email(outageid, uid_site, "Yes");
+        message += '<hr><br> Regards, <br>'+uid_name;
         
         //Email approver
-        $.post('mailclient.php',{"to": appvArry[1] , "message":message , "from": uid_email , "name": uid_name},function(response) 
+        $.post('mailclient.php',{"to": appvArry[1] , "message":message , "from": uid_email , "name": uid_name , "subject": 'Your approval is required.'},function(response) 
         {     
             //response = $.parseJSON(response);           
             console.log(response);
+            
         });
         
     }
