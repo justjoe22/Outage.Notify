@@ -88,11 +88,15 @@ $('form[name=approvers]').submit(function(event) {
         message += '<hr><br> Regards, <br>'+uid_name;
         
         //Email approver
-        $.post('mailclient.php',{"to": appvArry[1] , "message":message , "from": uid_email , "name": uid_name , "subject": 'Your approval is required.'},function(response) 
-        {     
-            //response = $.parseJSON(response);           
-            console.log(response);
-            
+        $.post('mailclient.php',
+            {
+                "to": appvArry[1] , 
+                "message":message , 
+                "from": uid_email , 
+                "name": uid_name , 
+                "subject": 'Your approval is required.'
+            },function(response) {
+                console.log(response);
         });
         
     }
