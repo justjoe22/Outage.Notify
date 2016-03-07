@@ -81,9 +81,9 @@ $('form[name=approvers]').submit(function(event) {
         //Get approver
         var appvArry = pop_one_approver(uid_site,approver);
         
-        var message = 'Hello '+ appvArry[0] +' \nPlease approve the outage.';
-        message += '<a href="'+window.location+'">Preview and Approve</a> \n \n';
-        message += ' Or Not. \n Regards, \n'+uid_name;
+        var message = 'Hello '+ appvArry[0] +' <br>Please approve the outage.<br>';
+        message += '<a href="'+window.location+'">Preview and Approve</a><br>';
+        message += ' Or Not. <br><br> Regards, <br>'+uid_name;
         
         //Email approver
         $.post('mailclient.php',{"to": appvArry[1] , "message":message , "from": uid_email , "name": uid_name},function(response) 
