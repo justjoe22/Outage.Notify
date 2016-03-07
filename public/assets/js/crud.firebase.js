@@ -396,7 +396,29 @@
          
          if(message.status=="Approved"){
              
-             //options
+            vHTML = "<div class='form-title-row'>";
+            vHTML += "<a href='#' name='send'>";
+            vHTML += "<i class='fa fa-envelope-o'></i> Send Outage</a>";
+            vHTML += "</div>";
+            document.getElementById("options").innerHTML = vHTML;
+            
+            //Approve or Deny
+              $('a[name=send]').click(function(){
+            
+                var subject = pop_outage_email(outageid, uid_site, "Exclusive");
+                
+                var message = pop_outage_email(outageid, uid_site, "No");
+                
+                //Email approver
+                $.post('mailclient.php',{"to": message.pcontact , "message":message , "from": uid_email , "name": uid_name , "subject":subject},function(response) 
+                {     
+                    //response = $.parseJSON(response);           
+                    console.log(response);
+                    
+                });
+            
+              });
+              
          }
       }); 
     }, function (errorObject) {
