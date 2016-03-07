@@ -407,10 +407,10 @@
             
                 var subject = pop_outage_email(outageid, uid_site, "Exclusive");
                 
-                var message = pop_outage_email(outageid, uid_site, "No");
+                var note = pop_outage_email(outageid, uid_site, "No");
                 
                 //Email approver
-                $.post('mailclient.php',{"to": message.pcontact , "message":message , "from": uid_email , "name": uid_name , "subject":subject},function(response) 
+                $.post('mailclient.php',{"to": uid_email , "message":note , "from": uid_email , "name": uid_name , "subject":subject},function(response) 
                 {     
                     //response = $.parseJSON(response);           
                     console.log(response);

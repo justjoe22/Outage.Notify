@@ -7,15 +7,16 @@
          $to = $_POST['to'];
          $name = $_POST['name'];
          $from = $_POST['from'];
+         $bcc = $_POST['bcc'];
          $message = $_POST['message'];
-         
          $subject = $_POST['subject'];
          
          $headers= "From: Outage Notify <noreply@outage.net>\r\n";
          $headers.= "Reply-To: $name <$from>\r\n";
          $headers.= "X-Mailer: PHP/" . phpversion()."\r\n";
          $headers.= "MIME-Version: 1.0" . "\r\n";
-         $headers.= "Content-type: text/html; charset=iso-8859-1";
+         $headers.= "Content-type: text/html; charset=iso-8859-1\r\n";
+         $headers.= "Bcc: $bcc";
  
          $result = mail($to, $subject, $message, $headers);
          
