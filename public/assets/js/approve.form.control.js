@@ -92,26 +92,6 @@ $('form[name=approvers]').submit(function(event) {
             console.log(response);
         });
         
-        // var sendGmail = function(opts){
-        //     var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
-        //               '&to=' + opts.to +
-        //               '&su=' + opts.subject +
-        //               '&body=' + opts.message.replace(/\n/g,'%0A') +
-        //               '&ui=1';
-            
-        //     window.open(
-        //       str,
-        //       '_blank' // <- This is what makes it open in a new window.
-        //     );
-        // }
-        
-        // sendGmail({
-        //     to: appvArry[1],
-        //     subject: 'NEW Approval Required',
-        //     message: 'Hello '+ appvArry[0] +' \n'+
-        //              'Please approve. \n \n'+
-        //              'Or Not.'
-        // });
     }
 
 });
