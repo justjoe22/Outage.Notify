@@ -126,6 +126,8 @@ $(window).load(function() {
       //Populate Form.Init
       if (uid_site !== "") {
         pop_formpreview(outageid, uid_site);
+        
+        pop_syslist(uid_site,"Yes");
       }
       else {
           waitForElement();
@@ -259,4 +261,3 @@ function pop_timeFrame(){
 
   document.getElementById("timeFrame").innerHTML = buildTime;
 }
-

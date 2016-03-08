@@ -12,7 +12,7 @@ $(window).load(function() {
     if(typeof uid_site !== "undefined"){
       //Populate Form.Init
       if (uid_site !== "") {
-        pop_syslist(uid_site);
+        pop_syslist(uid_site,"No");
       }
       else {
           waitForElement();

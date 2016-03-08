@@ -2,6 +2,8 @@
 //Default Settings OnLoad
 $(window).load(function() {
 
+  waitForElement();
+  
   //ABO/IBO Impact Control
   $('input[name=chkABO]').change(function(){
 
@@ -212,6 +214,22 @@ $('form[name=outage]').submit(function(event) {
 
 });
 
+ function waitForElement(){
+    if(typeof uid_site !== "undefined"){
+      //Populate Form.Init
+      if (uid_site !== "") {
+        pop_syslist(uid_site,"Yes");
+      }
+      else {
+          waitForElement();
+      }
+    }
+    else{
+        setTimeout(function(){
+            waitForElement();
+        },250);
+    }
+ }
  
 //End of Script
 })(jQuery);
