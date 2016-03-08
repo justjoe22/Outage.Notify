@@ -681,8 +681,7 @@
 
   }
   
-  
-    //Add List Item to System Maintenance
+  //Add List Item to System Maintenance
   function add_system(form_site,pub_name,desc,created){
     var postID;
     var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
