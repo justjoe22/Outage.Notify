@@ -132,6 +132,7 @@ function authDataCallback(authData) {
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Site Options</a><br />";
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> User Management</a><br />";
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Outage Options</a><br />";
+            sMenu += "<a href='../siteadm/system.maint.html'><i class='fa fa-tasks'></i> System Maint</a><br />";
             sMenu += "</div>"
             
             $("#site_adm").html(sMenu);
