@@ -6,6 +6,7 @@ var uid_email;
 var uid_adm;
 var uid_sys_adm;
 var uid_approver;
+var service_name;
 //var outageid;
 
 
@@ -36,6 +37,8 @@ function authDataCallback(authData) {
       uid_adm = rMessage.site_admin;
       uid_sys_adm = rMessage.sys_admin;
       uid_approver = rMessage.approver;
+      
+      service_name = GetServices(uid_site);
 
         //Set Sys Admin menu
         if(uid_sys_adm===true) {

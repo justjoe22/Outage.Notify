@@ -142,7 +142,7 @@
           //Summary
           vHTML += "<div class='form-title-row'><h3>";
           vHTML += message.otype + ": ";
-          vHTML += message.service + ", ";
+          vHTML += "<span id='service"+data.key()+"'></span>, ";
           vHTML += message.timeframe;
           vHTML += "</h3></div>";
           
@@ -160,6 +160,18 @@
           vHTML += "</div></div>";
 
           $("#outagelist").append(vHTML);
+          
+          //Get Service Name
+          var Service = ref.root().child('sites').child(form_site).child('systems').child(message.service);
+        
+          Service.on("value", function (snap) {
+            var serv = snap.val();
+            
+            var myVal = serv.system_public_nm;
+            
+            $("#service"+data.key()).html(myVal);
+            
+          });
         
       });    
     }, function (errorObject) {
@@ -190,12 +202,12 @@
 
           vHTML += "<div class='form-title-row'><h1>";
           vHTML += message.otype + ": ";
-          vHTML += message.service + ", ";
+          vHTML += "<span id='service1'></span>, ";
           vHTML += message.timeframe;
           vHTML += "</h1></div>";
 
           vHTML += "<div class='form-row'><h2>What service is affected?</h2><br>";
-          vHTML += "<p>" + message.service + "</p>";
+          vHTML += "<p><span id='service2'></span></p>";
           vHTML += "</div>";
 
           vHTML += "<div class='form-row'><h2>What is the time frame?</h2><br>";
@@ -235,6 +247,19 @@
           }
 
           document.getElementById("outagePreview").innerHTML = vHTML;
+          
+          //Get Service Name
+          var Service = ref.root().child('sites').child(form_site).child('systems').child(message.service);
+        
+          Service.on("value", function (snap) {
+            var serv = snap.val();
+            
+            var myVal = serv.system_public_nm;
+            
+            $("#service1").html(myVal);
+            $("#service2").html(myVal);
+            
+          });
 
           if(message.status=="Draft"){
             //Confirm
@@ -249,7 +274,7 @@
             //Populate Form
               $('select[name=otype]').val(message.otype);
               $('input[name=pcontact]').val(message.pcontact);
-              $('select[name=service]').val(message.service);
+              //$('select[name=service]').val(message.service);
               document.getElementById("timeFrame").innerHTML = message.timeframe;
               $('input[name=time-startd]').val(message.startd);
               $('input[name=time-startt]').val(message.startt);
@@ -543,7 +568,7 @@
           //Summary
           vHTML += "<div class='form-title-row'><h3>";
           vHTML += message.otype + ": ";
-          vHTML += message.service + ", ";
+          vHTML += "<span id='service1'></span>, ";
           vHTML += message.timeframe;
           vHTML += "</h3></div>";
           
@@ -561,6 +586,18 @@
           vHTML += "</div></div>";
 
           $("#outagelist").append(vHTML);
+          
+          //Get Service Name
+          var Service = ref.root().child('sites').child(form_site).child('systems').child(message.service);
+        
+          Service.on("value", function (snap) {
+            var serv = snap.val();
+            
+            var myVal = serv.system_public_nm;
+            
+            $("#service1").html(myVal);
+            
+          });
         }
 
       }); 
@@ -583,11 +620,13 @@
     ref.orderByKey().equalTo(outageid).on("value", function(snapshot) {
       snapshot.forEach(function(data) {
             var message = data.val();
-            
+        
+        //waitForService();
+        
         //Populate DIV with HTML
         if(subject=="Yes" || subject=="Exclusive"){
           vHTML += message.otype + ": ";
-          vHTML += message.service + ", ";
+          vHTML += service_name + ", ";
           vHTML += message.timeframe;
           
           if(subject!=="Exclusive"){
@@ -599,7 +638,7 @@
         if(subject!=="Exclusive"){
         
           vHTML += "<h2>What service is affected?</h2>";
-          vHTML += "<p>" + message.service + "</p>";
+          vHTML += "<p>" + service_name + "</p>";
 
           vHTML += "<h2>What is the time frame?</h2>";
           vHTML += "<p>" + message.timeframe + "</p>";
@@ -631,7 +670,47 @@
     });
     
     return vHTML;    
-  }  
+  }
+
+
+
+  function GetServices(form_site){
+    var myVal = [];
+    
+    //Get Service Name
+    var sys_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
+    var ref = new Firebase( sys_url.normalize() );
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+        var serv = data.val();
+        
+        myVal.push({key: data.key() , name: serv.system_public_nm, description: serv.system_desc });
+
+      });
+      
+    });
+
+    return myVal;    
+  }
+  
+   function waitForService(){
+    if(typeof service_name !== "undefined"){
+      //Populate Form.Init
+      if (service_name !== "") {
+        return true;
+      }
+      else {
+          waitForService();
+      }
+    }
+    else{
+        setTimeout(function(){
+            waitForService();
+        },250);
+    }
+ }
   
     //Add List Item to System Maintenance
   function add_system(form_site,pub_name,desc,created){
