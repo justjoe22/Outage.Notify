@@ -135,7 +135,7 @@ function authDataCallback(authData) {
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Site Options</a><br />";
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> User Management</a><br />";
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Outage Options</a><br />";
-            sMenu += "<a href='../siteadm/system.maint.html'><i class='fa fa-tasks'></i> System Maint</a><br />";
+            sMenu += "<a href='"+getBaseUrl()+"siteadm/system.maint.html'><i class='fa fa-tasks'></i> System Maint</a><br />";
             sMenu += "</div>"
             
             $("#site_adm").html(sMenu);
@@ -396,4 +396,9 @@ function sitecollapse($elements) {
     $elements.find(".site-menu").css({"display": "none", "transition": "transform 1.0s ease-out"});
     $elements.css({"height": "2.4em", "transition": "height 0.5s ease-out"});
   }
+}
+
+function getBaseUrl() {
+	var re = new RegExp(/^.*\//);
+	return re.exec(window.location.href);
 }
