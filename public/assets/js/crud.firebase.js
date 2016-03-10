@@ -621,12 +621,12 @@
       snapshot.forEach(function(data) {
             var message = data.val();
         
-        //waitForService();
+        var service = findServiceArray(message.service);
         
         //Populate DIV with HTML
         if(subject=="Yes" || subject=="Exclusive"){
           vHTML += message.otype + ": ";
-          vHTML += service_name + ", ";
+          vHTML += service + ", ";
           vHTML += message.timeframe;
           
           if(subject!=="Exclusive"){
@@ -638,7 +638,7 @@
         if(subject!=="Exclusive"){
         
           vHTML += "<h2>What service is affected?</h2>";
-          vHTML += "<p>" + service_name + "</p>";
+          vHTML += "<p>" + service + "</p>";
 
           vHTML += "<h2>What is the time frame?</h2>";
           vHTML += "<p>" + message.timeframe + "</p>";
@@ -695,22 +695,17 @@
     return myVal;    
   }
   
-   function waitForService(){
-    if(typeof service_name !== "undefined"){
-      //Populate Form.Init
-      if (service_name !== "") {
-        return true;
-      }
-      else {
-          waitForService();
-      }
-    }
-    else{
-        setTimeout(function(){
-            waitForService();
-        },250);
-    }
- }
+   function findServiceArray(service_key){
+       var service_nm = "";
+       
+        jQuery.each(service_name, function(index, item) {
+            if(service_name[index].key==service_key){
+                service_nm = service_name[index].name;
+            }
+        });
+       
+       return service_nm;
+   }
   
     //Add List Item to System Maintenance
   function add_system(form_site,pub_name,desc,created){
