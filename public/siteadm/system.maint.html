@@ -45,6 +45,7 @@
 
         <!-- You only need this form and the form-basic.css -->
 		<form class="form-basic" name="system" id="system" method="post" action="system.maint.html">
+			<input type="text" name="sys_id" hidden />
 			
 			<!-- Title -->
             <div class="form-title-row">
@@ -65,8 +66,8 @@
                 </label>
             </div>
 
-            <div class="form-row">
-                <button type="submit">Save</button>
+            <div class="form-title-row">
+                <button type="submit">Save</button><button type="reset">Cancel</button>
             </div>
 
         </form>

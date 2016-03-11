@@ -83,22 +83,6 @@
         });
 
   }
-  
-//   //Delete List Item to Outage System
-//   function DeleteListItem(outageid){
-//     var msg;
-
-//     // Get a reference to our posts
-//     var ref = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
-    
-//     // Get the data on a post that has been removed
-//     ref.on("child_removed", function(snapshot) {
-//       var deletedPost = snapshot.val();
-//       msg="The blog post titled '" + deletedPost.title + "' has been deleted";
-//     });
-
-//     return msg
-//   }
 
   //Initial MyOutages View Form.Setup
   function pop_forminit(form_site,uid_key){
@@ -705,7 +689,8 @@
        return service_nm;
    }
   
-    //Add List Item to System Maintenance
+   
+  //Add List Item to System Maintenance
   function add_system(form_site,pub_name,desc,created){
     var postID;
     var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
@@ -720,19 +705,29 @@
     return postID
   }
   
-  //Add List Item to System Maintenance
-  function add_system(form_site,pub_name,desc,created){
+  //Update List Item to System Maintenance
+  function update_system(form_site,pub_name,desc,sys_key){
     var postID;
     var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
     var ref = new Firebase( system_url.normalize() );
-    
-       ref.push({system_desc: desc, system_public_nm: pub_name, created: created});
-       
-       ref.on('child_added', function(snapshot) {
-        postID = snapshot.key();
-      });
 
-    return postID
+       var myItemRef = ref.child(sys_key);
+       
+       myItemRef.update({system_public_nm: pub_name, system_desc: desc}, function(error) {
+          if (error) {
+            alert("Data could not be saved." + error);
+          }
+        });
+        
+  }
+  
+  function delete_system(form_site,sys_key){
+     // Get a reference to our posts
+    var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/" + sys_key;
+    var ref = new Firebase( system_url.normalize() );
+    
+    // Get the data on a post that has been removed
+    ref.remove();
   }
   
   //Populate System_List
@@ -760,6 +755,7 @@
         else {
             //Populate DIV with HTML
               vHTML = "<div class='submenu'>";
+              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete System'><i class='fa fa-trash'></i></a>";
               vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit System'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>System Public Name</h2><br>";
@@ -778,6 +774,13 @@
             
                  $('input[name=pub_name]').val(message.system_public_nm);
                  $('input[name=desc]').val(message.system_desc);
+                 $('input[name=sys_id]').val(data.key());
+            
+              });
+              
+              $('a[name=del'+data.key()+']').click(function(){
+            
+                 delete_system(uid_site,data.key());
             
               });
         }

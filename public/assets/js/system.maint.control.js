@@ -28,9 +28,15 @@ $(window).load(function() {
 //Form OnSubmit
 $('form[name=system]').submit(function(event) {
   var pub_name = $('input[name=pub_name]').val(), _
-    desc = $('input[name=desc]').val();
-
-    var sysid = add_system(uid_site,pub_name,desc,myuid);
+    desc = $('input[name=desc]').val(), 
+    sysid = $('input[name=sys_id]').val();
+    
+    if (sysid!==""){
+        update_system(uid_site,pub_name,desc,sysid)
+    }
+    else {
+        sysid = add_system(uid_site,pub_name,desc,myuid);
+    }
     
     /* get some values from elements on the page: */
     var $form = $( this ),
