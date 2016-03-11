@@ -672,8 +672,6 @@
     return vHTML;    
   }
 
-
-
   function GetServices(form_site){
     var myVal = [];
     
@@ -722,39 +720,6 @@
     return postID
   }
   
-  //Populate System_List
-  function pop_syslist(form_site){
-
-    //Get Systems for Preview
-    // Get a database reference to our posts
-    var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
-    var ref = new Firebase( system_url.normalize() );
-    
-    // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByKey().on("value", function(snapshot) {
-      snapshot.forEach(function(data) {
-            var message = data.val();
-            
-        //Populate DIV with HTML
-        var vHTML = "<div class='form-row'><h2>System Public Name</h2><br>";
-          vHTML += "<p>" + message.system_public_nm + "</p>";
-          vHTML += "</div>";
-
-          vHTML += "<div class='form-row'><h2>Description</h2><br>";
-          vHTML += "<p>" + message.system_desc + "</p>";
-          vHTML += "</div>";
-          
-          vHTML += "<div class='form-row'><hr></div>";
-
-          $("#system_list").append(vHTML);
-
-      }); 
-    }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-    });
-
-  }
-  
   //Add List Item to System Maintenance
   function add_system(form_site,pub_name,desc,created){
     var postID;
@@ -794,7 +759,10 @@
         }
         else {
             //Populate DIV with HTML
-              vHTML = "<div class='form-row'><h2>System Public Name</h2><br>";
+              vHTML = "<div class='submenu'>";
+              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit System'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "</div>";
+              vHTML += "<div class='form-row'><h2>System Public Name</h2><br>";
               vHTML += "<p>" + message.system_public_nm + "</p>";
               vHTML += "</div>";
     
@@ -805,6 +773,13 @@
               vHTML += "<div class='form-row'><hr></div>";
     
               $("#system_list").append(vHTML);
+              
+              $('a[name=edit'+data.key()+']').click(function(){
+            
+                 $('input[name=pub_name]').val(message.system_public_nm);
+                 $('input[name=desc]').val(message.system_desc);
+            
+              });
         }
 
       }); 
