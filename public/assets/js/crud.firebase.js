@@ -781,7 +781,7 @@
               $('a[name=del'+data.key()+']').click(function(){
             
                  delete_system(uid_site,data.key());
-            
+                 
               });
         }
 
