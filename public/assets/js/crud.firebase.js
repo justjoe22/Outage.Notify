@@ -728,6 +728,8 @@
     
     // Get the data on a post that has been removed
     ref.remove();
+    
+    return true;
   }
   
   //Populate System_List
@@ -779,8 +781,14 @@
               });
               
               $('a[name=del'+data.key()+']').click(function(){
-            
-                 delete_system(uid_site,data.key());
+                
+                var r = confirm("Are you sure?");
+                if (r === true) {
+                    delete_system(uid_site,data.key());
+                 
+                    window.location.replace("system.maint.html");
+                    
+                }
                  
               });
         }
