@@ -258,7 +258,7 @@
             //Populate Form
               $('select[name=otype]').val(message.otype);
               $('input[name=pcontact]').val(message.pcontact);
-              //$('select[name=service]').val(message.service);
+              $('select[name=service]').val(message.service);
               document.getElementById("timeFrame").innerHTML = message.timeframe;
               $('input[name=time-startd]').val(message.startd);
               $('input[name=time-startt]').val(message.startt);
