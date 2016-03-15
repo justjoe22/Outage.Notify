@@ -402,7 +402,7 @@ function getBaseUrl() {
 	var re = new RegExp(/^.*\//);
 	var url = window.location.href;
 	
-	if(url.indexOf("public")){
+	if(url.indexOf("public")>0){
         return re.exec(url.substr(0,url.indexOf("public")+7));
     }
     else {
