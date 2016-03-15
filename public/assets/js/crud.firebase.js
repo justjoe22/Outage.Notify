@@ -782,7 +782,7 @@
               
               $('a[name=del'+data.key()+']').click(function(){
                 
-                var r = confirm("Are you sure?");
+                var r = confirm("Please make sure there's no related Outages to this system. Are you sure you want to delete?");
                 if (r === true) {
                     delete_system(uid_site,data.key());
                  
