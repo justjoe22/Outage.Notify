@@ -400,5 +400,13 @@ function sitecollapse($elements) {
 
 function getBaseUrl() {
 	var re = new RegExp(/^.*\//);
-	return re.exec(window.location.href);
+	var url = window.location.href;
+	
+	if(window.location.pathname==="/"){
+        return re.exec(url.substr(0,url.indexOf(".com")+5));
+    }
+    else if(window.location.pathname==="/Outage.Notify/public/"){
+        return re.exec(url.substr(0,url.indexOf("public")+7));
+    }
+	
 }
