@@ -656,6 +656,7 @@
     return vHTML;    
   }
 
+  //Get list of all Services to Array
   function GetServices(form_site){
     var myVal = [];
     
@@ -677,7 +678,8 @@
     return myVal;    
   }
   
-   function findServiceArray(service_key){
+  //Search for individual Service
+  function findServiceArray(service_key){
        var service_nm = "";
        
         jQuery.each(service_name, function(index, item) {
@@ -689,7 +691,6 @@
        return service_nm;
    }
   
-   
   //Add List Item to System Maintenance
   function add_system(form_site,pub_name,desc,created){
     var postID;
@@ -721,6 +722,7 @@
         
   }
   
+  //Delete a System
   function delete_system(form_site,sys_key){
      // Get a reference to our posts
     var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/" + sys_key;
