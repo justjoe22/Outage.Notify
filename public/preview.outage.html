@@ -47,40 +47,41 @@
     <div class="main-content">
 
         <!-- You only need this form and the form-basic.css -->
-				<div class="form-basic" id="outagePreview">
+		<div class="form-basic" id="outagePreview">
 
-				</div>
+		</div>
 
-				<form class="form-basic" name="outage" id="outage" method="post" action="preview.outage.html">
-					<input id="outageid" type="hidden" name="outageid" />
-					<input id="state" type="hidden" name="state" />
-						<!-- Title -->
+		<form class="form-basic" name="outage" id="outage" method="post" action="preview.outage.html">
+			<input id="outageid" type="hidden" name="outageid" />
+			<input id="state" type="hidden" name="state" />
+			
+			<!-- Title -->
             <div class="form-title-row">
                 <h1>Outage Notification</h1>
             </div>
-						<!-- Outage Type -->
-						<div class="form-row">
-								<label>
-										<span>Outage Type</span>
-										<select name="otype" required>
-												<option value="" selected disabled></option>
-												<option value="PLANNED OUTAGE">Planned Outage</option>
-												<option value="UNPLANNED OUTAGE">Unplanned Outage</option>
-												<option value="USI">Unplanned Service Interruption</option>
-												<option value="MAINTENANCE">Maintenance</option>
-										</select>
-								</label>
-						</div>
+			<!-- Outage Type -->
+			<div class="form-row">
+					<label>
+							<span>Outage Type</span>
+							<select name="otype" required>
+									<option value="" selected disabled></option>
+									<option value="PLANNED OUTAGE">Planned Outage</option>
+									<option value="UNPLANNED OUTAGE">Unplanned Outage</option>
+									<option value="USI">Unplanned Service Interruption</option>
+									<option value="MAINTENANCE">Maintenance</option>
+							</select>
+					</label>
+			</div>
 
-						<div class="form-row">
+			<div class="form-row">
                 <label>
                     <span>Point of Contact (Email Address)</span>
                     <input type="email" name="pcontact" required>
                 </label>
             </div>
 
-						<!-- System/Service -->
-						<div class="form-row">
+			<!-- System/Service -->
+			<div class="form-row">
                 <label>
                     <span>What service is affected?</span>
                     <select name="service" required>
@@ -88,19 +89,19 @@
                     </select>
                 </label>
             </div>
-						<!-- Time Frame -->
-						<div class="form-row">
-								<label>
-										<span>What is the time frame?</span>
-										<div id="timeFrame">Fill out the fields below for a preview.</div>
-								</label>
-						</div>
+			<!-- Time Frame -->
+			<div class="form-row">
+					<label>
+							<span>What is the time frame?</span>
+							<div id="timeFrame">Fill out the fields below for a preview.</div>
+					</label>
+			</div>
 
-						<div class="form-row">
-								<label>
-										<hr>
-								</label>
-						</div>
+			<div class="form-row">
+					<label>
+							<hr>
+					</label>
+			</div>
 
             <div class="form-row">
                 <label>
@@ -111,32 +112,32 @@
                 </label>
             </div>
 
-						<div class="form-row" id="endDate">
-								<label>
-										<span>End</span>
-										<input type="date" name="time-endd" id="time-endd">
-										<span></span>
-										<input type="time" name="time-endt" id="time-endt">
-								</label>
-						</div>
+			<div class="form-row" id="endDate">
+					<label>
+							<span>End</span>
+							<input type="date" name="time-endd" id="time-endd">
+							<span></span>
+							<input type="time" name="time-endt" id="time-endt">
+					</label>
+			</div>
 
-						<div class="form-row">
-								<label>
-										<span>Time Zone</span>
-										<select name="time-tzone" id="time-tzone" required>
-											  <option value="" selected disabled></option>
-												<option>(EST)</option>
-												<option>(EDT)</option>
-												<option>(PST)</option>
-										</select>
-								</label>
-						</div>
+			<div class="form-row">
+					<label>
+							<span>Time Zone</span>
+							<select name="time-tzone" id="time-tzone" required>
+								  <option value="" selected disabled></option>
+									<option>(EST)</option>
+									<option>(EDT)</option>
+									<option>(PST)</option>
+							</select>
+					</label>
+			</div>
 
-						<div class="form-row">
-								<label>
-										<hr>
-								</label>
-						</div>
+			<div class="form-row">
+					<label>
+							<hr>
+					</label>
+			</div>
 
             <div class="form-row">
                 <label>
@@ -160,7 +161,7 @@
                 </label>
             </div>
 
-						<div class="form-row" id="ABOimpact">
+			<div class="form-row" id="ABOimpact">
                 <label>
                     <span>What is the IBO/ABO Impact?</span>
                     <textarea name="txtABO" id="txtABO"></textarea>
@@ -180,19 +181,19 @@
                 </label>
             </div>
 
-						<div class="form-row">
-								<label>
-										<span>Who do I need to contact if I have questions?</span>
-										<input type="text" name="contact" value="Please contact your local Service Desk." required>
-								</label>
-						</div>
+			<div class="form-row">
+					<label>
+							<span>Who do I need to contact if I have questions?</span>
+							<input type="text" name="contact" value="Please contact your local Service Desk." required>
+					</label>
+			</div>
 
-						<div class="form-row">
-								<label>
-										<span>Ticket #</span>
-										<input type="text" name="ticket" required>
-								</label>
-						</div>
+			<div class="form-row">
+					<label>
+							<span>Ticket #</span>
+							<input type="text" name="ticket" required>
+					</label>
+			</div>
 
             <div class="form-row">
                 <button type="submit">Save and Preview</button>
