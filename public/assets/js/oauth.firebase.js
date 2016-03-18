@@ -231,11 +231,14 @@ function authDataCallback(authData) {
     uid_approver = null;
     
     if(ref.getAuth()===null){
-        if(window.location.pathname!=="/" && window.location.pathname!=="/Outage.Notify/public/"){
+        if(window.location.pathname!=="/Outage.Notify/public/public.html"){
+            if(window.location.pathname!=="/" && window.location.pathname!=="/Outage.Notify/public/"){
             
                 window.location.replace("../");     
 
+            }    
         }
+        
     }
   }
 }

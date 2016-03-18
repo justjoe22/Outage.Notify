@@ -442,6 +442,79 @@
 
   }
 
+  //Populate Public View
+  function pop_pubpreview(outageid, form_site){
+
+    //Get Outage for Preview
+    // Get a database reference to our posts
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/" + outageid +"/";
+    var ref = new Firebase( outage_url.normalize() );
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.on("value", function(snapshot) {
+       var message = snapshot.val();
+            
+        //Populate DIV with HTML
+        var vHTML = "<div class='form-title-row'><h1>";
+          vHTML += message.otype + ": ";
+          vHTML += "<span id='service1'></span>, ";
+          vHTML += message.timeframe;
+          vHTML += "</h1></div>";
+
+          vHTML += "<div class='form-row'><h2>What service is affected?</h2><br>";
+          vHTML += "<p><span id='service2'></span></p>";
+          vHTML += "</div>";
+
+          vHTML += "<div class='form-row'><h2>What is the time frame?</h2><br>";
+          vHTML += "<p>" + message.timeframe + "</p>";
+          vHTML += "</div>";
+
+          vHTML += "<div class='form-row'><h2>What do I need to do?</h2><br>";
+          vHTML += "<p>" + message.todo + "</p>";
+          vHTML += "</div>";
+
+          vHTML += "<div class='form-row'><h2>What is the business impact?</h2><br>";
+          vHTML += "<p>" + message.bimpact + "</p>";
+          vHTML += "</div>";
+
+          vHTML += "<div class='form-row'><h2>Who is receiving this message?</h2><br>";
+          vHTML += "<p>" + message.wrmessage + "</p>";
+          vHTML += "</div>";
+
+          if(message.chkabo==1){
+            vHTML += "<div class='form-row'><h2>IBO/ABO Impact?</h2><br>";
+            vHTML += "<p>" + message.txtabo + "</p>";
+            vHTML += "</div>";
+          }
+
+          vHTML += "<div class='form-row'><h2>Who do I need to contact if I have questions?</h2><br>";
+          vHTML += "<p>" + message.contact + "</p>";
+          vHTML += "</div>";
+
+          vHTML += "<div class='form-row'><h2>Ticket #</h2><br>";
+          vHTML += "<p>" + message.ticket + "</p>";
+          vHTML += "</div>";
+
+          document.getElementById("outagePreview").innerHTML = vHTML;
+          
+          //Get Service Name
+          var Service = ref.root().child('sites').child(form_site).child('systems').child(message.service);
+        
+          Service.on("value", function (snap) {
+            var serv = snap.val();
+            
+            var myVal = serv.system_public_nm;
+            
+            $("#service1").html(myVal);
+            $("#service2").html(myVal);
+       
+          }); 
+    }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+    });
+
+  }
+
   //Populate Approvers
   function pop_approvers(form_site){
     
