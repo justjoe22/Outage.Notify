@@ -219,6 +219,7 @@ $('form[name=outage]').submit(function(event) {
       //Populate Form.Init
       if (uid_site !== "") {
         pop_syslist(uid_site,"Yes");
+        pop_contlist(uid_site,"Yes");
       }
       else {
           waitForElement();

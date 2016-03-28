@@ -207,7 +207,7 @@
           vHTML += "</div>";
 
           vHTML += "<div class='form-row'><h2>Who is receiving this message?</h2><br>";
-          vHTML += "<p>" + message.wrmessage + "</p>";
+          vHTML += "<p><span id='wrmessage1'></span></p>";
           vHTML += "</div>";
 
           if(message.chkabo==1){
@@ -242,6 +242,18 @@
             
             $("#service1").html(myVal);
             $("#service2").html(myVal);
+            
+          });
+          
+          //Get Contact Name
+          var Contact = ref.root().child('sites').child(form_site).child('contacts').child(message.wrmessage);
+        
+          Contact.on("value", function (snap) {
+            var cont = snap.val();
+            
+            var myVal = cont.cont_name;
+            
+            $("#wrmessage1").html(myVal);
             
           });
 
@@ -478,7 +490,7 @@
           vHTML += "</div>";
 
           vHTML += "<div class='form-row'><h2>Who is receiving this message?</h2><br>";
-          vHTML += "<p>" + message.wrmessage + "</p>";
+          vHTML += "<p><span id='wrmessage1'></span></p>";
           vHTML += "</div>";
 
           if(message.chkabo==1){
@@ -507,6 +519,18 @@
             
             $("#service1").html(myVal);
             $("#service2").html(myVal);
+       
+          }); 
+          
+          //Get Contact Name
+          var Contact = ref.root().child('sites').child(form_site).child('contacts').child(message.wrmessage);
+        
+          Contact.on("value", function (snap) {
+            var cont = snap.val();
+            
+            var myVal = cont.cont_name;
+            
+            $("#wrmessage1").html(myVal);
        
           }); 
     }, function (errorObject) {
@@ -679,6 +703,7 @@
             var message = data.val();
         
         var service = findServiceArray(message.service);
+        var contact = findContactArray(message.wrmessage);
         
         //Populate DIV with HTML
         if(subject=="Yes" || subject=="Exclusive"){
@@ -707,7 +732,7 @@
           vHTML += "<p>" + message.bimpact + "</p>";
           
           vHTML += "<h2>Who is receiving this message?</h2>";
-          vHTML += "<p>" + message.wrmessage + "</p>";
+          vHTML += "<p>" + contact + "</p>";
           
           if(message.chkabo==1){
             vHTML += "<h2>IBO/ABO Impact?</h2>";
@@ -729,6 +754,8 @@
     return vHTML;    
   }
 
+  // -- System Maintenance -- //
+  
   //Get list of all Services to Array
   function GetServices(form_site){
     var myVal = [];
@@ -891,6 +918,178 @@
             var message = data.val();
             
             vHTML = message.system_public_nm;
+      }); 
+    }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+    });
+
+    return vHTML;
+  }
+  
+  // -- Contact Maintenance -- //
+  
+  //Get list of all Contacts to Array
+  function GetContacts(form_site){
+    var myVal = [];
+    
+    //Get Contact Name
+    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
+    var ref = new Firebase( cont_url.normalize() );
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+        var cont = data.val();
+        
+        myVal.push({key: data.key() , cont_name: cont.cont_name, cont_email: cont.cont_email });
+
+      });
+      
+    });
+
+    return myVal;    
+  }
+  
+  //Search for individual Contact
+  function findContactArray(contact_key){
+       var contact_nm = "";
+       
+        jQuery.each(contact_name, function(index, item) {
+            if(contact_name[index].key==contact_key){
+                contact_nm = contact_name[index].cont_name;
+            }
+        });
+       
+       return contact_nm;
+   }
+  
+  //Add List Item to Contact Maintenance
+  function add_contact(form_site,cont_name,cont_email,created){
+    var postID;
+    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
+    var ref = new Firebase( cont_url.normalize() );
+    
+       ref.push({cont_name: cont_name, cont_email: cont_email, created: created});
+       
+       ref.on('child_added', function(snapshot) {
+        postID = snapshot.key();
+      });
+
+    return postID
+  }
+  
+  //Update List Item to Contact Maintenance
+  function update_contact(form_site,cont_name,cont_email,cont_key){
+    var postID;
+    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
+    var ref = new Firebase( cont_url.normalize() );
+
+       var myItemRef = ref.child(cont_key);
+       
+       myItemRef.update({cont_name: cont_name, cont_email: cont_email}, function(error) {
+          if (error) {
+            alert("Data could not be saved." + error);
+          }
+        });
+        
+  }
+  
+  //Delete a Contact
+  function delete_contact(form_site,cont_key){
+     // Get a reference to our posts
+    var contact_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/" + cont_key;
+    var ref = new Firebase( contact_url.normalize() );
+    
+    // Get the data on a post that has been removed
+    ref.remove();
+    
+    return true;
+  }
+  
+  //Populate Contact_List
+  function pop_contlist(form_site,dropdown){
+
+    //Get Contacts for Preview
+    // Get a database reference to our posts
+    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
+    var ref = new Firebase( cont_url.normalize() );
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByChild("cont_name").on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+            var message = data.val();
+            
+        var vHTML = "";
+        
+        if(dropdown=="Yes"){
+            vHTML = "<option value='"+data.key()+"'>";
+            vHTML += message.cont_name;
+            vHTML += "</option>";
+            
+            $('[name=wrmessage]').append(vHTML);
+        }
+        else {
+            //Populate DIV with HTML
+              vHTML = "<div class='submenu'>";
+              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete Contact'><i class='fa fa-trash'></i></a>";
+              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit Contact'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "</div>";
+              vHTML += "<div class='form-row'><h2>Contact Name</h2><br>";
+              vHTML += "<p>" + message.cont_name + "</p>";
+              vHTML += "</div>";
+    
+              vHTML += "<div class='form-row'><h2>Contact Email</h2><br>";
+              vHTML += "<p>" + message.cont_email + "</p>";
+              vHTML += "</div>";
+              
+              vHTML += "<div class='form-row'><hr></div>";
+    
+              $("#contact_list").append(vHTML);
+              
+              $('a[name=edit'+data.key()+']').click(function(){
+            
+                 $('input[name=cont_name]').val(message.cont_name);
+                 $('input[name=cont_email]').val(message.cont_email);
+                 $('input[name=cont_id]').val(data.key());
+            
+              });
+              
+              $('a[name=del'+data.key()+']').click(function(){
+                
+                var r = confirm("Please make sure there's no related Outages to this contact. Are you sure you want to delete?");
+                if (r === true) {
+                    delete_contact(uid_site,data.key());
+                 
+                    window.location.replace("contact.maint.html");
+                    
+                }
+                 
+              });
+        }
+
+      }); 
+    }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+    });
+
+  }
+
+  //Populate Single Contact
+  function pop_singlecont(form_site,key){
+
+    //Get Contact for Preview
+    // Get a database reference to our posts
+    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
+    var ref = new Firebase( cont_url.normalize() );
+    
+    var vHTML;
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().equalTo(key).on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+            var message = data.val();
+            
+            vHTML = message.cont_name;
       }); 
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);

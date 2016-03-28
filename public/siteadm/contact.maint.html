@@ -44,25 +44,25 @@
     <div class="main-content">
 
         <!-- You only need this form and the form-basic.css -->
-		<form class="form-basic" name="system" id="system" method="post" action="contact.maint.html">
-			<input type="text" name="sys_id" hidden />
+		<form class="form-basic" name="contact" id="contact" method="post" action="contact.maint.html">
+			<input type="text" name="cont_id" hidden />
 			
 			<!-- Title -->
             <div class="form-title-row">
-                <h1>System Maintenance</h1>
+                <h1>Contact Maintenance</h1>
             </div>
 						
             <div class="form-row">
                 <label>
-                    <span>System Public Name</span>
-                    <input type="text" name="pub_name" required>
+                    <span>Contact Name</span>
+                    <input type="text" name="cont_name" required>
                 </label>
             </div>
             
             <div class="form-row">
                 <label>
-                    <span>Description</span>
-                    <input type="text" name="desc" required>
+                    <span>Contact Email</span>
+                    <input type="email" name="cont_email" multiple="multiple" required>
                 </label>
             </div>
 
@@ -77,7 +77,7 @@
     
     <div class="main-content">
     
-        <div class="form-basic" id="system_list">
+        <div class="form-basic" id="contact_list">
 
 		</div>
 

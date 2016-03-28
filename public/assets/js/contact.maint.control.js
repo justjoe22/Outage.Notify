@@ -12,7 +12,7 @@ $(window).load(function() {
     if(typeof uid_site !== "undefined"){
       //Populate Form.Init
       if (uid_site !== "") {
-        pop_syslist(uid_site,"No");
+        pop_contlist(uid_site,"No");
       }
       else {
           waitForElement();
@@ -26,16 +26,16 @@ $(window).load(function() {
  }
  
 //Form OnSubmit
-$('form[name=system]').submit(function(event) {
-  var pub_name = $('input[name=pub_name]').val(), _
-    desc = $('input[name=desc]').val(), 
-    sysid = $('input[name=sys_id]').val();
+$('form[name=contact]').submit(function(event) {
+  var cont_name = $('input[name=cont_name]').val(), _
+    cont_email = $('input[name=cont_email]').val(), 
+    cont_id = $('input[name=cont_id]').val();
     
-    if (sysid!==""){
-        update_system(uid_site,pub_name,desc,sysid)
+    if (cont_id!==""){
+        update_contact(uid_site,cont_name,cont_email,cont_id)
     }
     else {
-        sysid = add_system(uid_site,pub_name,desc,myuid);
+        cont_id = add_contact(uid_site,cont_name,cont_email,myuid);
     }
     
     /* get some values from elements on the page: */
@@ -43,7 +43,7 @@ $('form[name=system]').submit(function(event) {
         url = $form.attr( 'action' );
 
     /* Send the data using post */
-    var posting = $.post( url, { sysid: sysid } );
+    var posting = $.post( url, { cont_id: cont_id } );
 
     /* Alerts the results */
     posting.done(function( data ) {

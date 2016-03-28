@@ -7,6 +7,7 @@ var uid_adm;
 var uid_sys_adm;
 var uid_approver;
 var service_name;
+var contact_name;
 //var outageid;
 
 
@@ -39,6 +40,7 @@ function authDataCallback(authData) {
       uid_approver = rMessage.approver;
       
       service_name = GetServices(uid_site);
+      contact_name = GetContacts(uid_site);
 
         //Set Sys Admin menu
         if(uid_sys_adm===true) {
@@ -135,6 +137,7 @@ function authDataCallback(authData) {
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Site Options</a><br />";
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> User Management</a><br />";
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Outage Options</a><br />";
+            sMenu += "<a href='"+getBaseUrl()+"siteadm/contact.maint.html'><i class='fa fa-envelope'></i> Contact Maint</a><br />";
             sMenu += "<a href='"+getBaseUrl()+"siteadm/system.maint.html'><i class='fa fa-tasks'></i> System Maint</a><br />";
             sMenu += "</div>"
             
