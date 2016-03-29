@@ -429,10 +429,12 @@
                 
                 var note = pop_outage_email(outageid, uid_site, "No");
                 
+                var contact_email = findContactEmail(message.wrmessage);
+                
                 //Email approver
                 $.post('mailclient.php',
                     {
-                        "to": uid_email , 
+                        "to": contact_email , 
                         "message":note , 
                         "from": uid_email , 
                         "name": uid_name , 
@@ -961,6 +963,19 @@
         });
        
        return contact_nm;
+   }
+   
+  //Search for individual Contact Email
+  function findContactEmail(contact_key){
+       var contact_email = "";
+       
+        jQuery.each(contact_name, function(index, item) {
+            if(contact_name[index].key==contact_key){
+                contact_email = contact_name[index].cont_email;
+            }
+        });
+       
+       return contact_email;
    }
   
   //Add List Item to Contact Maintenance
