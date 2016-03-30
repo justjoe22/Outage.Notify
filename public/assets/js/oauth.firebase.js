@@ -233,6 +233,9 @@ function authDataCallback(authData) {
     uid_sys_adm = null;
     uid_approver = null;
     
+    service_name = null;
+    contact_name = null;
+    
     if(ref.getAuth()===null){
         if(window.location.pathname!=="/Outage.Notify/public/public.html"){
             if(window.location.pathname!=="/" && window.location.pathname!=="/Outage.Notify/public/"){
