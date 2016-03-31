@@ -128,6 +128,7 @@ $(window).load(function() {
         
         pop_syslist(uid_site,"Yes");
         pop_contlist(uid_site,"Yes");
+        pop_outagelist(uid_site,"Yes");
         
         pop_formpreview(outageid, uid_site);
         
