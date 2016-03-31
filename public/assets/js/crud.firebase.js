@@ -1112,3 +1112,72 @@
 
     return vHTML;
   }
+  
+  // -- Outage Type -- //
+  //Populate Outage_Type
+  function pop_outagelist(form_site,dropdown){
+
+    //Get Outage_Type for Preview
+    // Get a database reference to our posts
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
+    var ref = new Firebase( outage_url.normalize() );
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+            var message = data.val();
+            
+        var vHTML = "";
+        
+        if(dropdown=="Yes"){
+            vHTML = "<option value='" + message.prefix + "'>";
+            vHTML += data.key();
+            vHTML += "</option>";
+            
+            $('[name=otype]').append(vHTML);
+        }
+        else {
+            //Populate DIV with HTML
+              vHTML = "<div class='submenu'>";
+              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete System'><i class='fa fa-trash'></i></a>";
+              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit System'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "</div>";
+              vHTML += "<div class='form-row'><h2>System Public Name</h2><br>";
+              vHTML += "<p>" + message.system_public_nm + "</p>";
+              vHTML += "</div>";
+    
+              vHTML += "<div class='form-row'><h2>Description</h2><br>";
+              vHTML += "<p>" + message.system_desc + "</p>";
+              vHTML += "</div>";
+              
+              vHTML += "<div class='form-row'><hr></div>";
+    
+              $("#system_list").append(vHTML);
+              
+              $('a[name=edit'+data.key()+']').click(function(){
+            
+                 $('input[name=pub_name]').val(message.system_public_nm);
+                 $('input[name=desc]').val(message.system_desc);
+                 $('input[name=sys_id]').val(data.key());
+            
+              });
+              
+              $('a[name=del'+data.key()+']').click(function(){
+                
+                var r = confirm("Please make sure there's no related Outages to this system. Are you sure you want to delete?");
+                if (r === true) {
+                    delete_system(uid_site,data.key());
+                 
+                    window.location.replace("system.maint.html");
+                    
+                }
+                 
+              });
+        }
+
+      }); 
+    }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+    });
+
+  }

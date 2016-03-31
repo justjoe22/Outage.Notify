@@ -220,6 +220,7 @@ $('form[name=outage]').submit(function(event) {
       if (uid_site !== "") {
         pop_syslist(uid_site,"Yes");
         pop_contlist(uid_site,"Yes");
+        pop_outagelist(uid_site,"Yes");
       }
       else {
           waitForElement();
