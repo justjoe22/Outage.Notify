@@ -141,6 +141,7 @@ function authDataCallback(authData) {
             sMenu += "<a href='#'><i class='fa fa-plus-square'></i> Outage Options</a><br />";
             sMenu += "<a href='"+getBaseUrl()+"siteadm/contact.maint.html'><i class='fa fa-envelope'></i> Contact Maint</a><br />";
             sMenu += "<a href='"+getBaseUrl()+"siteadm/system.maint.html'><i class='fa fa-tasks'></i> System Maint</a><br />";
+            sMenu += "<a href='"+getBaseUrl()+"siteadm/otype.maint.html'><i class='fa fa-desktop'></i> Outage Type Maint</a><br />";
             sMenu += "</div>"
             
             $("#site_adm").html(sMenu);
