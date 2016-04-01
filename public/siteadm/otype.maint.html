@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Outage Notification System</title>
+
+	<link rel="stylesheet" href="../assets/main.css">
+	<link rel="stylesheet" href="../assets/menu.css">
+	<link rel="stylesheet" href="../assets/form-basic.css">
+	<link rel="stylesheet" href="../assets/font-awesome-4.5.0/css/font-awesome.min.css">
+	
+	<link rel="shortcut icon" href="../favicon.png" >
+
+</head>
+<body>
+
+    <nav id="ddmenu">
+    
+        <div class="menu-icon"></div>
+        
+        <div class="menu">
+            <a href="../new.outage.html"><i class="fa fa-plus-square"></i> New Outage</a><br />
+			<a href="../my.outages"><i class="fa fa-envelope"></i> My Outages</a><br />
+            <a href="#" id="logout"><i class="fa fa-sign-out"></i> Log Off</a>
+        </div>
+        
+    </nav>
+
+	<header>
+		<h1>Outage Notification System</h1>
+    </header>
+
+    <div id="status">
+        <ul>
+            <li><a href="#" class="active">Outage Type Maintenance</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <!-- You only need this form and the form-basic.css -->
+		<form class="form-basic" name="fmotype" id="fmotype" method="post" action="otype.maint.html">
+			<input type="text" name="otype_key" hidden />
+			
+			<!-- Title -->
+            <div class="form-title-row">
+                <h1>Outage Type Maintenance</h1>
+            </div>
+						
+            <div class="form-row">
+                <label>
+                    <span>Outage Type</span>
+                    <input type="text" name="otype" required>
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Prefix</span>
+                    <input type="text" name="prefix" required>
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Show End Date?</span>
+                    <input type="checkbox" name="showendd">
+                </label>
+            </div>
+
+            <div class="form-row">
+                <button type="submit">Save</button>
+                <button type="reset">Cancel</button>
+            </div>
+
+        </form>
+        
+    </div>
+    
+    <div class="main-content">
+    
+        <div class="form-basic" id="otype_list">
+
+		</div>
+
+    </div>
+
+		<!-- Form Control and Data Connectivity -->
+		<script type="text/javascript" src="../assets/js/jquery-2.2.0.min.js"></script>
+		<script src="../assets/js/firebase.js"></script>
+		<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+		<script src="../assets/js/oauth.firebase.js"></script>
+		<script src="../assets/js/otype.maint.control.js"></script>
+		<script src="../assets/js/crud.firebase.js"></script>
+
+</body>
+
+</html>
