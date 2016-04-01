@@ -23,51 +23,38 @@ $(window).load(function() {
   //Outage Type Control
   $('select[name=otype]').change(function(){
 
-    if($(this).val()=="PLANNED OUTAGE")
-    {
-        $('#endDate').fadeIn();
-        $("#time-endd").prop('required',true);
-        $("#time-endt").prop('required',true);
-
-        if($("#time-startd").val()!==""){
-            pop_timeFrame();
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + uid_site + "/outage_types/";
+    var ref = new Firebase( outage_url.normalize() );
+    
+    ref.orderByKey().equalTo($('select[name=otype]').val()).on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+        var otype_set = data.val();
+    
+        var showEndD = otype_set.showEndD;
+    
+        if(showEndD===true){
+          $('#endDate').fadeIn();
+          $("#time-endd").prop('required',true);
+          $("#time-endt").prop('required',true);
+        
+          if($("#time-startd").val()!==""){
+              pop_timeFrame();
+          }
         }
-    }
-    else if($(this).val()=="MAINTENANCE")
-    {
-        $('#endDate').fadeIn();
-        $("#time-endd").prop('required',true);
-        $("#time-endt").prop('required',true);
-
-        if($("#time-startd").val()!==""){
-            pop_timeFrame();
+        else {
+          $('#endDate').fadeOut();
+          $("#time-endd").prop('required',false);
+          $("#time-endd").val("");
+          $("#time-endt").prop('required',false);
+          $("#time-endt").val("");
+        
+          if($("#time-startd").val()!==""){
+              pop_timeFrame();
+          }
         }
-
-    }
-    else if($(this).val()=="UNPLANNED OUTAGE")
-    {
-        $('#endDate').fadeOut();
-        $("#time-endd").prop('required',false);
-        $("#time-endd").val("");
-        $("#time-endt").prop('required',false);
-        $("#time-endt").val("");
-
-        if($("#time-startd").val()!==""){
-            pop_timeFrame();
-        }
-    }
-    else if($(this).val()=="USI")
-    {
-        $('#endDate').fadeOut();
-        $("#time-endd").prop('required',false);
-        $("#time-endd").val("");
-        $("#time-endt").prop('required',false);
-        $("#time-endt").val("");
-
-        if($("#time-startd").val()!==""){
-            pop_timeFrame();
-        }
-    }
+    
+      });
+    });
 
   });
 

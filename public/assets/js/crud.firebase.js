@@ -125,7 +125,7 @@
           
           //Summary
           vHTML += "<div class='form-title-row'><h3>";
-          vHTML += message.otype + ": ";
+          vHTML += "<span id='otype_view"+data.key()+"'></span>: ";
           vHTML += "<span id='service"+data.key()+"'></span>, ";
           vHTML += message.timeframe;
           vHTML += "</h3></div>";
@@ -154,6 +154,18 @@
             var myVal = serv.system_public_nm;
             
             $("#service"+data.key()).html(myVal);
+            
+          });
+          
+          //Get Outage Type Name
+          var Outage_Type = ref.root().child('sites').child(form_site).child('outage_types').child(message.otype);
+        
+          Outage_Type.on("value", function (snap) {
+            var otype_set = snap.val();
+            
+            var oval = otype_set.otype;
+            
+            $("#otype_view"+data.key()).html(oval);
             
           });
         
@@ -185,7 +197,7 @@
           vHTML += "</div>";
 
           vHTML += "<div class='form-title-row'><h1>";
-          vHTML += message.otype + ": ";
+          vHTML += "<span id='otype_view'></span>: ";
           vHTML += "<span id='service1'></span>, ";
           vHTML += message.timeframe;
           vHTML += "</h1></div>";
@@ -254,6 +266,18 @@
             var myVal = cont.cont_name;
             
             $("#wrmessage1").html(myVal);
+            
+          });
+          
+          //Get Outage Type Name
+          var Outage_Type = ref.root().child('sites').child(form_site).child('outage_types').child(message.otype);
+        
+          Outage_Type.on("value", function (snap) {
+            var otype_set = snap.val();
+            
+            var oval = otype_set.otype;
+            
+            $("#otype_view").html(oval);
             
           });
 
@@ -336,8 +360,15 @@
               }
               
               //Outage Type Control
-              if($('select[name=otype]').val()=="PLANNED OUTAGE")
-              {
+              //Get Outage Type Name
+              var OTLookup = ref.root().child('sites').child(form_site).child('outage_types').child($('select[name=otype]').val());
+            
+              OTLookup.on("value", function (snap) {
+                var otype_set = snap.val();
+                
+                var showEndD = otype_set.showEndD;
+                
+                if(showEndD===true){
                   $('#endDate').fadeIn();
                   $("#time-endd").prop('required',true);
                   $("#time-endt").prop('required',true);
@@ -345,20 +376,8 @@
                   if($("#time-startd").val()!==""){
                       pop_timeFrame();
                   }
-              }
-              else if($('select[name=otype]').val()=="MAINTENANCE")
-              {
-                  $('#endDate').fadeIn();
-                  $("#time-endd").prop('required',true);
-                  $("#time-endt").prop('required',true);
-            
-                  if($("#time-startd").val()!==""){
-                      pop_timeFrame();
-                  }
-            
-              }
-              else if($('select[name=otype]').val()=="UNPLANNED OUTAGE")
-              {
+                }
+                else {
                   $('#endDate').fadeOut();
                   $("#time-endd").prop('required',false);
                   $("#time-endd").val("");
@@ -368,20 +387,10 @@
                   if($("#time-startd").val()!==""){
                       pop_timeFrame();
                   }
-              }
-              else if($('select[name=otype]').val()=="USI")
-              {
-                  $('#endDate').fadeOut();
-                  $("#time-endd").prop('required',false);
-                  $("#time-endd").val("");
-                  $("#time-endt").prop('required',false);
-                  $("#time-endt").val("");
-            
-                  if($("#time-startd").val()!==""){
-                      pop_timeFrame();
-                  }
-              }
-          
+                }
+                
+              });
+
           //End of Draft Mode
          }
          
@@ -470,7 +479,7 @@
             
         //Populate DIV with HTML
         var vHTML = "<div class='form-title-row'><h1>";
-          vHTML += message.otype + ": ";
+          vHTML += "<span id='otype_view'></span>: ";
           vHTML += "<span id='service1'></span>, ";
           vHTML += message.timeframe;
           vHTML += "</h1></div>";
@@ -534,7 +543,20 @@
             
             $("#wrmessage1").html(myVal);
        
-          }); 
+          });
+          
+          //Get Outage Type Name
+          var Outage_Type = ref.root().child('sites').child(form_site).child('outage_types').child(message.otype);
+        
+          Outage_Type.on("value", function (snap) {
+            var otype_set = snap.val();
+            
+            var oval = otype_set.otype;
+            
+            $("#otype_view").html(oval);
+            
+          });
+          
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
     });
@@ -650,7 +672,7 @@
           
           //Summary
           vHTML += "<div class='form-title-row'><h3>";
-          vHTML += message.otype + ": ";
+          vHTML += "<span id='otype_view'></span>: ";
           vHTML += "<span id='service1'></span>, ";
           vHTML += message.timeframe;
           vHTML += "</h3></div>";
@@ -681,6 +703,18 @@
             $("#service1").html(myVal);
             
           });
+          
+          //Get Outage Type Name
+          var Outage_Type = ref.root().child('sites').child(form_site).child('outage_types').child(message.otype);
+        
+          Outage_Type.on("value", function (snap) {
+            var otype_set = snap.val();
+            
+            var oval = otype_set.otype;
+            
+            $("#otype_view").html(oval);
+            
+          });
         }
 
       }); 
@@ -706,10 +740,11 @@
         
         var service = findServiceArray(message.service);
         var contact = findContactArray(message.wrmessage);
+        var otype = findOTypeArray(message.otype);
         
         //Populate DIV with HTML
         if(subject=="Yes" || subject=="Exclusive"){
-          vHTML += message.otype + ": ";
+          vHTML += otype + ": ";
           vHTML += service + ", ";
           vHTML += message.timeframe;
           

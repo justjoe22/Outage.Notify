@@ -8,6 +8,7 @@ var uid_sys_adm;
 var uid_approver;
 var service_name;
 var contact_name;
+var otypes;
 //var outageid;
 
 
@@ -41,6 +42,7 @@ function authDataCallback(authData) {
       
       service_name = GetServices(uid_site);
       contact_name = GetContacts(uid_site);
+      otypes = GetOType(uid_site);
 
         //Set Sys Admin menu
         if(uid_sys_adm===true) {
@@ -235,6 +237,7 @@ function authDataCallback(authData) {
     
     service_name = null;
     contact_name = null;
+    otypes = null;
     
     if(ref.getAuth()===null){
         if(window.location.pathname!=="/Outage.Notify/public/public.html"){
