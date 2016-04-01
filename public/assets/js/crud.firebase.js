@@ -1128,7 +1128,7 @@
       snapshot.forEach(function(data) {
         var outage = data.val();
         
-        myVal.push({key: data.key() , prefix: outage.prefix, showEndD: outage.showEndD });
+        myVal.push({key: data.key() , otype: outage.otype , prefix: outage.prefix, showEndD: outage.showEndD });
 
       });
       
@@ -1143,7 +1143,7 @@
        
         jQuery.each(otypes, function(index, item) {
             if(otypes[index].key==outage_key){
-                outage_type = otypes[index].key;
+                outage_type = otypes[index].otype;
             }
         });
        
@@ -1156,7 +1156,7 @@
     var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
     var ref = new Firebase( outage_url.normalize() );
     
-       ref.push({key: otype, prefix: prefix, showEndD: showendd, created: created});
+       ref.push({otype: otype, prefix: prefix, showEndD: showendd, created: created});
        
        ref.on('child_added', function(snapshot) {
         postID = snapshot.key();
@@ -1166,14 +1166,14 @@
   }
   
   //Update List Item to Outage Type Maintenance
-  function update_contact(form_site,otype_new,prefix,showendd,otype_key){
+  function update_otype(form_site,otype,prefix,showendd,otype_key){
     var postID;
     var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
     var ref = new Firebase( outage_url.normalize() );
 
        var myItemRef = ref.child(otype_key);
        
-       myItemRef.update({key: otype_new, prefix: prefix, showEndD: showendd}, function(error) {
+       myItemRef.update({otype: otype, prefix: prefix, showEndD: showendd}, function(error) {
           if (error) {
             alert("Data could not be saved." + error);
           }
@@ -1182,9 +1182,9 @@
   }
   
   //Delete a Outage Type
-  function delete_otype(form_site,otype){
+  function delete_otype(form_site,otype_key){
      // Get a reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/" + otype;
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/" + otype_key;
     var ref = new Firebase( outage_url.normalize() );
     
     // Get the data on a post that has been removed
@@ -1209,8 +1209,8 @@
         var vHTML = "";
         
         if(dropdown=="Yes"){
-            vHTML = "<option value='" + message.prefix + "'>";
-            vHTML += data.key();
+            vHTML = "<option value='" + data.key() + "'>";
+            vHTML += message.otype;
             vHTML += "</option>";
             
             $('[name=otype]').append(vHTML);
@@ -1222,7 +1222,7 @@
               vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit Type'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>Outage Type</h2><br>";
-              vHTML += "<p>" + data.key() + "</p>";
+              vHTML += "<p>" + message.otype + "</p>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>Prefix</h2><br>";
               vHTML += "<p>" + message.prefix + "</p>";
@@ -1242,9 +1242,9 @@
               
               $('a[name=edit'+data.key()+']').click(function(){
             
-                 $('input[name=otype]').val(data.key());
+                 $('input[name=otype]').val(message.otype);
                  $('input[name=prefix]').val(message.prefix);
-                 $('input[name=showendd]').val(message.showEndD);
+                 $('input[name=showendd]')[0].checked = message.showEndD;
                  $('input[name=otype_key]').val(data.key());
             
               });
@@ -1284,7 +1284,7 @@
       snapshot.forEach(function(data) {
             var message = data.val();
             
-            vHTML = data.key();
+            vHTML = message.otype;
       }); 
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);

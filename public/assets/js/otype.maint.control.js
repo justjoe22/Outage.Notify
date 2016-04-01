@@ -29,7 +29,7 @@ $(window).load(function() {
 $('form[name=fmotype]').submit(function(event) {
   var otype = $('input[name=otype]').val(), _
     prefix = $('input[name=prefix]').val(), 
-    showendd = $('input[name=showendd]').val(), 
+    showendd = $('input[name=showendd]').is(':checked'), 
     otype_key = $('input[name=otype_key]').val();
     
     if (otype_key!==""){
