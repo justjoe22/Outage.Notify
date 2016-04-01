@@ -1114,6 +1114,85 @@
   }
   
   // -- Outage Type -- //
+  
+  //Get list of all Outage Types to Array
+  function GetOType(form_site){
+    var myVal = [];
+    
+    //Get Outage Type Name
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
+    var ref = new Firebase( outage_url.normalize() );
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+        var outage = data.val();
+        
+        myVal.push({key: data.key() , prefix: outage.prefix, showEndD: outage.showEndD });
+
+      });
+      
+    });
+
+    return myVal;    
+  }
+  
+  //Search for individual Outage Type
+  function findOTypeArray(outage_key){
+       var outage_type = "";
+       
+        jQuery.each(otypes, function(index, item) {
+            if(otypes[index].key==outage_key){
+                outage_type = otypes[index].key;
+            }
+        });
+       
+       return outage_type;
+   }
+   
+  //Add List Item to Outage Type Maintenance
+  function add_otype(form_site,otype,prefix,showendd,created){
+    var postID;
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
+    var ref = new Firebase( outage_url.normalize() );
+    
+       ref.push({key: otype, prefix: prefix, showEndD: showendd, created: created});
+       
+       ref.on('child_added', function(snapshot) {
+        postID = snapshot.key();
+      });
+
+    return postID
+  }
+  
+  //Update List Item to Outage Type Maintenance
+  function update_contact(form_site,otype_new,prefix,showendd,otype_key){
+    var postID;
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
+    var ref = new Firebase( outage_url.normalize() );
+
+       var myItemRef = ref.child(otype_key);
+       
+       myItemRef.update({key: otype_new, prefix: prefix, showEndD: showendd}, function(error) {
+          if (error) {
+            alert("Data could not be saved." + error);
+          }
+        });
+        
+  }
+  
+  //Delete a Outage Type
+  function delete_otype(form_site,otype){
+     // Get a reference to our posts
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/" + otype;
+    var ref = new Firebase( outage_url.normalize() );
+    
+    // Get the data on a post that has been removed
+    ref.remove();
+    
+    return true;
+  }
+  
   //Populate Outage_Type
   function pop_outagelist(form_site,dropdown){
 
@@ -1139,36 +1218,44 @@
         else {
             //Populate DIV with HTML
               vHTML = "<div class='submenu'>";
-              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete System'><i class='fa fa-trash'></i></a>";
-              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit System'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete Type'><i class='fa fa-trash'></i></a>";
+              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit Type'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
-              vHTML += "<div class='form-row'><h2>System Public Name</h2><br>";
-              vHTML += "<p>" + message.system_public_nm + "</p>";
+              vHTML += "<div class='form-row'><h2>Outage Type</h2><br>";
+              vHTML += "<p>" + data.key() + "</p>";
               vHTML += "</div>";
-    
-              vHTML += "<div class='form-row'><h2>Description</h2><br>";
-              vHTML += "<p>" + message.system_desc + "</p>";
+              vHTML += "<div class='form-row'><h2>Prefix</h2><br>";
+              vHTML += "<p>" + message.prefix + "</p>";
+              vHTML += "</div>";
+              vHTML += "<div class='form-row'><h2>Show End Date?</h2><br>";
+              if (message.showEndD===true){
+                vHTML += "<p>Yes</p>";
+              }
+              else {
+                vHTML += "<p>No</p>";
+              }
               vHTML += "</div>";
               
               vHTML += "<div class='form-row'><hr></div>";
     
-              $("#system_list").append(vHTML);
+              $("#otype_list").append(vHTML);
               
               $('a[name=edit'+data.key()+']').click(function(){
             
-                 $('input[name=pub_name]').val(message.system_public_nm);
-                 $('input[name=desc]').val(message.system_desc);
-                 $('input[name=sys_id]').val(data.key());
+                 $('input[name=otype]').val(data.key());
+                 $('input[name=prefix]').val(message.prefix);
+                 $('input[name=showendd]').val(message.showEndD);
+                 $('input[name=otype_key]').val(data.key());
             
               });
               
               $('a[name=del'+data.key()+']').click(function(){
                 
-                var r = confirm("Please make sure there's no related Outages to this system. Are you sure you want to delete?");
+                var r = confirm("Please make sure there's no related Outages to this Outage Type. Are you sure you want to delete?");
                 if (r === true) {
-                    delete_system(uid_site,data.key());
+                    delete_otype(uid_site,data.key());
                  
-                    window.location.replace("system.maint.html");
+                    window.location.replace("otype.maint.html");
                     
                 }
                  
@@ -1181,3 +1268,28 @@
     });
 
   }
+  
+  //Populate Single Outage Type
+  function pop_singleotype(form_site,key){
+
+    //Get Contact for Preview
+    // Get a database reference to our posts
+    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
+    var ref = new Firebase( outage_url.normalize() );
+    
+    var vHTML;
+    
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.orderByKey().equalTo(key).on("value", function(snapshot) {
+      snapshot.forEach(function(data) {
+            var message = data.val();
+            
+            vHTML = data.key();
+      }); 
+    }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+    });
+
+    return vHTML;
+  }
+  
