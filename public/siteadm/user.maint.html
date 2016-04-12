@@ -54,18 +54,39 @@
 						
             <div class="form-row">
                 <label>
-                    <span>System Public Name</span>
-                    <input type="text" name="pub_name" required>
+                    <span>Full Name</span>
+                    <input type="text" name="full_name" required>
                 </label>
             </div>
             
             <div class="form-row">
                 <label>
-                    <span>Description</span>
-                    <input type="text" name="desc" required>
+                    <span>Email</span>
+                    <input type="email" name="email" required>
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Active</span>
+                    <input type="checkbox" name="active" checked>
                 </label>
             </div>
 
+            <div class="form-row">
+                <label>
+                    <span>Site Approver</span>
+                    <input type="checkbox" name="approver">
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Site Administrator</span>
+                    <input type="checkbox" name="sadmin">
+                </label>
+            </div>
+            
             <div class="form-row">
                 <button type="submit">Save</button>
                 <button type="reset">Cancel</button>
