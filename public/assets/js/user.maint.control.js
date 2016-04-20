@@ -27,15 +27,18 @@ $(window).load(function() {
  
 //Form OnSubmit
 $('form[name=user]').submit(function(event) {
-  var pub_name = $('input[name=pub_name]').val(), _
-    desc = $('input[name=desc]').val(), 
+  var full_name = $('input[name=full_name]').val(), _
+    email = $('input[name=email]').val(), 
+    active = $('input[name=active]').val(), 
+    approver = $('input[name=approver]').val(), 
+    site_admin = $('input[name=sadmin]').val(), 
     userid = $('input[name=user_id]').val();
     
     if (userid!==""){
-        update_system(uid_site,pub_name,desc,userid)
+        update_user(uid_site,userid,full_name,email,active,approver,site_admin,false);
     }
     else {
-        userid = add_system(uid_site,pub_name,desc,myuid);
+        userid = add_user(uid_site,userid,full_name,email,active,approver,site_admin,false,myuid);
     }
     
     /* get some values from elements on the page: */
