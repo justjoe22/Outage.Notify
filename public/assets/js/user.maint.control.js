@@ -12,7 +12,7 @@ $(window).load(function() {
     if(typeof uid_site !== "undefined"){
       //Populate Form.Init
       if (uid_site !== "") {
-        pop_syslist(uid_site,"No");
+        pop_userlist(uid_site,"No");
       }
       else {
           waitForElement();
@@ -151,16 +151,16 @@ $('form[name=user]').submit(function(event) {
     return true;
   }
   
-  //Populate Outage_Type
-  function pop_outagelist(form_site,dropdown){
+  //Populate User List
+  function pop_userlist(form_site,dropdown){
 
     //Get Outage_Type for Preview
     // Get a database reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
-    var ref = new Firebase( outage_url.normalize() );
+    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
+    var ref = new Firebase( user_url.normalize() );
     
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByKey().on("value", function(snapshot) {
+    ref.orderByChild("site").equalTo(form_site).on("value", function(snapshot) {
       snapshot.forEach(function(data) {
             var message = data.val();
             
@@ -168,10 +168,10 @@ $('form[name=user]').submit(function(event) {
         
         if(dropdown=="Yes"){
             vHTML = "<option value='" + data.key() + "'>";
-            vHTML += message.otype;
+            vHTML += message.full_name;
             vHTML += "</option>";
             
-            $('[name=otype]').append(vHTML);
+            $('[name=users]').append(vHTML);
         }
         else {
             //Populate DIV with HTML
@@ -179,14 +179,14 @@ $('form[name=user]').submit(function(event) {
               vHTML += "<a href='#' name='del"+data.key()+"' title='Delete Type'><i class='fa fa-trash'></i></a>";
               vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit Type'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
-              vHTML += "<div class='form-row'><h2>Outage Type</h2><br>";
-              vHTML += "<p>" + message.otype + "</p>";
+              vHTML += "<div class='form-row'><h2>Full Name</h2><br>";
+              vHTML += "<p>" + message.full_name + "</p>";
               vHTML += "</div>";
-              vHTML += "<div class='form-row'><h2>Prefix</h2><br>";
-              vHTML += "<p>" + message.prefix + "</p>";
+              vHTML += "<div class='form-row'><h2>Email</h2><br>";
+              vHTML += "<p>" + message.email + "</p>";
               vHTML += "</div>";
-              vHTML += "<div class='form-row'><h2>Show End Date?</h2><br>";
-              if (message.showEndD===true){
+              vHTML += "<div class='form-row'><h2>Active</h2><br>";
+              if (message.active===true){
                 vHTML += "<p>Yes</p>";
               }
               else {
@@ -196,7 +196,7 @@ $('form[name=user]').submit(function(event) {
               
               vHTML += "<div class='form-row'><hr></div>";
     
-              $("#otype_list").append(vHTML);
+              $("#user_list").append(vHTML);
               
               $('a[name=edit'+data.key()+']').click(function(){
             
