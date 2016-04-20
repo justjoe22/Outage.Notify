@@ -29,9 +29,9 @@ $(window).load(function() {
 $('form[name=user]').submit(function(event) {
   var full_name = $('input[name=full_name]').val(), _
     email = $('input[name=email]').val(), 
-    active = $('input[name=active]').val(), 
-    approver = $('input[name=approver]').val(), 
-    site_admin = $('input[name=sadmin]').val(), 
+    active = $('input[name=active]').is(':checked'),
+    approver = $('input[name=approver]').is(':checked'), 
+    site_admin = $('input[name=sadmin]').is(':checked'), 
     userid = $('input[name=user_id]').val();
     
     if (userid!==""){
