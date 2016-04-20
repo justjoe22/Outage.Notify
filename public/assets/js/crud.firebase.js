@@ -1367,12 +1367,12 @@
    }
    
   //Add List Item to User Maintenance
-  function add_user(form_site,userid,full_name,email,active,approver,site_admin,sys_admin){
+  function add_user(form_site,full_name,email,active,approver,site_admin,sys_admin){
     var postID;
     var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
     var ref = new Firebase( user_url.normalize() );
     
-       ref.child(userid).set({
+       ref.set({
            site: form_site,
            full_name: full_name,
            email: email,

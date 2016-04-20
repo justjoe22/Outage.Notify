@@ -38,7 +38,7 @@ $('form[name=user]').submit(function(event) {
         update_user(uid_site,userid,full_name,email,active,approver,site_admin,false);
     }
     else {
-        userid = add_user(uid_site,userid,full_name,email,active,approver,site_admin,false,myuid);
+        userid = add_user(uid_site,full_name,email,active,approver,site_admin,false);
     }
     
     /* get some values from elements on the page: */
