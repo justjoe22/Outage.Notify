@@ -48,7 +48,7 @@ $('form[name=user]').submit(function(event) {
         url = $form.attr( 'action' );
 
     /* Send the data using post */
-    var posting = $.post( url, { sysid: sysid } );
+    var posting = $.post( url, { userid: userid } );
 
     /* Alerts the results */
     posting.done(function( data ) {
