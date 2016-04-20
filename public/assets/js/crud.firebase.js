@@ -1467,7 +1467,7 @@
               }
               vHTML += "</div>";
               
-              vHTML += "<div class='form-row'><h2>Approver</h2><br>";
+              vHTML += "<div class='form-row'><h2>Site Approver</h2><br>";
               if (message.approver===true){
                 vHTML += "<p>Yes</p>";
               }
@@ -1491,20 +1491,22 @@
               
               $('a[name=edit'+data.key()+']').click(function(){
             
-                 $('input[name=otype]').val(message.otype);
-                 $('input[name=prefix]').val(message.prefix);
-                 $('input[name=showendd]')[0].checked = message.showEndD;
-                 $('input[name=otype_key]').val(data.key());
+                 $('input[name=full_name]').val(message.full_name);
+                 $('input[name=email]').val(message.email);
+                 $('input[name=active]')[0].checked = message.active;
+                 $('input[name=approver]')[0].checked = message.approver;
+                 $('input[name=sadmin]')[0].checked = message.site_admin;
+                 $('input[name=user_id]').val(data.key());
             
               });
               
               $('a[name=del'+data.key()+']').click(function(){
                 
-                var r = confirm("Please make sure there's no related Outages to this Outage Type. Are you sure you want to delete?");
+                var r = confirm("Are you sure you want to delete this user?");
                 if (r === true) {
-                    delete_otype(uid_site,data.key());
+                    delete_user(uid_site,data.key());
                  
-                    window.location.replace("otype.maint.html");
+                    window.location.replace("user.maint.html");
                     
                 }
                  
@@ -1523,8 +1525,8 @@
 
     //Get Contact for Preview
     // Get a database reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
-    var ref = new Firebase( outage_url.normalize() );
+    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
+    var ref = new Firebase( user_url.normalize() );
     
     var vHTML;
     
@@ -1533,7 +1535,7 @@
       snapshot.forEach(function(data) {
             var message = data.val();
             
-            vHTML = message.otype;
+            vHTML = message.full_name;
       }); 
     }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
