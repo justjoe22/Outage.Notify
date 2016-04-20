@@ -1389,6 +1389,7 @@
           } else {
             console.log("Successfully created user account with uid:", userData.uid);
             
+            var newID;
             var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
             var ref = new Firebase( user_url.normalize() );
             
@@ -1402,7 +1403,7 @@
                });
                
                ref.on('child_added', function(snapshot) {
-                postID = snapshot.key();
+                newID = snapshot.key();
                });
           }
         });
