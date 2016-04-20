@@ -1400,10 +1400,6 @@
                    approver: approver,
                    site_admin: site_admin
                });
-               
-               ref.on('child_added', function(snapshot) {
-                postID = snapshot.key();
-               });
           }
         });
         
