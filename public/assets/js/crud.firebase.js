@@ -1406,6 +1406,10 @@
                });
           }
         });
+        
+       refUser.on('child_added', function(snapshot) {
+        postID = snapshot.key();
+       });
 
     return postID
   }
