@@ -1449,8 +1449,8 @@
         else {
             //Populate DIV with HTML
               vHTML = "<div class='submenu'>";
-              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete Type'><i class='fa fa-trash'></i></a>";
-              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit Type'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete User'><i class='fa fa-trash'></i></a>";
+              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit User'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>Full Name</h2><br>";
               vHTML += "<p>" + message.full_name + "</p>";
@@ -1460,6 +1460,24 @@
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>Active</h2><br>";
               if (message.active===true){
+                vHTML += "<p>Yes</p>";
+              }
+              else {
+                vHTML += "<p>No</p>";
+              }
+              vHTML += "</div>";
+              
+              vHTML += "<div class='form-row'><h2>Approver</h2><br>";
+              if (message.approver===true){
+                vHTML += "<p>Yes</p>";
+              }
+              else {
+                vHTML += "<p>No</p>";
+              }
+              vHTML += "</div>";
+              
+              vHTML += "<div class='form-row'><h2>Site Administrator</h2><br>";
+              if (message.site_admin===true){
                 vHTML += "<p>Yes</p>";
               }
               else {
