@@ -27,7 +27,7 @@ $(window).load(function() {
  
 //Form OnSubmit
 $('form[name=user]').submit(function(event) {
-  //event.preventDefault();
+  event.preventDefault();
   
   var full_name = $('input[name=full_name]').val(), _
     email = $('input[name=email]').val(), 
