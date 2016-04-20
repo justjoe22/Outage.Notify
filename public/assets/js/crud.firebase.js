@@ -1367,30 +1367,51 @@
    }
    
   //Add List Item to User Maintenance
-  function add_user(form_site,full_name,email,active,approver,site_admin,sys_admin){
+  function add_user(form_site,full_name,email,active,approver,site_admin){
     var postID;
-    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
-    var ref = new Firebase( user_url.normalize() );
     
-       ref.set({
-           site: form_site,
-           full_name: full_name,
-           email: email,
-           active: active,
-           approver: approver,
-           site_admin: site_admin,
-           sys_admin: sys_admin
-       });
-       
-       ref.on('child_added', function(snapshot) {
-        postID = snapshot.key();
-      });
+      var refUser = new Firebase("https://resplendent-inferno-4226.firebaseio.com");
+        refUser.createUser({
+          email: email,
+          password: "correcthorsebatterystaple"
+        }, function(error, userData) {
+          if (error) {
+            switch (error.code) {
+              case "EMAIL_TAKEN":
+                console.log("The new user account cannot be created because the email is already in use.");
+                break;
+              case "INVALID_EMAIL":
+                console.log("The specified email is not a valid email.");
+                break;
+              default:
+                console.log("Error creating user:", error);
+            }
+          } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+            
+            var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
+            var ref = new Firebase( user_url.normalize() );
+            
+               ref.child(userData.uid).set({
+                   site: form_site,
+                   full_name: full_name,
+                   email: email,
+                   active: active,
+                   approver: approver,
+                   site_admin: site_admin
+               });
+               
+               ref.on('child_added', function(snapshot) {
+                postID = snapshot.key();
+               });
+          }
+        });
 
     return postID
   }
   
   //Update List Item to User Maintenance
-  function update_user(form_site,userid,full_name,email,active,approver,site_admin,sys_admin){
+  function update_user(form_site,userid,full_name,email,active,approver,site_admin){
     var postID;
     var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
     var ref = new Firebase( user_url.normalize() );
@@ -1403,8 +1424,7 @@
            email: email,
            active: active,
            approver: approver,
-           site_admin: site_admin,
-           sys_admin: sys_admin}, function(error) {
+           site_admin: site_admin}, function(error) {
                 if (error) {
                     alert("Data could not be saved." + error);
                 }

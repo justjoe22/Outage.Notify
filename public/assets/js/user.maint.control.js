@@ -35,10 +35,10 @@ $('form[name=user]').submit(function(event) {
     userid = $('input[name=user_id]').val();
     
     if (userid!==""){
-        update_user(uid_site,userid,full_name,email,active,approver,site_admin,false);
+        update_user(uid_site,userid,full_name,email,active,approver,site_admin);
     }
     else {
-        userid = add_user(uid_site,full_name,email,active,approver,site_admin,false);
+        userid = add_user(uid_site,full_name,email,active,approver,site_admin);
     }
     
     /* get some values from elements on the page: */
