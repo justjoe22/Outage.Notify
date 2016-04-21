@@ -1367,13 +1367,13 @@
    }
    
   //Add List Item to User Maintenance
-  function add_user(form_site,full_name,email,active,approver,site_admin){
+  function add_user(email,password){
     var postID;
     
       var refUser = new Firebase("https://resplendent-inferno-4226.firebaseio.com");
         refUser.createUser({
           email: email,
-          password: "correcthorsebatterystaple"
+          password: password
         }, function(error, userData) {
           if (error) {
             switch (error.code) {
@@ -1388,8 +1388,6 @@
             }
           } else {
             console.log("Successfully created user account with uid:", userData.uid);
-            
-            var myID = add_user_profile(form_site,userData.uid,full_name,email,active,approver,site_admin);
           }
         });
         
