@@ -1458,14 +1458,33 @@
   }
   
   //Delete a User
-  function delete_user(form_site,userid){
-     // Get a reference to our posts
-    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + userid;
-    var ref = new Firebase( user_url.normalize() );
+  function delete_user(form_site,userid,email){
     
-    // Get the data on a post that has been removed
-    ref.remove();
-    
+    var refUser = new Firebase("https://resplendent-inferno-4226.firebaseio.com");
+    refUser.removeUser({
+      email: email
+    }, function(error) {
+      if (error) {
+        switch (error.code) {
+          case "INVALID_USER":
+            console.log("The specified user account does not exist.");
+            break;
+          case "INVALID_PASSWORD":
+            console.log("The specified user account password is incorrect.");
+            break;
+          default:
+            console.log("Error removing user:", error);
+        }
+      } else {
+            // Get a reference to our posts
+            var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + userid;
+            var ref = new Firebase( user_url.normalize() );
+            
+            // Get the data on a post that has been removed
+            ref.remove();
+      }
+    });
+   
     return true;
   }
   
@@ -1549,7 +1568,7 @@
                 
                 var r = confirm("Are you sure you want to delete this user?");
                 if (r === true) {
-                    delete_user(uid_site,data.key());
+                    delete_user(uid_site,data.key(),message.email);
                  
                     window.location.replace("user.maint.html");
                     
