@@ -1513,7 +1513,7 @@
         else {
             //Populate DIV with HTML
               vHTML = "<div class='submenu'>";
-              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete User'><i class='fa fa-trash'></i></a>";
+              //vHTML += "<a href='#' name='del"+data.key()+"' title='Delete User'><i class='fa fa-trash'></i></a>";
               vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit User'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>Full Name</h2><br>";
@@ -1564,17 +1564,17 @@
             
               });
               
-              $('a[name=del'+data.key()+']').click(function(){
+            //   $('a[name=del'+data.key()+']').click(function(){
                 
-                var r = confirm("Are you sure you want to delete this user?");
-                if (r === true) {
-                    delete_user(uid_site,data.key(),message.email);
+            //     var r = confirm("Are you sure you want to delete this user?");
+            //     if (r === true) {
+            //         delete_user(uid_site,data.key(),message.email);
                  
-                    window.location.replace("user.maint.html");
+            //         window.location.replace("user.maint.html");
                     
-                }
+            //     }
                  
-              });
+            //   });
         }
 
       }); 
