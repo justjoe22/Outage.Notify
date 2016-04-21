@@ -81,18 +81,18 @@ $('form[name=user]').submit(function(event) {
         waitForUser(full_name,email,active,approver,site_admin);   
     }
     
-    /* get some values from elements on the page: */
-    var $form = $( this ),
-        url = $form.attr( 'action' );
+    // /* get some values from elements on the page: */
+    // var $form = $( this ),
+    //     url = $form.attr( 'action' );
 
-    /* Send the data using post */
-    var posting = $.post( url, { userid: userid } );
+    // /* Send the data using post */
+    // var posting = $.post( url, { userid: userid } );
 
-    /* Alerts the results */
-    posting.done(function( data ) {
-      // similar behavior as an HTTP redirect
-      window.location.replace(url);
-    });
+    // /* Alerts the results */
+    // posting.done(function( data ) {
+    //   // similar behavior as an HTTP redirect
+    //   window.location.replace(url);
+    // });
 
 });
 
