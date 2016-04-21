@@ -1387,13 +1387,13 @@
                 console.log("Error creating user:", error);
             }
           } else {
-            console.log("Successfully created user account with uid:", userData.uid);
+            postID = userData.uid;
           }
         });
         
-       refUser.on('child_added', function(snapshot) {
-        postID = snapshot.key();
-       });
+    //   refUser.on('child_added', function(snapshot) {
+    //     postID = snapshot.key();
+    //   });
 
     return postID
   }
