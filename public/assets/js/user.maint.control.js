@@ -25,27 +25,6 @@ $(window).load(function() {
     }
  }
  
-  function waitForUser(full_name,email,active,approver,site_admin){
-    var myID;
-    
-    if(typeof userid !== "undefined"){
-      //Populate Form.Init
-      if (userid !== "") {
-        myID = add_user_profile(uid_site,userid,full_name,email,active,approver,site_admin);
-      }
-      else {
-          waitForUser();
-      }
-    }
-    else{
-        setTimeout(function(){
-            waitForUser();
-        },250);
-    }
-    
-    return myID;
- }
- 
  function randomPassword(length) {
     var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
     var pass = "";
@@ -64,8 +43,7 @@ $('form[name=user]').submit(function(event) {
     email = $('input[name=email]').val(), 
     active = $('input[name=active]').is(':checked'),
     approver = $('input[name=approver]').is(':checked'), 
-    site_admin = $('input[name=sadmin]').is(':checked');
-     
+    site_admin = $('input[name=sadmin]').is(':checked'),
     userid = $('input[name=user_id]').val();
     
     if (userid!==""){
@@ -76,7 +54,7 @@ $('form[name=user]').submit(function(event) {
         
         userid = add_user(email,password);
      
-        waitForUser(full_name,email,active,approver,site_admin);   
+        add_user_profile(uid_site,userid,full_name,email,active,approver,site_admin);   
     }
     
     // /* get some values from elements on the page: */

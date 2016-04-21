@@ -10,7 +10,6 @@ var service_name;
 var contact_name;
 var otypes;
 var users;
-var userid;
 //var outageid;
 
 
