@@ -52,9 +52,9 @@ $('form[name=user]').submit(function(event) {
     else {
         var password = randomPassword(10);
         
-        userid = add_user(email,password);
+        userid = add_user(uid_site,email,password,full_name,active,approver,site_admin);
      
-        add_user_profile(uid_site,userid,full_name,email,active,approver,site_admin);   
+        //add_user_profile(uid_site,userid,full_name,email,active,approver,site_admin);   
     }
     
     // /* get some values from elements on the page: */

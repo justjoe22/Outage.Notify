@@ -1367,7 +1367,7 @@
    }
    
   //Add List Item to User Maintenance
-  function add_user(email,password){
+  function add_user(form_site,email,password,full_name,active,approver,site_admin){
     var postID;
     
       var refUser = new Firebase("https://resplendent-inferno-4226.firebaseio.com");
@@ -1388,6 +1388,18 @@
             }
           } else {
             postID = userData.uid;
+            
+            var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
+            var ref = new Firebase( user_url.normalize() );
+            
+               ref.child(postID).set({
+                   site: form_site,
+                   full_name: full_name,
+                   email: email,
+                   active: active,
+                   approver: approver,
+                   site_admin: site_admin
+               });
             
             return postID;
           }
