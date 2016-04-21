@@ -1389,22 +1389,7 @@
           } else {
             console.log("Successfully created user account with uid:", userData.uid);
             
-            var newID;
-            var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
-            var ref = new Firebase( user_url.normalize() );
-            
-               ref.child(userData.uid).set({
-                   site: form_site,
-                   full_name: full_name,
-                   email: email,
-                   active: active,
-                   approver: approver,
-                   site_admin: site_admin
-               });
-               
-               ref.on('child_added', function(snapshot) {
-                newID = snapshot.key();
-               });
+            var myID = add_user_profile(form_site,userData.uid,full_name,email,active,approver,site_admin);
           }
         });
         
@@ -1413,6 +1398,28 @@
        });
 
     return postID
+  }
+  
+  //Add User to Users db for settings
+  function add_user_profile(form_site,userid,full_name,email,active,approver,site_admin){
+    var newID;
+    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
+    var ref = new Firebase( user_url.normalize() );
+    
+       ref.child(userid).set({
+           site: form_site,
+           full_name: full_name,
+           email: email,
+           active: active,
+           approver: approver,
+           site_admin: site_admin
+       });
+       
+       ref.on('child_added', function(snapshot) {
+        newID = snapshot.key();
+       });
+    
+    return newID;
   }
   
   //Update List Item to User Maintenance
