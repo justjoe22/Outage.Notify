@@ -1388,14 +1388,17 @@
             }
           } else {
             postID = userData.uid;
+            
+            return postID;
           }
         });
         
        refUser.on('child_added', function(snapshot) {
          postID = snapshot.key();
+         
+         return postID;
        });
 
-    return postID;
   }
   
   //Add User to Users db for settings
