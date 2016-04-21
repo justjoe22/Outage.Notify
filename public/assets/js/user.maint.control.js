@@ -1,5 +1,3 @@
-var userid;
-
 (function($) {
 
 //Default Settings OnLoad

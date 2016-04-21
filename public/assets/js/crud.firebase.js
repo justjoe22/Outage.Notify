@@ -1395,7 +1395,7 @@
     //     postID = snapshot.key();
     //   });
 
-    return postID
+    return postID;
   }
   
   //Add User to Users db for settings
