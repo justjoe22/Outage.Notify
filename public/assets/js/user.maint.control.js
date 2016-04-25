@@ -39,7 +39,11 @@ $(window).load(function() {
 $('form[name=user]').submit(function(event) {
   event.preventDefault();
   
-  var full_name = $('input[name=full_name]').val(), _
+  var step1 = false,
+      step2 = false,
+      step3 = false;
+  
+  var full_name = $('input[name=full_name]').val(),
     email = $('input[name=email]').val(), 
     active = $('input[name=active]').is(':checked'),
     approver = $('input[name=approver]').is(':checked'), 
@@ -57,18 +61,19 @@ $('form[name=user]').submit(function(event) {
         //add_user_profile(uid_site,userid,full_name,email,active,approver,site_admin);   
     }
     
-    //  /* get some values from elements on the page: */
-    //  var $form = $( this ),
-    //      url = $form.attr( 'action' );
+     /* get some values from elements on the page: */
+     var $form = $( this ),
+         url = $form.attr( 'action' );
 
-    //  /* Send the data using post */
-    //  var posting = $.post( url, { userid: userid } );
+     /* Send the data using post */
+     var posting = $.post( url, { userid: userid } );
 
-    //  /* Alerts the results */
-    //  posting.done(function( data ) {
-    //   // similar behavior as an HTTP redirect
-    //   window.location.replace(url);
-    //  });
+     /* Alerts the results */
+     posting.done(function( data ) {
+      // similar behavior as an HTTP redirect
+      
+      window.location.replace(url);
+     });
 
 });
 
