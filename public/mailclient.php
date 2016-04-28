@@ -11,7 +11,7 @@
          $message = $_POST['message'];
          $subject = $_POST['subject'];
          
-         $headers= "From: Outage Notify <noreply@outage.net>\r\n";
+         $headers= "From: IT Notify <noreply@notifyme.net>\r\n";
          $headers.= "Reply-To: $name <$from>\r\n";
          $headers.= "X-Mailer: PHP/" . phpversion()."\r\n";
          $headers.= "MIME-Version: 1.0" . "\r\n";
