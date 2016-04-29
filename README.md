@@ -8,5 +8,5 @@ HTML
 CSS
 jQuery
 
-Database and Security solution:
+Platform:
 Firebase
