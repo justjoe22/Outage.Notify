@@ -1400,6 +1400,24 @@
                    approver: approver,
                    site_admin: site_admin
                });
+               
+               //Send email
+                var message = 'Hello '+ full_name;
+                message += '<br>Welcome to ' + form_site + '.<br><hr>';
+                message += 'Your new password is <b>' + password + '</b><br>'
+                message += '<a href="'+window.location+'">Login</a><br>';
+                
+                //Email approver
+                $.post('../mailclient.php',
+                    {
+                        "to": email , 
+                        "message":message , 
+                        "from": uid_email , 
+                        "name": uid_name , 
+                        "subject": 'Your account has been created.'
+                    },function(response) {
+                        console.log(response);
+                });
             
             return postID;
           }

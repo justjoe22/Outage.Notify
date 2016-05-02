@@ -72,7 +72,7 @@ $('form[name=user]').submit(function(event) {
      posting.done(function( data ) {
       // similar behavior as an HTTP redirect
       
-      window.location.replace(url);
+      //window.location.replace(url);
      });
 
 });
