@@ -88,7 +88,7 @@ $('form[name=approvers]').submit(function(event) {
         message += '<hr><br> Regards, <br>'+uid_name;
         
         //Email approver
-        $.post('mailclient.php',
+        $.post(mail_server+'mailclient.php',
             {
                 "to": appvArry[1] , 
                 "message":message , 

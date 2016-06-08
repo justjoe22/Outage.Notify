@@ -11,9 +11,12 @@ var contact_name;
 var otypes;
 var users;
 //var outageid;
+var mail_server;
 
 
 (function($) {
+
+mail_server = 'http://54.152.4.108:8080/';
 
 //Main URL for Database / Authentication
 var main_url = "https://resplendent-inferno-4226.firebaseio.com/";

@@ -441,7 +441,7 @@
                 var contact_email = findContactEmail(message.wrmessage);
                 
                 //Email approver
-                $.post('mailclient.php',
+                $.post(mail_server+'mailclient.php',
                     {
                         "to": contact_email , 
                         "message":note , 
