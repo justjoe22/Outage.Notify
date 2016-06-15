@@ -13,14 +13,22 @@ var users;
 //var outageid;
 var mail_server;
 
+// Initialize Firebase
+var config = {
+apiKey: "AIzaSyBeJDO84t81kUwS5Y6sK1qQ9nt-Jw_6CJU",
+authDomain: "resplendent-inferno-4226.firebaseapp.com",
+databaseURL: "https://resplendent-inferno-4226.firebaseio.com",
+storageBucket: "resplendent-inferno-4226.appspot.com",
+};
+firebase.initializeApp(config);
 
 (function($) {
 
 mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
 
 //Main URL for Database / Authentication
-var main_url = "https://resplendent-inferno-4226.firebaseio.com/";
-var ref = new Firebase( main_url.normalize() );
+//var main_url = "https://resplendent-inferno-4226.firebaseio.com/";
+//var ref = new firebase.database().ref("/");
 
   // Create a callback which logs the current auth state
 function authDataCallback(authData) {
@@ -259,7 +267,7 @@ function authDataCallback(authData) {
   }
 }
 
-ref.onAuth(authDataCallback);
+//firebase.onAuth(authDataCallback);
 
   // Register
   $("#registerButton").on("click", function() {
@@ -282,29 +290,38 @@ ref.onAuth(authDataCallback);
     var email = $('input[name=email]').val();
     var password = $('input[name=password]').val();
     
-    ref.authWithPassword({email: email, password: password},function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
-        
-            /* get some values from elements on the page: */
-            var $form = $( this ),
-                url = $form.attr( 'action' );
-        
-            /* Send the data using post */
-            var posting = $.post( url, { email: email } );
-        
-            /* Alerts the results */
-            posting.done(function( data ) {
-              // similar behavior as an HTTP redirect
-              window.location.replace("./my.outages");
-            });
-            
-      }
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+      
     });
     
-    event.preventDefault();
+    //if (error) {
+         // Handle Errors here.
+        //var errorCode = error.code;
+        //var errorMessage = error.message;
+        
+        //console.log("Login Failed!", errorCode + ":" + errorMessage);
+      //} else {
+        //console.log("Authenticated successfully with payload:", authData);
+        
+            /* get some values from elements on the page: */
+          //  var $form = $( this ),
+            //    url = $form.attr( 'action' );
+        
+            /* Send the data using post */
+            //var posting = $.post( url, { email: email } );
+        
+            /* Alerts the results */
+            //posting.done(function( data ) {
+              // similar behavior as an HTTP redirect
+              //window.location.replace("./my.outages");
+            //});
+            
+      //}
+    
+    //event.preventDefault();
     
   });
   
