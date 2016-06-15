@@ -6,6 +6,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-signin-client_id" content="YOUR_CLIENT_ID">
+    <meta name="google-signin-cookiepolicy" content="single_host_origin">
+    <meta name="google-signin-scope" content="profile email">
 
 	<title>Outage Notification System</title>
 
@@ -64,7 +67,7 @@
                 <a href="#" class="form-create-an-account" id="registerButton">Create an account &rarr;</a>
                 
                 <div class="form-sign-in-with-social">
-                    <a href="#" class="form-google-button">Google</a>
+                    <a href="#" id="googleLogin" class="form-google-button">Google</a>
                 </div>
 
             </div>
@@ -74,6 +77,7 @@
     </div>
     
     <!-- Form Control and Data Connectivity -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script type="text/javascript" src="assets/js/jquery-2.2.0.min.js"></script>
 		<script src="assets/js/firebase.js"></script>
 		<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
