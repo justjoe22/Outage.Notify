@@ -389,10 +389,11 @@ function authDataCallback(authData) {
    // Logout
   $( "#logout" ).on("click", function() {
     
-    //var googleAuth = gapi.auth2.getAuthInstance();
-        //googleAuth.signOut().then(function() {
-        //firebase.auth().signOut();
-      //});
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+    }, function(error) {
+      // An error happened.
+    });
       
     ref.unauth();
     
