@@ -7,12 +7,12 @@
       }
     },
     "sites": {
-        "outages": {
-            "$outage": {
-                ".read": "data.child('Public').val() === true"
-            }
-        },
         "$site": {
+            "outages": {
+                "$outage": {
+                    ".read": "data.child('Public').val() === true"
+                }
+            },
             ".read": "$site === root.child('users').child(auth.uid).child('site').val()",
             ".write": "$site === root.child('users').child(auth.uid).child('site').val()"
         }
