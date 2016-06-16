@@ -13,7 +13,7 @@
         },
         "outages": {
                 "$outage": {
-                    ".read": "root.child('sites').child($site).child(outages).child($outage).child('public').val() === true"
+                    ".read": "data.parent().child('Public').val() == true"
                 }
         }
     }
