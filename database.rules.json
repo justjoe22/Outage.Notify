@@ -10,7 +10,7 @@
         "$site": {
             "outages": {
                 "$outage": {
-                    ".read": "data.child('Public').val() === true"
+                    ".read": "data.child('Public').val() === true && data.child('status').val() === 'Sent'"
                 }
             },
             ".read": "$site === root.child('users').child(auth.uid).child('site').val()",
