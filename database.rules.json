@@ -9,13 +9,12 @@
     "sites": {
         "$site": {
             ".read": "$site === root.child('users').child(auth.uid).child('site').val()",
-            ".write": "$site === root.child('users').child(auth.uid).child('site').val()",
-            
-            "outages": {
+            ".write": "$site === root.child('users').child(auth.uid).child('site').val()"
+        },
+        "outages": {
                 "$outage": {
-                    ".read": "root.child('sites').child($site).child(outages).child($outage).child('public').val() === 1"
+                    ".read": "root.child('sites').child($site).child(outages).child($outage).child('public').val() === true"
                 }
-            }
         }
     }
   }
