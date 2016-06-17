@@ -331,7 +331,7 @@ function authDataCallback(authData) {
             
       //}
     
-    //event.preventDefault();
+    event.preventDefault();
     
   });
   
