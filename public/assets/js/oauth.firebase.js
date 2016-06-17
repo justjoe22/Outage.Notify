@@ -268,7 +268,7 @@ function authDataCallback(authData) {
   }
 }
 
-//firebase.onAuth(authDataCallback);
+firebase.onAuth(authDataCallback);
 
   // Register
   $("#registerButton").on("click", function() {
