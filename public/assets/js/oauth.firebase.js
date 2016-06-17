@@ -268,6 +268,11 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
           }
     });
   }
+  
+  //Load initApp
+  window.onload = function() {
+    initApp();
+  };
 
   // Register
   $("#registerButton").on("click", function() {
