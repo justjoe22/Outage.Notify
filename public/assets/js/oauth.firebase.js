@@ -307,29 +307,21 @@ function authDataCallback(authData) {
     });
     // [END authwithemail]
     
-    //if (error) {
-         // Handle Errors here.
-        //var errorCode = error.code;
-        //var errorMessage = error.message;
-        
-        //console.log("Login Failed!", errorCode + ":" + errorMessage);
-      //} else {
-        //console.log("Authenticated successfully with payload:", authData);
-        
-            /* get some values from elements on the page: */
-          //  var $form = $( this ),
-            //    url = $form.attr( 'action' );
-        
-            /* Send the data using post */
-            //var posting = $.post( url, { email: email } );
-        
-            /* Alerts the results */
-            //posting.done(function( data ) {
-              // similar behavior as an HTTP redirect
-              //window.location.replace("./my.outages");
-            //});
-            
-      //}
+    // Continue after Authentication
+    //console.log("Authenticated successfully with payload:", authData);
+
+    /* get some values from elements on the page: */
+    var $form = $( this ),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post */
+    var posting = $.post( url, { email: email } );
+
+    /* Alerts the results */
+    posting.done(function( data ) {
+       //similar behavior as an HTTP redirect
+      window.location.replace("./my.outages");
+    });
     
     event.preventDefault();
     
