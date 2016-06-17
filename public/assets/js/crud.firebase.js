@@ -798,11 +798,10 @@
     var myVal = [];
     
     //Get Service Name
-    var sys_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
-    var ref = new Firebase( sys_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/systems/").orderByKey();
     
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByKey().on("value", function(snapshot) {
+    ref.on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var serv = data.val();
         
@@ -1155,11 +1154,10 @@
     var myVal = [];
     
     //Get Outage Type Name
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/outage_types/").orderByKey();
     
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByKey().on("value", function(snapshot) {
+    ref.on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var outage = data.val();
         
