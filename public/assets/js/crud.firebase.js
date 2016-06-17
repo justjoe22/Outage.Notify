@@ -647,12 +647,11 @@
   function outages_by_approver(form_site,uid_key){
     
     // Get a database reference to our posts
-    var approver_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
-    var ref = new Firebase( approver_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/outages/").orderByChild("approver");
     var nMessage = [];
     
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByChild("approver").equalTo(uid_key).on("value", function(snapshot) {
+    ref.equalTo(uid_key).on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var message = data.val();
         //var myKey = data.key();
@@ -969,11 +968,10 @@
     var myVal = [];
     
     //Get Contact Name
-    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
-    var ref = new Firebase( cont_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/contacts/").orderByKey();
     
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByKey().on("value", function(snapshot) {
+    ref.on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var cont = data.val();
         
