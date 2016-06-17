@@ -300,7 +300,7 @@ function authDataCallback(authData) {
       if (errorCode === 'auth/wrong-password') {
         alert('Wrong password.');
       } else {
-        console.error(error);
+        console.log(error);
       }
       // [END_EXCLUDE]
     });
