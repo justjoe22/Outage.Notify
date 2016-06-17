@@ -39,19 +39,16 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
             myuid = user.uid;
             
              //Get User uid_site
-             var user_url = main_url + "users/" + myuid;
-             var rUsers = new Firebase( user_url.normalize() );
-             
-            rUsers.once("value", function(snap) {
-              rMessage = snap.val();
+            firebase.database().ref('/users/' + myuid).once('value').then(function(snapshot) {
+              //var username = snapshot.val().username;
               
               //Set Global Variables from User Profile
-              uid_site = rMessage.site;
-              uid_name = rMessage.full_name;
-              uid_email = rMessage.email;
-              uid_adm = rMessage.site_admin;
-              uid_sys_adm = rMessage.sys_admin;
-              uid_approver = rMessage.approver;
+              uid_site = snapshot.val().site;
+              uid_name = snapshot.val().full_name;
+              uid_email = snapshot.val().email;
+              uid_adm = snapshot.val().site_admin;
+              uid_sys_adm = snapshot.val().sys_admin;
+              uid_approver = snapshot.val().approver;
               
               service_name = GetServices(uid_site);
               contact_name = GetContacts(uid_site);
@@ -230,7 +227,6 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
                         event.stopPropagation();
                     });
                 }
-            
             });
             
             if(window.location.pathname==="/"){
