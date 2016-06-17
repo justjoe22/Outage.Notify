@@ -36,7 +36,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
         if (user) {
             
             //Set UID variable
-            myuid = authData.uid;
+            myuid = user.uid;
             
              //Get User uid_site
              var user_url = main_url + "users/" + myuid;
@@ -255,7 +255,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
             otypes = null;
             users = null;
             
-            if(ref.getAuth()===null){
+            if(!firebase.auth().currentUser){
                 if(window.location.pathname!=="/Outage.Notify/public/public.html"){
                     if(window.location.pathname!=="/" && window.location.pathname!=="/Outage.Notify/public/"){
                     
