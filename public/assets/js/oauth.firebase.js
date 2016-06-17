@@ -31,6 +31,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
 //var ref = new firebase.database().ref("/");
 
   // Create a callback which logs the current auth state
+  //firebase.auth().currentUser
 function authDataCallback(authData) {
   if (authData) {
     
@@ -290,12 +291,20 @@ function authDataCallback(authData) {
     var email = $('input[name=email]').val();
     var password = $('input[name=password]').val();
     
+    // [START authwithemail]
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
       // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-      
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // [START_EXCLUDE]
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+      } else {
+        console.error(error);
+      }
+      // [END_EXCLUDE]
     });
+    // [END authwithemail]
     
     //if (error) {
          // Handle Errors here.
