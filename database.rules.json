@@ -14,6 +14,12 @@
                     ".read": "data.child('Public').val() === true && (data.child('status').val() === 'Sent' || data.child('status').val() === 'Complete')"
                 }
             },
+            "outage_types": {
+              ".read": "true"
+            },
+            "systems": {
+              ".read": "true"
+            },
             ".read": "$site === root.child('users').child(auth.uid).child('site').val()",
             ".write": "$site === root.child('users').child(auth.uid).child('site').val()"
         }
