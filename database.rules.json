@@ -15,7 +15,8 @@
             },
             ".read": "$site === root.child('users').child(auth.uid).child('site').val()",
             ".write": "$site === root.child('users').child(auth.uid).child('site').val()"
-        }
+        },
+        ".indexOn": ["approver"]
     }
   }
 }
