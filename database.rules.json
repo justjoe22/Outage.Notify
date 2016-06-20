@@ -2,8 +2,8 @@
   "rules": {
     "users": {
       "$uid": {
-        ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
+        ".read": "$uid === auth.uid || data.child('site_admin').val() === true || data.child('sys_admin').val() === true",
+        ".write": "$uid === auth.uid || data.child('site_admin').val() === true || data.child('sys_admin').val() === true"
       }
     },
     "sites": {
