@@ -10,13 +10,13 @@
         "$site": {
             "outages": {
                 "$outage": {
-                    ".read": "data.child('Public').val() === true && (data.child('status').val() === 'Sent' || data.child('status').val() === 'Complete')"
+                    ".read": "data.child('Public').val() === true && (data.child('status').val() === 'Sent' || data.child('status').val() === 'Complete')",
+                    ".indexOn": ["approver"]
                 }
             },
             ".read": "$site === root.child('users').child(auth.uid).child('site').val()",
             ".write": "$site === root.child('users').child(auth.uid).child('site').val()"
-        },
-        ".indexOn": ["approver"]
+        }
     }
   }
 }
