@@ -10,8 +10,8 @@
         "$site": {
             "outages": {
                 "$outage": {
-                    ".read": "data.child('Public').val() === true && (data.child('status').val() === 'Sent' || data.child('status').val() === 'Complete')",
-                    ".indexOn": ["approver"]
+                    ".indexOn": ["approver"],
+                    ".read": "data.child('Public').val() === true && (data.child('status').val() === 'Sent' || data.child('status').val() === 'Complete')"
                 }
             },
             ".read": "$site === root.child('users').child(auth.uid).child('site').val()",
