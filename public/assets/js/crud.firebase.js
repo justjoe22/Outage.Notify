@@ -1,8 +1,7 @@
 //Add List Item to Outage System
   function add_outage(form_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket,created){
     var postID;
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/outages/");
     
        ref.push({status: "Draft", otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket, created: created});
        
@@ -16,8 +15,7 @@
   //Update List Item to Outage System
   function update_outage(form_site,outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
 
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/outages/");
     
        var myItemRef = ref.child(outageid);
        
@@ -34,8 +32,7 @@
   //Assign Approver
   function assign_approver(form_site,outageid,approver_uid){
 
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/outages/");
     
        var myItemRef = ref.child(outageid);
        
@@ -52,8 +49,7 @@
   //Change Status of Outage System
   function change_status(form_site,outageid,statusid){
 
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/outages/");
     
        var myItemRef = ref.child(outageid);
        
@@ -180,8 +176,7 @@
 
     //Get Outage for Preview
     // Get a database reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/outages/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().equalTo(outageid).on("value", function(snapshot) {
@@ -244,7 +239,7 @@
           document.getElementById("outagePreview").innerHTML = vHTML;
           
           //Get Service Name
-          var Service = ref.root().child('sites').child(form_site).child('systems').child(message.service);
+          var Service = firebase.database().ref("sites/" + form_site + "/systems/" + message.service + "/");
         
           Service.on("value", function (snap) {
             var serv = snap.val();
@@ -257,7 +252,7 @@
           });
           
           //Get Contact Name
-          var Contact = ref.root().child('sites').child(form_site).child('contacts').child(message.wrmessage);
+          var Contact = firebase.database().ref("sites/" + form_site + "/contacts/" + message.wrmessage + "/");
         
           Contact.on("value", function (snap) {
             var cont = snap.val();
@@ -269,7 +264,7 @@
           });
           
           //Get Outage Type Name
-          var Outage_Type = ref.root().child('sites').child(form_site).child('outage_types').child(message.otype);
+          var Outage_Type = firebase.database().ref("sites/" + form_site + "/outage_types/" + message.otype + "/");
         
           Outage_Type.on("value", function (snap) {
             var otype_set = snap.val();
@@ -360,7 +355,7 @@
               
               //Outage Type Control
               //Get Outage Type Name
-              var OTLookup = ref.root().child('sites').child(form_site).child('outage_types').child($('select[name=otype]').val());
+              var OTLookup = firebase.database().ref("sites/" + form_site + "/outage_types/" + $('select[name=otype]').val() + "/");
             
               OTLookup.on("value", function (snap) {
                 var otype_set = snap.val();
@@ -469,8 +464,7 @@
 
     //Get Outage for Preview
     // Get a database reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/" + outageid +"/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/outages/" + outageid + "/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.on("value", function(snapshot) {
@@ -520,7 +514,7 @@
           document.getElementById("outagePreview").innerHTML = vHTML;
           
           //Get Service Name
-          var Service = ref.root().child('sites').child(form_site).child('systems').child(message.service);
+          var Service = firebase.database().ref("sites/" + form_site + "/systems/" + message.service + "/");
         
           Service.on("value", function (snap) {
             var serv = snap.val();
@@ -533,7 +527,7 @@
           }); 
           
           //Get Contact Name
-          var Contact = ref.root().child('sites').child(form_site).child('contacts').child(message.wrmessage);
+          var Contact = firebase.database().ref("sites/" + form_site + "/contacts/" + message.wrmessage + "/");
         
           Contact.on("value", function (snap) {
             var cont = snap.val();
@@ -545,7 +539,7 @@
           });
           
           //Get Outage Type Name
-          var Outage_Type = ref.root().child('sites').child(form_site).child('outage_types').child(message.otype);
+          var Outage_Type = firebase.database().ref("sites/" + form_site + "/outage_types/" + message.otype + "/");
         
           Outage_Type.on("value", function (snap) {
             var otype_set = snap.val();
@@ -566,8 +560,7 @@
   function pop_approvers(form_site){
     
     // Get a database reference to our posts
-    var approver_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/approvers/";
-    var ref = new Firebase( approver_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/approvers/");
     
     var vHTML = "<div class='form-radio-buttons' id='app_radio'></div>";
     $("#approvers-list").html(vHTML);
@@ -586,7 +579,7 @@
           $("#app_radio").append(vHTML);
         
         //Define Approver Name from Users db
-        var uName = ref.root().child('users').child(myKey);
+        var uName = firebase.database().ref("users/" + myKey + "/");
         
         uName.on("value", function (snap) {
             var arrName = snap.val();
@@ -609,8 +602,7 @@
   function pop_one_approver(form_site,uid_key){
     
     // Get a database reference to our posts
-    var approver_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/approvers/";
-    var ref = new Firebase( approver_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/approvers/");
     var nMessage = [];
     
     // Attach an asynchronous callback to read the data at our posts reference
@@ -621,7 +613,7 @@
         
         if(myKey==uid_key){
             //Define Approver Name from Users db
-            var uName = ref.root().child('users').child(myKey);
+            var uName = firebase.database().ref("users/" + myKey + "/");
         
             uName.on("value", function (snap) {
                 var arrName = snap.val();
@@ -691,7 +683,7 @@
           $("#outagelist").append(vHTML);
           
           //Get Service Name
-          var Service = ref.root().child('sites').child(form_site).child('systems').child(message.service);
+          var Service = firebase.database().ref("sites/" + form_site + "/systems/" + message.service + "/");
         
           Service.on("value", function (snap) {
             var serv = snap.val();
@@ -703,7 +695,7 @@
           });
           
           //Get Outage Type Name
-          var Outage_Type = ref.root().child('sites').child(form_site).child('outage_types').child(message.otype);
+          var Outage_Type = firebase.database().ref("sites/" + form_site + "/outage_types/" + message.otype + "/");
         
           Outage_Type.on("value", function (snap) {
             var otype_set = snap.val();
@@ -728,8 +720,7 @@
     
     //Get Outage for Preview
     // Get a database reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outages/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/outages/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().equalTo(outageid).on("value", function(snapshot) {
@@ -828,8 +819,7 @@
   //Add List Item to System Maintenance
   function add_system(form_site,pub_name,desc,created){
     var postID;
-    var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
-    var ref = new Firebase( system_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/systems/");
     
        ref.push({system_desc: desc, system_public_nm: pub_name, created: created});
        
@@ -843,8 +833,7 @@
   //Update List Item to System Maintenance
   function update_system(form_site,pub_name,desc,sys_key){
     var postID;
-    var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
-    var ref = new Firebase( system_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/systems/");
 
        var myItemRef = ref.child(sys_key);
        
@@ -859,8 +848,7 @@
   //Delete a System
   function delete_system(form_site,sys_key){
      // Get a reference to our posts
-    var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/" + sys_key;
-    var ref = new Firebase( system_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/systems/" + sys_key + "/");
     
     // Get the data on a post that has been removed
     ref.remove();
@@ -873,8 +861,7 @@
 
     //Get Systems for Preview
     // Get a database reference to our posts
-    var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
-    var ref = new Firebase( system_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/systems/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByChild("system_public_nm").on("value", function(snapshot) {
@@ -941,8 +928,7 @@
 
     //Get Systems for Preview
     // Get a database reference to our posts
-    var system_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/systems/";
-    var ref = new Firebase( system_url.normalize() );
+    var ref = firebase.database().ref("sites/" + form_site + "/systems/");
     
     var vHTML;
     
@@ -1012,8 +998,7 @@
   //Add List Item to Contact Maintenance
   function add_contact(form_site,cont_name,cont_email,created){
     var postID;
-    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
-    var ref = new Firebase( cont_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/contacts/");
     
        ref.push({cont_name: cont_name, cont_email: cont_email, created: created});
        
@@ -1027,8 +1012,7 @@
   //Update List Item to Contact Maintenance
   function update_contact(form_site,cont_name,cont_email,cont_key){
     var postID;
-    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
-    var ref = new Firebase( cont_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/contacts/");
 
        var myItemRef = ref.child(cont_key);
        
@@ -1044,7 +1028,7 @@
   function delete_contact(form_site,cont_key){
      // Get a reference to our posts
     var contact_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/" + cont_key;
-    var ref = new Firebase( contact_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/contacts/" + cont_key + "/");
     
     // Get the data on a post that has been removed
     ref.remove();
@@ -1057,8 +1041,7 @@
 
     //Get Contacts for Preview
     // Get a database reference to our posts
-    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
-    var ref = new Firebase( cont_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/contacts/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByChild("cont_name").on("value", function(snapshot) {
@@ -1125,8 +1108,7 @@
 
     //Get Contact for Preview
     // Get a database reference to our posts
-    var cont_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/contacts/";
-    var ref = new Firebase( cont_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/contacts/");
     
     var vHTML;
     
@@ -1183,8 +1165,7 @@
   //Add List Item to Outage Type Maintenance
   function add_otype(form_site,otype,prefix,showendd,created){
     var postID;
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/outage_types/");
     
        ref.push({otype: otype, prefix: prefix, showEndD: showendd, created: created});
        
@@ -1198,8 +1179,7 @@
   //Update List Item to Outage Type Maintenance
   function update_otype(form_site,otype,prefix,showendd,otype_key){
     var postID;
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/outage_types/");
 
        var myItemRef = ref.child(otype_key);
        
@@ -1214,8 +1194,7 @@
   //Delete a Outage Type
   function delete_otype(form_site,otype_key){
      // Get a reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/" + otype_key;
-    var ref = new Firebase( outage_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/outage_types/" + otype_key + "/");
     
     // Get the data on a post that has been removed
     ref.remove();
@@ -1228,8 +1207,7 @@
 
     //Get Outage_Type for Preview
     // Get a database reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/outage_types/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().on("value", function(snapshot) {
@@ -1304,8 +1282,7 @@
 
     //Get Contact for Preview
     // Get a database reference to our posts
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/outage_types/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref =  firebase.database().ref("sites/" + form_site + "/outage_types/");
     
     var vHTML;
     
@@ -1364,7 +1341,7 @@
   function add_user(form_site,email,password,full_name,active,approver,site_admin){
     var postID;
     
-      var refUser = new Firebase("https://resplendent-inferno-4226.firebaseio.com");
+      var refUser = firebase.database();
         refUser.createUser({
           email: email,
           password: password
@@ -1383,8 +1360,7 @@
           } else {
             postID = userData.uid;
             
-            var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
-            var ref = new Firebase( user_url.normalize() );
+            var ref =  firebase.database().ref("users/")
             
                ref.child(postID).set({
                    site: form_site,
@@ -1428,8 +1404,7 @@
   //Add User to Users db for settings
   function add_user_profile(form_site,userid,full_name,email,active,approver,site_admin){
     var newID;
-    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
-    var ref = new Firebase( user_url.normalize() );
+    var ref =  firebase.database().ref("users/");
     
        ref.child(userid).set({
            site: form_site,
@@ -1450,8 +1425,7 @@
   //Update List Item to User Maintenance
   function update_user(form_site,userid,full_name,email,active,approver,site_admin){
     var postID;
-    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
-    var ref = new Firebase( user_url.normalize() );
+    var ref =  firebase.database().ref("users/");
 
        var myItemRef = ref.child(userid);
        
@@ -1473,15 +1447,13 @@
   function delete_user(form_site,userid){
     
     // Get a reference to our posts
-    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/" + userid;
-    var ref = new Firebase( user_url.normalize() );
+    var ref =  firebase.database().ref("users/" + userid +"/");
     
     // Get the data on a post that has been removed
     ref.remove();
    
     // Get a reference to our posts
-    var approver_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + form_site + "/approvers/" + userid;
-    var approver = new Firebase( approver_url.normalize() );
+    var approver =  firebase.database().ref("sites/" + form_site + "/approvers/" + userid +"/");
     
     // Get the data on a post that has been removed
     approver.remove();
@@ -1494,8 +1466,7 @@
 
     //Get Outage_Type for Preview
     // Get a database reference to our posts
-    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
-    var ref = new Firebase( user_url.normalize() );
+    var ref =  firebase.database().ref("users/");
     
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByChild("site").equalTo(form_site).on("value", function(snapshot) {
@@ -1590,8 +1561,7 @@
 
     //Get Contact for Preview
     // Get a database reference to our posts
-    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
-    var ref = new Firebase( user_url.normalize() );
+    var ref =  firebase.database().ref("users/");
     
     var vHTML;
     
