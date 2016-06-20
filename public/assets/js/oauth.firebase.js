@@ -252,7 +252,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
             users = null;
             
             if(!firebase.auth().currentUser){
-                if(window.location.pathname!=="/Outage.Notify/public/public.html"){
+                if(window.location.pathname!=="/public.html" && window.location.pathname!=="/Outage.Notify/public/public.html"){
                     if(window.location.pathname!=="/" && window.location.pathname!=="/Outage.Notify/public/"){
                     
                         window.location.replace("../");     
