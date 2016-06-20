@@ -145,8 +145,8 @@
           $("#outagelist").append(vHTML);
           
           //Get Service Name
-          var Service = ref.root.child('sites').child(form_site).child('systems').child(message.service);
-        
+          var Service = firebase.database().ref("sites/" + form_site + "/systems/" + message.service + "/").orderByKey();
+          
           Service.on("value", function (snap) {
             var serv = snap.val();
             
