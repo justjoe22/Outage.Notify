@@ -9,8 +9,8 @@
     "sites": {
         "$site": {
             "outages": {
+                ".indexOn": ["approver","created"],
                 "$outage": {
-                    ".indexOn": ["approver"],
                     ".read": "data.child('Public').val() === true && (data.child('status').val() === 'Sent' || data.child('status').val() === 'Complete')"
                 }
             },

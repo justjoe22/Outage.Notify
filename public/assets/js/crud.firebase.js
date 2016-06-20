@@ -145,7 +145,7 @@
           $("#outagelist").append(vHTML);
           
           //Get Service Name
-          var Service = ref.root().child('sites').child(form_site).child('systems').child(message.service);
+          var Service = ref.root.child('sites').child(form_site).child('systems').child(message.service);
         
           Service.on("value", function (snap) {
             var serv = snap.val();
@@ -157,7 +157,7 @@
           });
           
           //Get Outage Type Name
-          var Outage_Type = ref.root().child('sites').child(form_site).child('outage_types').child(message.otype);
+          var Outage_Type = ref.root.child('sites').child(form_site).child('outage_types').child(message.otype);
         
           Outage_Type.on("value", function (snap) {
             var otype_set = snap.val();
