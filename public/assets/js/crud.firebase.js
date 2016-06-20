@@ -157,7 +157,7 @@
           });
           
           //Get Outage Type Name
-          var Outage_Type = ref.root.child('sites').child(form_site).child('outage_types').child(message.otype);
+          var Outage_Type = firebase.database().ref("sites/" + form_site + "/outage_types/" + message.otype + "/").orderByKey();
         
           Outage_Type.on("value", function (snap) {
             var otype_set = snap.val();
