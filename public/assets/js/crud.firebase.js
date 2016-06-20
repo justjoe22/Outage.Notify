@@ -104,29 +104,29 @@
           vHTML += "<div class='submenu'>";
           if(message.status=="Draft"){
             //Preview Button
-            vHTML += "<a href='../preview.outage.html?outageid=" + data.key() + "' title='Preview Outage' name='prev'>";
+            vHTML += "<a href='../preview.outage.html?outageid=" + data.key + "' title='Preview Outage' name='prev'>";
             vHTML += "<i class='fa fa-television'></i></a>";
             
             //Edit Button
-            vHTML += "<a href='../preview.outage.html?outageid=" + data.key() + "&st=edit' title='Edit Outage' name='edit'>";
+            vHTML += "<a href='../preview.outage.html?outageid=" + data.key + "&st=edit' title='Edit Outage' name='edit'>";
             vHTML += "<i class='fa fa-pencil-square'></i></a>";
           }
           else if(message.status=="Pending"){
             //Preview Button
-            vHTML += "<a href='../approve.outage.html?outageid=" + data.key() + "' title='Preview Outage' name='prev'>";
+            vHTML += "<a href='../approve.outage.html?outageid=" + data.key + "' title='Preview Outage' name='prev'>";
             vHTML += "<i class='fa fa-television'></i></a>";
           }
           else if(message.status=="Approved"){
             //Preview Button
-            vHTML += "<a href='../outage.html?outageid=" + data.key() + "' title='View & Send Outage' name='prev'>";
+            vHTML += "<a href='../outage.html?outageid=" + data.key + "' title='View & Send Outage' name='prev'>";
             vHTML += "<i class='fa fa-envelope-o'></i></a>";
           }
           vHTML += "</div>";
           
           //Summary
           vHTML += "<div class='form-title-row'><h3>";
-          vHTML += "<span id='otype_view"+data.key()+"'></span>: ";
-          vHTML += "<span id='service"+data.key()+"'></span>, ";
+          vHTML += "<span id='otype_view"+data.key+"'></span>: ";
+          vHTML += "<span id='service"+data.key+"'></span>, ";
           vHTML += message.timeframe;
           vHTML += "</h3></div>";
           
@@ -153,7 +153,7 @@
             
             var myVal = serv.system_public_nm;
             
-            $("#service"+data.key()).html(myVal);
+            $("#service"+data.key).html(myVal);
             
           });
           
@@ -165,7 +165,7 @@
             
             var oval = otype_set.otype;
             
-            $("#otype_view"+data.key()).html(oval);
+            $("#otype_view"+data.key).html(oval);
             
           });
         
@@ -577,7 +577,7 @@
     ref.orderByKey().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var message = data.val();
-        var myKey = data.key();
+        var myKey = data.key;
         
           //Populate DIV with HTML
           vHTML = "<div><label id='app-" + myKey + "'>";
@@ -618,7 +618,7 @@
     ref.orderByKey().on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var message = data.val();
-        var myKey = data.key();
+        var myKey = data.key;
         
         if(myKey==uid_key){
             //Define Approver Name from Users db
@@ -654,7 +654,7 @@
     ref.equalTo(uid_key).on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var message = data.val();
-        //var myKey = data.key();
+        //var myKey = data.key;
         
         //Start of Form Class
         if(message.status=="Pending"){
@@ -664,7 +664,7 @@
           vHTML += "<div class='submenu'>";
           
             //Preview Button
-            vHTML += "<a href='../approve.outage.html?outageid=" + data.key() + "' title='Preview Outage' name='prev'>";
+            vHTML += "<a href='../approve.outage.html?outageid=" + data.key + "' title='Preview Outage' name='prev'>";
             vHTML += "<i class='fa fa-television'></i></a>";
           
           vHTML += "</div>";
@@ -804,7 +804,7 @@
       snapshot.forEach(function(data) {
         var serv = data.val();
         
-        myVal.push({key: data.key() , name: serv.system_public_nm, description: serv.system_desc });
+        myVal.push({key: data.key , name: serv.system_public_nm, description: serv.system_desc });
 
       });
       
@@ -885,7 +885,7 @@
         var vHTML = "";
         
         if(dropdown=="Yes"){
-            vHTML = "<option value='"+data.key()+"'>";
+            vHTML = "<option value='"+data.key+"'>";
             vHTML += message.system_public_nm;
             vHTML += "</option>";
             
@@ -894,8 +894,8 @@
         else {
             //Populate DIV with HTML
               vHTML = "<div class='submenu'>";
-              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete System'><i class='fa fa-trash'></i></a>";
-              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit System'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "<a href='#' name='del"+data.key+"' title='Delete System'><i class='fa fa-trash'></i></a>";
+              vHTML += "<a href='#' name='edit"+data.key+"' title='Edit System'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>System Public Name</h2><br>";
               vHTML += "<p>" + message.system_public_nm + "</p>";
@@ -909,19 +909,19 @@
     
               $("#system_list").append(vHTML);
               
-              $('a[name=edit'+data.key()+']').click(function(){
+              $('a[name=edit'+data.key+']').click(function(){
             
                  $('input[name=pub_name]').val(message.system_public_nm);
                  $('input[name=desc]').val(message.system_desc);
-                 $('input[name=sys_id]').val(data.key());
+                 $('input[name=sys_id]').val(data.key);
             
               });
               
-              $('a[name=del'+data.key()+']').click(function(){
+              $('a[name=del'+data.key+']').click(function(){
                 
                 var r = confirm("Please make sure there's no related Outages to this system. Are you sure you want to delete?");
                 if (r === true) {
-                    delete_system(uid_site,data.key());
+                    delete_system(uid_site,data.key);
                  
                     window.location.replace("system.maint.html");
                     
@@ -975,7 +975,7 @@
       snapshot.forEach(function(data) {
         var cont = data.val();
         
-        myVal.push({key: data.key() , cont_name: cont.cont_name, cont_email: cont.cont_email });
+        myVal.push({key: data.key , cont_name: cont.cont_name, cont_email: cont.cont_email });
 
       });
       
@@ -1069,7 +1069,7 @@
         var vHTML = "";
         
         if(dropdown=="Yes"){
-            vHTML = "<option value='"+data.key()+"'>";
+            vHTML = "<option value='"+data.key+"'>";
             vHTML += message.cont_name;
             vHTML += "</option>";
             
@@ -1078,8 +1078,8 @@
         else {
             //Populate DIV with HTML
               vHTML = "<div class='submenu'>";
-              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete Contact'><i class='fa fa-trash'></i></a>";
-              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit Contact'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "<a href='#' name='del"+data.key+"' title='Delete Contact'><i class='fa fa-trash'></i></a>";
+              vHTML += "<a href='#' name='edit"+data.key+"' title='Edit Contact'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>Contact Name</h2><br>";
               vHTML += "<p>" + message.cont_name + "</p>";
@@ -1093,19 +1093,19 @@
     
               $("#contact_list").append(vHTML);
               
-              $('a[name=edit'+data.key()+']').click(function(){
+              $('a[name=edit'+data.key+']').click(function(){
             
                  $('input[name=cont_name]').val(message.cont_name);
                  $('input[name=cont_email]').val(message.cont_email);
-                 $('input[name=cont_id]').val(data.key());
+                 $('input[name=cont_id]').val(data.key);
             
               });
               
-              $('a[name=del'+data.key()+']').click(function(){
+              $('a[name=del'+data.key+']').click(function(){
                 
                 var r = confirm("Please make sure there's no related Outages to this contact. Are you sure you want to delete?");
                 if (r === true) {
-                    delete_contact(uid_site,data.key());
+                    delete_contact(uid_site,data.key);
                  
                     window.location.replace("contact.maint.html");
                     
@@ -1159,7 +1159,7 @@
       snapshot.forEach(function(data) {
         var outage = data.val();
         
-        myVal.push({key: data.key() , otype: outage.otype , prefix: outage.prefix, showEndD: outage.showEndD });
+        myVal.push({key: data.key , otype: outage.otype , prefix: outage.prefix, showEndD: outage.showEndD });
 
       });
       
@@ -1240,7 +1240,7 @@
         var vHTML = "";
         
         if(dropdown=="Yes"){
-            vHTML = "<option value='" + data.key() + "'>";
+            vHTML = "<option value='" + data.key + "'>";
             vHTML += message.otype;
             vHTML += "</option>";
             
@@ -1249,8 +1249,8 @@
         else {
             //Populate DIV with HTML
               vHTML = "<div class='submenu'>";
-              vHTML += "<a href='#' name='del"+data.key()+"' title='Delete Type'><i class='fa fa-trash'></i></a>";
-              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit Type'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "<a href='#' name='del"+data.key+"' title='Delete Type'><i class='fa fa-trash'></i></a>";
+              vHTML += "<a href='#' name='edit"+data.key+"' title='Edit Type'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>Outage Type</h2><br>";
               vHTML += "<p>" + message.otype + "</p>";
@@ -1271,20 +1271,20 @@
     
               $("#otype_list").append(vHTML);
               
-              $('a[name=edit'+data.key()+']').click(function(){
+              $('a[name=edit'+data.key+']').click(function(){
             
                  $('input[name=otype]').val(message.otype);
                  $('input[name=prefix]').val(message.prefix);
                  $('input[name=showendd]')[0].checked = message.showEndD;
-                 $('input[name=otype_key]').val(data.key());
+                 $('input[name=otype_key]').val(data.key);
             
               });
               
-              $('a[name=del'+data.key()+']').click(function(){
+              $('a[name=del'+data.key+']').click(function(){
                 
                 var r = confirm("Please make sure there's no related Outages to this Outage Type. Are you sure you want to delete?");
                 if (r === true) {
-                    delete_otype(uid_site,data.key());
+                    delete_otype(uid_site,data.key);
                  
                     window.location.replace("otype.maint.html");
                     
@@ -1332,7 +1332,6 @@
     var myVal = [];
     
     //Get User Name
-    var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
     var ref =  firebase.database().ref("users/").orderByChild("site");
     
     // Attach an asynchronous callback to read the data at our posts reference
@@ -1340,7 +1339,7 @@
       snapshot.forEach(function(data) {
         var user = data.val();
         
-        myVal.push({key: data.key() , full_name: user.full_name , email: user.email , active: user.active , approver: user.approver , site_admin: user.site_admin , sys_admin: user.sys_admin , site: user.site });
+        myVal.push({key: data.key , full_name: user.full_name , email: user.email , active: user.active , approver: user.approver , site_admin: user.site_admin , sys_admin: user.sys_admin , site: user.site });
 
       });
       
@@ -1507,7 +1506,7 @@
         var vHTML = "";
         
         if(dropdown=="Yes"){
-            vHTML = "<option value='" + data.key() + "'>";
+            vHTML = "<option value='" + data.key + "'>";
             vHTML += message.full_name;
             vHTML += "</option>";
             
@@ -1516,8 +1515,8 @@
         else {
             //Populate DIV with HTML
               vHTML = "<div class='submenu'>";
-              vHTML += "<a href='#' name='del"+data.key()+"' title='Remove User from Site'><i class='fa fa-trash'></i></a>";
-              vHTML += "<a href='#' name='edit"+data.key()+"' title='Edit User'><i class='fa fa-pencil-square'></i></a>";
+              vHTML += "<a href='#' name='del"+data.key+"' title='Remove User from Site'><i class='fa fa-trash'></i></a>";
+              vHTML += "<a href='#' name='edit"+data.key+"' title='Edit User'><i class='fa fa-pencil-square'></i></a>";
               vHTML += "</div>";
               vHTML += "<div class='form-row'><h2>Full Name</h2><br>";
               vHTML += "<p>" + message.full_name + "</p>";
@@ -1556,22 +1555,22 @@
     
               $("#user_list").append(vHTML);
               
-              $('a[name=edit'+data.key()+']').click(function(){
+              $('a[name=edit'+data.key+']').click(function(){
             
                  $('input[name=full_name]').val(message.full_name);
                  $('input[name=email]').val(message.email);
                  $('input[name=active]')[0].checked = message.active;
                  $('input[name=approver]')[0].checked = message.approver;
                  $('input[name=sadmin]')[0].checked = message.site_admin;
-                 $('input[name=user_id]').val(data.key());
+                 $('input[name=user_id]').val(data.key);
             
               });
               
-              $('a[name=del'+data.key()+']').click(function(){
+              $('a[name=del'+data.key+']').click(function(){
                 
                 var r = confirm("Are you sure you want to remove this user?");
                 if (r === true) {
-                    delete_user(uid_site,data.key());
+                    delete_user(uid_site,data.key);
                  
                     window.location.replace("user.maint.html");
                     
