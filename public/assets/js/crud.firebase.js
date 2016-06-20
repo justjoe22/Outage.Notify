@@ -1333,10 +1333,10 @@
     
     //Get User Name
     var user_url = "https://resplendent-inferno-4226.firebaseio.com/users/";
-    var ref = new Firebase( user_url.normalize() );
+    var ref =  firebase.database().ref("users/").orderByChild("site");
     
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.orderByChild("site").equalTo(form_site).on("value", function(snapshot) {
+    ref.equalTo(form_site).on("value", function(snapshot) {
       snapshot.forEach(function(data) {
         var user = data.val();
         
