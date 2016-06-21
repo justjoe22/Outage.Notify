@@ -1356,11 +1356,7 @@
   function add_user(form_site,email,password,full_name,active,approver,site_admin){
     var postID;
     
-      var refUser = firebase.database();
-        refUser.createUser({
-          email: email,
-          password: password
-        }, function(error, userData) {
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error, userData) {
           if (error) {
             switch (error.code) {
               case "EMAIL_TAKEN":
@@ -1404,16 +1400,10 @@
                         console.log(response);
                 });
             
-            return postID;
           }
         });
-        
-       refUser.on('child_added', function(snapshot) {
-         postID = snapshot.key();
-         
-         return postID;
-       });
-
+    
+    return postID;
   }
   
   //Add User to Users db for settings
