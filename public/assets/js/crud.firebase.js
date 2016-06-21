@@ -1356,19 +1356,16 @@
   function add_user(form_site,email,password,full_name,active,approver,site_admin){
     var postID;
     
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error, userData) {
-          if (error) {
-            switch (error.code) {
-              case "EMAIL_TAKEN":
-                console.log("The new user account cannot be created because the email is already in use.");
-                break;
-              case "INVALID_EMAIL":
-                console.log("The specified email is not a valid email.");
-                break;
-              default:
-                console.log("Error creating user:", error);
-            }
-          } else {
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      
+      if (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+      
+        console.log(errorCode);
+        console.log(errorMessage);
+      } else {
             postID = userData.uid;
             
             var ref =  firebase.database().ref("users/")
