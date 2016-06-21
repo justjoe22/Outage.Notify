@@ -3,11 +3,11 @@
     var postID;
     var ref = firebase.database().ref("sites/" + form_site + "/outages/");
     
-       ref.push({status: "Draft", otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket, created: created});
+       postID = ref.push({status: "Draft", otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket, created: created}).key;
        
-       ref.on('child_added', function(snapshot) {
-        postID = snapshot.key();
-      });
+       //ref.on('child_added', function(snapshot) {
+        //postID = snapshot.key();
+      //});
 
     return postID
   }
