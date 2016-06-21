@@ -62,8 +62,7 @@ $(window).load(function() {
   //Outage Type Control
   $('select[name=otype]').change(function(){
 
-    var outage_url = "https://resplendent-inferno-4226.firebaseio.com/sites/" + uid_site + "/outage_types/";
-    var ref = new Firebase( outage_url.normalize() );
+    var ref = firebase.database().ref("sites/" + uid_site + "/outage_types/");
     
     ref.orderByKey().equalTo($('select[name=otype]').val()).on("value", function(snapshot) {
       snapshot.forEach(function(data) {

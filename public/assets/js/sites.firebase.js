@@ -2,7 +2,7 @@
   //Add New Site
   function AddSite(status,sitename,siteadmin,siteurl,siteemail){
     var postID;
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/sites/');
+    var myDataRef = firebase.database().ref("sites/");
 
        myDataRef.push({status: status, site_name: sitename, site_admin: siteadmin, site_url: siteurl, site_email: siteemail});
 
@@ -16,7 +16,7 @@
   //Update List Item to Outage System
   function UpdateListItem(outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
 
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
+    var myDataRef = firebase.database().ref("sites/");
 
        var myItemRef = myDataRef.child(outageid);
 
@@ -35,7 +35,7 @@
     var msg;
 
     // Get a reference to our posts
-    var ref = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
+    var ref = firebase.database().ref("sites/");
 
     // Get the data on a post that has been removed
     ref.on("child_removed", function(snapshot) {
@@ -49,7 +49,7 @@
   //Change Status of Outage System
   function change_status(outageid,statusid){
 
-    var myDataRef = new Firebase('https://resplendent-inferno-4226.firebaseio.com/outages/');
+    var myDataRef = firebase.database().ref("sites/");
 
        var myItemRef = myDataRef.child(outageid);
 
@@ -68,7 +68,7 @@
 
     //Get Outage for Preview
     // Get a database reference to our posts
-    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/outages/");
+    var ref = firebase.database().ref("sites/");
 
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().on("value", function(snapshot) {
@@ -128,7 +128,7 @@
 
     //Get Outage for Preview
     // Get a database reference to our posts
-    var ref = new Firebase("https://resplendent-inferno-4226.firebaseio.com/outages/");
+    var ref = firebase.database().ref("sites/");
 
     // Attach an asynchronous callback to read the data at our posts reference
     ref.orderByKey().equalTo(outageid).on("value", function(snapshot) {
