@@ -1,8 +1,9 @@
 {
   "rules": {
     "users": {
-        ".read": "data.child('site_admin').val() === true || data.child('sys_admin').val() === true",
-        ".write": "data.child('site_admin').val() === true || data.child('sys_admin').val() === true",
+        ".indexOn": ["site"],
+        ".read": "data.child(auth.uid).child('site_admin').val() === true || data.child(auth.uid).child('sys_admin').val() === true",
+        ".write": "data.child(auth.uid).child('site_admin').val() === true || data.child(auth.uid).child('sys_admin').val() === true",
       "$uid": {
         ".read": "$uid === auth.uid",
         ".write": "$uid === auth.uid"
