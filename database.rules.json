@@ -1,7 +1,7 @@
 {
   "rules": {
-    ".read": "root.child('users').child(auth.uid).child('active').val() === true && data.child(auth.uid).child('sys_admin').val() === true",
-    ".write": "root.child('users').child(auth.uid).child('active').val() === true && data.child(auth.uid).child('sys_admin').val() === true",
+    ".read": "root.child('users').child(auth.uid).child('active').val() === true && root.child('users').child(auth.uid).child('sys_admin').val() === true",
+    ".write": "root.child('users').child(auth.uid).child('active').val() === true && root.child('users').child(auth.uid).child('sys_admin').val() === true",
     "users": {
         ".indexOn": ["site"],
         ".read": "data.child(auth.uid).child('active').val() === true && (data.child(auth.uid).child('site_admin').val() === true || data.child(auth.uid).child('sys_admin').val() === true)",
