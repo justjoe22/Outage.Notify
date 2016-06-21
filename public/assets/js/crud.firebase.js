@@ -1356,16 +1356,16 @@
   function add_user(form_site,email,password,full_name,active,approver,site_admin){
     var postID;
     
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      //firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
       
-      if (error) {
+      //if (error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        //var errorCode = error.code;
+        //var errorMessage = error.message;
       
-        console.log(errorCode);
-        console.log(errorMessage);
-      } else {
+        //console.log(errorCode);
+        //console.log(errorMessage);
+      //} else {
             postID = userData.uid;
             
             var ref =  firebase.database().ref("users/")
@@ -1397,8 +1397,8 @@
                         console.log(response);
                 });
             
-          }
-        });
+          //}
+        //});
     
     return postID;
   }
