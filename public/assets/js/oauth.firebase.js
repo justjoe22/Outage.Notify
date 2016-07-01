@@ -333,7 +333,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
    console.log('Google Auth Response', googleUser);
     
     // User tries to sign in to Google.
-    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(error) {
+    var credential = firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(error) {
       // An error happened.
       if (error.code === 'auth/account-exists-with-different-credential') {
         
