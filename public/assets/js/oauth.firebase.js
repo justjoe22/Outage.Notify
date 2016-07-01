@@ -334,7 +334,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
    
       // We need to register an Observer on Firebase Auth to make sure auth is initialized.
       var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
-        unsubscribe();
+        //unsubscribe();
         // Check if we are already signed-in Firebase with the correct user.
         if (!isUserEqual(googleUser, firebaseUser)) {
           // Build Firebase credential with the Google ID token.
