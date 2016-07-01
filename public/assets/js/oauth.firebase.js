@@ -339,8 +339,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
         if (!isUserEqual(googleUser, firebaseUser)) {
           // Build Firebase credential with the Google ID token.
           // [START googlecredential]
-          var credential = firebase.auth.GoogleAuthProvider.credential(
-              googleUser.getAuthResponse().id_token);
+          var credential = firebase.auth.GoogleAuthProvider.credential(googleUser.getAuthResponse().id_token);
           // [END googlecredential]
           // Sign in with credential from the Google user.
           // [START authwithcred]
