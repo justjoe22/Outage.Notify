@@ -14,7 +14,7 @@ var users;
 var mail_server;
 
 // Initialize Firebase
-var firebase = require("firebase/app");
+  require("firebase/app");
   require("firebase/auth");
   require("firebase/database");
   
