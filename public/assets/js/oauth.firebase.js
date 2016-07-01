@@ -14,6 +14,10 @@ var users;
 var mail_server;
 
 // Initialize Firebase
+var firebase = require("firebase/app");
+  require("firebase/auth");
+  require("firebase/database");
+  
 var config = {
 apiKey: "AIzaSyBeJDO84t81kUwS5Y6sK1qQ9nt-Jw_6CJU",
 authDomain: "resplendent-inferno-4226.firebaseapp.com",
