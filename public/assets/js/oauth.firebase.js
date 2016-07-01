@@ -387,6 +387,14 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
       }
       return false;
     }
+    
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
   
    // Logout
   $( "#logout" ).on("click", function() {
@@ -398,6 +406,11 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
     });
       
     ref.unauth();
+    
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
     
     window.location.replace("./");
     
