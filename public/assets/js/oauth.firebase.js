@@ -386,7 +386,14 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
         });
       }
     });
-        
+    
+    // Sign in user with another account
+    firebase.auth().currentUser.link(credential).then(function(user) {
+      console.log("Account linking success", user);
+    }, function(error) {
+      console.log("Account linking error", error);
+    });
+    
   });
   
       /**
