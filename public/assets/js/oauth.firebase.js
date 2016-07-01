@@ -328,7 +328,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
   });
   
   // Login Google
-  $( "#googleLogin" ).on("click", function() {
+  $( "#googleLogin" ).on("click", function(googleUser) {
     
    console.log('Google Auth Response', googleUser);
    
