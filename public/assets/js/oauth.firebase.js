@@ -347,7 +347,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
     function onSignIn(googleUser) {
       console.log('Google Auth Response', googleUser);
       
-      if(!firebase.auth()){
+      if(!firebase.auth().currentUser){
           
           // We need to register an Observer on Firebase Auth to make sure auth is initialized.
           var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
