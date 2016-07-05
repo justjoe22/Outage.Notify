@@ -352,19 +352,29 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
         // Check if we are already signed-in Firebase with the correct user.
         if (!isUserEqual(googleUser, firebaseUser)) {
           // Build Firebase credential with the Google ID token.
-          // [START googlecredential]
           var credential = firebase.auth.GoogleAuthProvider.credential(
               googleUser.getAuthResponse().id_token);
-          // [END googlecredential]
+              
+          var email = googleUser.getBasicProfile().hg;
+          
+          firebase.auth().fetchProvidersForEmail(email).then(function(providers) {
+            if (providers[0] === 'password') {
+                // Asks the user his password.
+                // In real scenario, you should handle this asynchronously.
+                var password = $('input[name=password]').val(); // TODO: implement promptUserForPassword.
+                firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+                  user.link(credential);
+                }).then(function() {
+                  // Google account successfully linked to the existing Firebase user.
+                  //goToApp();
+                });
+                
+            }
+          });
+          
           // Sign in with credential from the Google user.
-          // [START authwithcred]
           firebase.auth().signInWithCredential(credential).then(function(result) {
-            // Remember that the user may have signed in with an account that has a different email
-            // address than the first one. This can happen as Firebase doesn't control the provider's
-            // sign in flow and the user is free to login using whichever account he owns.
-            // Step 4b.
-            // Link to Google credential.
-            // As we have access to the pending credential, we can directly call the link method.
+            
             result.user.link(credential).then(function() {
               // Google account successfully linked to the existing Firebase user.
               //goToApp();
