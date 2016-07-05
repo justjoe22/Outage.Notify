@@ -38,6 +38,8 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
             //Set UID variable
             myuid = user.uid;
             
+            $('.g-signin2').hide();
+            
              //Get User uid_site
             firebase.database().ref('/users/' + myuid).once('value').then(function(snapshot) {
               //var username = snapshot.val().username;
@@ -55,8 +57,6 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
               otypes = GetOType(uid_site);
               users = GetUsers(uid_site);
               
-              $('.g-signin2').hide();
-        
                 //Set Sys Admin menu
                 if(uid_sys_adm===true) {
                     var $nav = $('<nav />').appendTo('body');
