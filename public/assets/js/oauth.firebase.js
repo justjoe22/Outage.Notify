@@ -346,59 +346,63 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
     // [START googlecallback]
     function onSignIn(googleUser) {
       console.log('Google Auth Response', googleUser);
-      // We need to register an Observer on Firebase Auth to make sure auth is initialized.
-      var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
-        unsubscribe();
-        // Check if we are already signed-in Firebase with the correct user.
-        if (!isUserEqual(googleUser, firebaseUser)) {
-          // Build Firebase credential with the Google ID token.
-          var credential = firebase.auth.GoogleAuthProvider.credential(
-              googleUser.getAuthResponse().id_token);
-              
-          var email = googleUser.getBasicProfile().hg;
+      
+      if(!firebase.auth()){
           
-          firebase.auth().fetchProvidersForEmail(email).then(function(providers) {
-            if (providers[0] === 'password') {
-                // Asks the user his password.
-                // In real scenario, you should handle this asynchronously.
-                var password = $('input[name=password]').val(); // TODO: implement promptUserForPassword.
-                firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
-                  return user.link(credential);
-                }).then(function() {
-                  // Google account successfully linked to the existing Firebase user.
-                  //goToApp();
-                });
-                
-            }
-            else {
-                // Sign in with credential from the Google user.
-                firebase.auth().signInWithCredential(credential).catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    // The email of the user's account used.
-                    var email = error.email;
-                    // The firebase.auth.AuthCredential type that was used.
-                    var credential = error.credential;
-                    // [START_EXCLUDE]
-                    if (errorCode === 'auth/account-exists-with-different-credential') {
-                      alert('You have already signed up with a different auth provider for that email.');
-                      // If you are using multiple auth providers on your app you should handle linking
-                      // the user's accounts here.
-                    } else {
-                      console.error(error);
-                    }
-                    // [END_EXCLUDE]
-                  });
-                  // [END authwithcred]
-                
+          // We need to register an Observer on Firebase Auth to make sure auth is initialized.
+          var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
+            unsubscribe();
+            // Check if we are already signed-in Firebase with the correct user.
+            if (!isUserEqual(googleUser, firebaseUser)) {
+              // Build Firebase credential with the Google ID token.
+              var credential = firebase.auth.GoogleAuthProvider.credential(
+                  googleUser.getAuthResponse().id_token);
+                  
+              var email = googleUser.getBasicProfile().hg;
+              
+              firebase.auth().fetchProvidersForEmail(email).then(function(providers) {
+                if (providers[0] === 'password') {
+                    // Asks the user his password.
+                    // In real scenario, you should handle this asynchronously.
+                    var password = $('input[name=password]').val(); // TODO: implement promptUserForPassword.
+                    firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+                      return user.link(credential);
+                    }).then(function() {
+                      // Google account successfully linked to the existing Firebase user.
+                      //goToApp();
+                    });
+                    
+                }
+                else {
+                    // Sign in with credential from the Google user.
+                    firebase.auth().signInWithCredential(credential).catch(function(error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        // The email of the user's account used.
+                        var email = error.email;
+                        // The firebase.auth.AuthCredential type that was used.
+                        var credential = error.credential;
+                        // [START_EXCLUDE]
+                        if (errorCode === 'auth/account-exists-with-different-credential') {
+                          alert('You have already signed up with a different auth provider for that email.');
+                          // If you are using multiple auth providers on your app you should handle linking
+                          // the user's accounts here.
+                        } else {
+                          console.error(error);
+                        }
+                        // [END_EXCLUDE]
+                      });
+                      // [END authwithcred]
+                    
+                }
+              });
+              
+            } else {
+              console.log('User already signed-in Firebase.');
             }
           });
-          
-        } else {
-          console.log('User already signed-in Firebase.');
-        }
-      });
+      }
     }
     // [END googlecallback]
     /**
