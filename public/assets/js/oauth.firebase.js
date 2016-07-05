@@ -54,6 +54,8 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
               contact_name = GetContacts(uid_site);
               otypes = GetOType(uid_site);
               users = GetUsers(uid_site);
+              
+              $('.g-signin2').hide();
         
                 //Set Sys Admin menu
                 if(uid_sys_adm===true) {
