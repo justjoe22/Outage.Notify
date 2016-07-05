@@ -392,10 +392,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
    // Logout
   $( "#logout" ).on("click", function() {
     
-    var googleAuth = gapi.auth2.getAuthInstance();
-      googleAuth.signOut().then(function() {
-        firebase.auth().signOut();
-      });
+    handleSignOut();
     
     window.location.replace("./");
     
@@ -464,6 +461,16 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
       return false;
     }
     // [END checksameuser]
+    
+    /**
+     * Handle the sign out button press.
+     */
+    function handleSignOut() {
+      var googleAuth = gapi.auth2.getAuthInstance();
+      googleAuth.signOut().then(function() {
+        firebase.auth().signOut();
+      });
+    }
     
 //Main Menu Controls
 function collapse($elements) {
