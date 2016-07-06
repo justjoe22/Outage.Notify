@@ -25,6 +25,9 @@ $(window).load(function() {
   
   $('#outageid').val(outageid);
   
+  //Hide Google Authentication
+  $('.g-signin2').hide();
+  
   //Populate Form.Preview
   pop_pubpreview(outageid, uid_site);
   
