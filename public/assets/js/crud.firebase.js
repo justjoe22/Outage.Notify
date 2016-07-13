@@ -133,8 +133,8 @@
           }
           else if(message.status=="Sent"){
             //Public View 
-            vHTML += "<a href='../public.html?outageid=" + data.key + ",site=" + form_site + "' title='View & Send Outage' name='prev'>";
-            vHTML += "<i class='fa fa-envelope-o'></i></a>";
+            vHTML += "<a href='../public.html?outageid=" + data.key + "&site=" + form_site + "' title='Public View' name='prev'>";
+            vHTML += "<i class='fa fa-rocket'></i></a>";
           }
           vHTML += "</div>";
           
