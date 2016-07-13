@@ -131,6 +131,11 @@
             vHTML += "<a href='../outage.html?outageid=" + data.key + "' title='View & Send Outage' name='prev'>";
             vHTML += "<i class='fa fa-envelope-o'></i></a>";
           }
+          else if(message.status=="Sent"){
+            //Public View 
+            vHTML += "<a href='../public.html?outageid=" + data.key + ",site=" + form_site + "' title='View & Send Outage' name='prev'>";
+            vHTML += "<i class='fa fa-envelope-o'></i></a>";
+          }
           vHTML += "</div>";
           
           //Summary
