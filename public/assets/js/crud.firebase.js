@@ -133,7 +133,7 @@
           }
           else if(message.status=="Sent"){
             
-            if(data.Public===true){
+            if(data.child("Public").val()===true){
                 //Public View 
                 vHTML += "<a href='../public.html?outageid=" + data.key + "&site=" + form_site + "' title='Public View' name='prev'>";
                 vHTML += "<i class='fa fa-rocket'></i></a>";    
