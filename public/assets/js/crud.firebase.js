@@ -132,9 +132,13 @@
             vHTML += "<i class='fa fa-envelope-o'></i></a>";
           }
           else if(message.status=="Sent"){
-            //Public View 
-            vHTML += "<a href='../public.html?outageid=" + data.key + "&site=" + form_site + "' title='Public View' name='prev'>";
-            vHTML += "<i class='fa fa-rocket'></i></a>";
+            
+            if(data.Public===true){
+                //Public View 
+                vHTML += "<a href='../public.html?outageid=" + data.key + "&site=" + form_site + "' title='Public View' name='prev'>";
+                vHTML += "<i class='fa fa-rocket'></i></a>";    
+            }
+            
           }
           vHTML += "</div>";
           
