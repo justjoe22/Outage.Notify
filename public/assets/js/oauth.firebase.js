@@ -1,3 +1,4 @@
+/*global $*/
 //Global User Variables
 var myuid;
 var uid_site;
@@ -346,7 +347,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
 
 
 //End of Script
-})(jQuery);
+})(jQuery); /*global jQuery*/
 
 //OAuth Controls
     // [START googlecallback]
