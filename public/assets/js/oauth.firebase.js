@@ -20,6 +20,7 @@ authDomain: "resplendent-inferno-4226.firebaseapp.com",
 databaseURL: "https://resplendent-inferno-4226.firebaseio.com",
 storageBucket: "resplendent-inferno-4226.appspot.com",
 };
+/*global firebase*/
 firebase.initializeApp(config);
 
 (function($) {
@@ -52,9 +53,13 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
               uid_sys_adm = snapshot.val().sys_admin;
               uid_approver = snapshot.val().approver;
               
+              /*global GetServices*/
               service_name = GetServices(uid_site);
+              /*global GetContacts*/
               contact_name = GetContacts(uid_site);
+              /*global GetOType*/
               otypes = GetOType(uid_site);
+              /*global GetUsers*/
               users = GetUsers(uid_site);
               
                 //Set Sys Admin menu
@@ -278,6 +283,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
     var email = $('input[name=email]').val();
     var password = $('input[name=password]').val();
     
+    /*global ref*/
     ref.createUser({email: email, password: password}, function(error, userData) {
       if (error) {
         console.log("Error creating user:", error);
