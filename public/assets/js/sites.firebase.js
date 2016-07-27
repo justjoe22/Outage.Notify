@@ -1,3 +1,4 @@
+/*global firebase*/
 
   //Add New Site
   function AddSite(status,sitename,siteadmin,siteurl,siteemail){
@@ -13,25 +14,25 @@
     return postID
   }
 
-  //Update List Item to Outage System
-  function UpdateListItem(outageid,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket){
+  //Update Site
+  function UpdateSiteItem(site_id,status,sitename,siteadmin,siteurl,siteemail){
 
     var myDataRef = firebase.database().ref("sites/");
 
-       var myItemRef = myDataRef.child(outageid);
+       var myItemRef = myDataRef.child(site_id);
 
-       myItemRef.update({otype: otype, pcontact: pcontact, service: service, timeframe: timeframe, startd: startd, startt: startt, endd: endd, endt: endt, timezone: timezone, todo: todo, bimpact: bimpact, chkabo: chkABO, txtabo: txtABO, wrmessage: wrmessage, contact: contact, ticket: ticket}, function(error) {
+       myItemRef.update({status: status, site_name: sitename, site_admin: siteadmin, site_url: siteurl, site_email: siteemail}, function(error) {
           if (error) {
             alert("Data could not be saved." + error);
           } else {
-            window.location.replace("preview.outage.html?outageid=" + outageid);
+            //window.location.replace("preview.outage.html?outageid=" + site_id);
           }
         });
 
   }
 
-  //Delete List Item to Outage System
-  function DeleteListItem(outageid){
+  //Delete Site
+  function DeleteSiteItem(site_id){
     var msg;
 
     // Get a reference to our posts

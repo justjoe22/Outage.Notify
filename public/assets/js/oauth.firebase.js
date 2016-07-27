@@ -435,6 +435,7 @@ mail_server = 'https://resplendent-inferno-4226.firebaseapp.com/';
      * Handle the sign out button press.
      */
     function handleSignOut() {
+      /*global gapi*/
       var googleAuth = gapi.auth2.getAuthInstance();
       googleAuth.signOut().then(function() {
         firebase.auth().signOut();

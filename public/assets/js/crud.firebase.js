@@ -1,3 +1,19 @@
+/*global firebase*/
+/*global $*/
+/*global uid_site*/
+/*global pop_timeFrame*/
+/*global myuid*/
+/*global uid_name*/
+/*global uid_email*/
+/*global userData*/
+/*global mail_server*/
+/*global jQuery*/
+/*global users*/
+/*global otypes*/
+/*global contact_name*/
+/*global service_name*/
+
+
 //Add List Item to Outage System
   function add_outage(form_site,otype,pcontact,service,timeframe,startd,startt,endd,endt,timezone,todo,bimpact,chkABO,txtABO,wrmessage,contact,ticket,created){
     var postID;
