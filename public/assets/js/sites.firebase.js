@@ -1,4 +1,6 @@
 /*global firebase*/
+/*global $*/
+/*global pop_timeFrame*/
 
   //Add New Site
   function AddSite(status,sitename,siteadmin,siteurl,siteemail){

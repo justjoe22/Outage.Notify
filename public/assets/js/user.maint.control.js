@@ -1,3 +1,9 @@
+/*global uid_site*/
+/*global pop_userlist*/
+/*global update_user*/
+/*global add_user*/
+/*global jQuery*/
+
 (function($) {
 
 //Default Settings OnLoad

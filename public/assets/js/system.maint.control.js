@@ -1,3 +1,12 @@
+/*global uid_site*/
+/*global pop_syslist*/
+/*global desc*/
+/*global sysid*/
+/*global update_system*/
+/*global add_system*/
+/*global myuid*/
+/*global jQuery*/
+
 (function($) {
 
 //Default Settings OnLoad
