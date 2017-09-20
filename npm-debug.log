@@ -1,0 +1,95 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/versions/node/v4.4.5/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/versions/node/v4.4.5/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'firebase-tools' ]
+2 info using npm@2.15.5
+3 info using node@v4.4.5
+4 verbose install initial load of /home/ubuntu/.nvm/versions/node/v4.4.5/lib/package.json
+5 verbose readDependencies loading dependencies from /home/ubuntu/.nvm/versions/node/v4.4.5/lib/package.json
+6 silly cache add args [ 'firebase-tools', null ]
+7 verbose cache add spec firebase-tools
+8 silly cache add parsed spec Result {
+8 silly cache add   raw: 'firebase-tools',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'firebase-tools',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: 'latest',
+8 silly cache add   type: 'tag' }
+9 silly addNamed firebase-tools@latest
+10 verbose addNamed "latest" is being treated as a dist-tag for firebase-tools
+11 info addNameTag [ 'firebase-tools', 'latest' ]
+12 silly mapToRegistry name firebase-tools
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry data Result {
+15 silly mapToRegistry   raw: 'firebase-tools',
+15 silly mapToRegistry   scope: null,
+15 silly mapToRegistry   name: 'firebase-tools',
+15 silly mapToRegistry   rawSpec: '',
+15 silly mapToRegistry   spec: 'latest',
+15 silly mapToRegistry   type: 'tag' }
+16 silly mapToRegistry uri https://registry.npmjs.org/firebase-tools
+17 verbose addNameTag registry:https://registry.npmjs.org/firebase-tools not in flight; fetching
+18 verbose request uri https://registry.npmjs.org/firebase-tools
+19 verbose request no auth needed
+20 info attempt registry request try #1 at 2:52:34 PM
+21 verbose request id 776955aa12625d5b
+22 verbose etag W/"59c04896-20438"
+23 verbose lastModified Mon, 18 Sep 2017 22:28:38 GMT
+24 http request GET https://registry.npmjs.org/firebase-tools
+25 http 304 https://registry.npmjs.org/firebase-tools
+26 verbose headers { date: 'Wed, 20 Sep 2017 14:52:34 GMT',
+26 verbose headers   via: '1.1 varnish',
+26 verbose headers   'cache-control': 'max-age=300',
+26 verbose headers   etag: 'W/"59c04896-20438"',
+26 verbose headers   age: '24',
+26 verbose headers   connection: 'keep-alive',
+26 verbose headers   'x-served-by': 'cache-ord1730-ORD',
+26 verbose headers   'x-cache': 'HIT',
+26 verbose headers   'x-cache-hits': '132',
+26 verbose headers   'x-timer': 'S1505919155.671004,VS0,VE0',
+26 verbose headers   vary: 'Accept-Encoding, Accept' }
+27 silly get cb [ 304,
+27 silly get   { date: 'Wed, 20 Sep 2017 14:52:34 GMT',
+27 silly get     via: '1.1 varnish',
+27 silly get     'cache-control': 'max-age=300',
+27 silly get     etag: 'W/"59c04896-20438"',
+27 silly get     age: '24',
+27 silly get     connection: 'keep-alive',
+27 silly get     'x-served-by': 'cache-ord1730-ORD',
+27 silly get     'x-cache': 'HIT',
+27 silly get     'x-cache-hits': '132',
+27 silly get     'x-timer': 'S1505919155.671004,VS0,VE0',
+27 silly get     vary: 'Accept-Encoding, Accept' } ]
+28 verbose etag https://registry.npmjs.org/firebase-tools from cache
+29 verbose get saving firebase-tools to /home/ubuntu/.npm/registry.npmjs.org/firebase-tools/.cache.json
+30 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+31 silly addNameTag next cb for firebase-tools with tag latest
+32 verbose stack Error: No compatible version found: firebase-tools@'latest'
+32 verbose stack Valid install targets:
+32 verbose stack ["0.0.1","0.0.2","0.0.3","0.0.4","0.0.5","0.0.6","0.1.0","0.1.1","0.1.2","0.1.3","0.1.4","0.1.5","0.1.6","0.2.0","0.3.0","0.4.0","0.5.0","1.0.0","1.0.1","1.0.2","1.0.3","1.0.4","1.0.5","1.0.6","1.1.0","1.1.1","1.1.2","1.1.3","1.1.4","1.1.5","1.1.6","1.2.0","2.0.0","2.0.1","2.0.2","2.1.0","2.1.1","2.2.0","2.2.1","3.0.0","3.0.1","3.0.2","3.0.3","3.0.4","3.0.5","3.0.6","3.0.7","3.0.8","3.1.0","3.2.0","3.2.1","3.2.2","3.2.3","3.3.0","3.4.0","3.5.0","3.6.0","3.6.1","3.7.0","3.8.0","3.9.0","3.9.1","3.9.2","3.10.0"]
+32 verbose stack
+32 verbose stack     at installTargetsError (/home/ubuntu/.nvm/versions/node/v4.4.5/lib/node_modules/npm/lib/cache/add-named.js:284:12)
+32 verbose stack     at next (/home/ubuntu/.nvm/versions/node/v4.4.5/lib/node_modules/npm/lib/cache/add-named.js:94:10)
+32 verbose stack     at RES (/home/ubuntu/.nvm/versions/node/v4.4.5/lib/node_modules/npm/node_modules/inflight/inflight.js:23:14)
+32 verbose stack     at f (/home/ubuntu/.nvm/versions/node/v4.4.5/lib/node_modules/npm/node_modules/once/once.js:17:25)
+32 verbose stack     at fixName (/home/ubuntu/.nvm/versions/node/v4.4.5/lib/node_modules/npm/lib/cache/add-named.js:29:5)
+32 verbose stack     at saved (/home/ubuntu/.nvm/versions/node/v4.4.5/lib/node_modules/npm/lib/cache/caching-client.js:173:7)
+32 verbose stack     at /home/ubuntu/.nvm/versions/node/v4.4.5/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:210:7
+32 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+33 verbose cwd /home/ubuntu/workspace
+34 error Linux 4.9.17-c9
+35 error argv "/home/ubuntu/.nvm/versions/node/v4.4.5/bin/node" "/home/ubuntu/.nvm/versions/node/v4.4.5/bin/npm" "install" "-g" "firebase-tools"
+36 error node v4.4.5
+37 error npm  v2.15.5
+38 error code ETARGET
+39 error notarget No compatible version found: firebase-tools@'latest'
+39 error notarget Valid install targets:
+39 error notarget ["0.0.1","0.0.2","0.0.3","0.0.4","0.0.5","0.0.6","0.1.0","0.1.1","0.1.2","0.1.3","0.1.4","0.1.5","0.1.6","0.2.0","0.3.0","0.4.0","0.5.0","1.0.0","1.0.1","1.0.2","1.0.3","1.0.4","1.0.5","1.0.6","1.1.0","1.1.1","1.1.2","1.1.3","1.1.4","1.1.5","1.1.6","1.2.0","2.0.0","2.0.1","2.0.2","2.1.0","2.1.1","2.2.0","2.2.1","3.0.0","3.0.1","3.0.2","3.0.3","3.0.4","3.0.5","3.0.6","3.0.7","3.0.8","3.1.0","3.2.0","3.2.1","3.2.2","3.2.3","3.3.0","3.4.0","3.5.0","3.6.0","3.6.1","3.7.0","3.8.0","3.9.0","3.9.1","3.9.2","3.10.0"]
+39 error notarget
+39 error notarget This is most likely not a problem with npm itself.
+39 error notarget In most cases you or one of your dependencies are requesting
+39 error notarget a package version that doesn't exist.
+40 verbose exit [ 1, true ]
