@@ -16,10 +16,12 @@ var mail_server;
 
 // Initialize Firebase
 var config = {
-apiKey: "AIzaSyBeJDO84t81kUwS5Y6sK1qQ9nt-Jw_6CJU",
-authDomain: "resplendent-inferno-4226.firebaseapp.com",
-databaseURL: "https://resplendent-inferno-4226.firebaseio.com",
-storageBucket: "resplendent-inferno-4226.appspot.com",
+    apiKey: "AIzaSyBeJDO84t81kUwS5Y6sK1qQ9nt-Jw_6CJU",
+    authDomain: "resplendent-inferno-4226.firebaseapp.com",
+    databaseURL: "https://resplendent-inferno-4226.firebaseio.com",
+    projectId: "resplendent-inferno-4226",
+    storageBucket: "resplendent-inferno-4226.appspot.com",
+    messagingSenderId: "581593030551"
 };
 /*global firebase*/
 firebase.initializeApp(config);
